@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "gemforged:item/onyx_dagger"
+    "layer0": "gemforged:item/battle_charm"
   }
 }

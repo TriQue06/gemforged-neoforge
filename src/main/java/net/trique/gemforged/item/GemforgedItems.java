@@ -12,12 +12,33 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.trique.gemforged.Gemforged;
-import net.trique.gemforged.item.gear.OnyxDaggerItem;
+import net.trique.gemforged.item.gear.*;
 
 public class GemforgedItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Gemforged.MODID);
 
-    public static final DeferredItem<Item> ONYX_DAGGER = ITEMS.register("onyx_dagger", () -> {
+    public static final DeferredItem<Item> ONYX = ITEMS.register("onyx",
+             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> GARNET = ITEMS.register("garnet",
+             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> TOPAZ = ITEMS.register("topaz",
+             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> MALACHITE = ITEMS.register("malachite",
+             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SAPPHIRE = ITEMS.register("sapphire",
+             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> BATTLE_CHARM = ITEMS.register("battle_charm",
+             () -> new BattleCharmItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> SANDBURST_STAFF = ITEMS.register("sandburst_staff",
+             () -> new SandburstStaffItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> SHADOWSTEP_DAGGER = ITEMS.register("shadowstep_dagger", () -> {
         ItemAttributeModifiers.Builder attrs = ItemAttributeModifiers.builder();
         attrs.add(
                 Attributes.ATTACK_DAMAGE,
@@ -31,21 +52,25 @@ public class GemforgedItems {
                 Attributes.ATTACK_SPEED,
                 new AttributeModifier(
                         ResourceLocation.parse(Gemforged.MODID + ":onyx_dagger_speed"),
-                        -1.0, AttributeModifier.Operation.ADD_VALUE
+                        -2.0, AttributeModifier.Operation.ADD_VALUE
                 ),
                 EquipmentSlotGroup.MAINHAND
         );
 
-        return new OnyxDaggerItem(
+        return new ShadowstepDaggerItem(
                 Tiers.DIAMOND,
                 new Item.Properties()
                         .stacksTo(1)
                         .rarity(Rarity.EPIC)
-                        .attributes(attrs.build()) // << burada attribute’ler eklendi
+                        .attributes(attrs.build())
         );
     });
 
+    public static final DeferredItem<Item> VENOMFANG_BLADE = ITEMS.register("venomfang_blade",
+            () -> new VenomfangBladeItem(new Item.Properties()));
 
+    public static final DeferredItem<Item> FROSTBINDER_WAND = ITEMS.register("frostbinder_wand",
+            () -> new FrostbinderWandItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

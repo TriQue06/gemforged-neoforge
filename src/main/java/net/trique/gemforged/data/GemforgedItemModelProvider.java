@@ -17,7 +17,22 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        handheldItem(GemforgedItems.ONYX_DAGGER);
+        generatedItem(GemforgedItems.ONYX);
+        handheldItem(GemforgedItems.SHADOWSTEP_DAGGER);
+        generatedItem(GemforgedItems.GARNET);
+        handheldItem(GemforgedItems.BATTLE_CHARM);
+        generatedItem(GemforgedItems.TOPAZ);
+        handheldItem(GemforgedItems.SANDBURST_STAFF);
+        generatedItem(GemforgedItems.MALACHITE);
+        handheldItem(GemforgedItems.VENOMFANG_BLADE);
+        generatedItem(GemforgedItems.SAPPHIRE);
+        handheldItem(GemforgedItems.FROSTBINDER_WAND);
+    }
+
+    private ItemModelBuilder generatedItem(DeferredItem<?> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated"))
+                .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(DeferredItem<?> item) {

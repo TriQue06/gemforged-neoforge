@@ -24,20 +24,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-public class OnyxDaggerItem extends SwordItem {
+public class ShadowstepDaggerItem extends SwordItem {
 
     private static final String TAG_COMBO = "onyx_combo";
     private static final String TAG_LASTHIT = "onyx_last_hit";
 
     private static final int MAX_COMBO = 6;
     private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 20 * 60;
+    private static final int COOLDOWN_TICKS = 20 * 20;
     private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
     private static final ResourceLocation MOD_SPEED_ID = ResourceLocation.parse("gemforged:onyx_combo_speed");
 
-    public OnyxDaggerItem(Tier tier, Properties props) {
+    public ShadowstepDaggerItem(Tier tier, Properties props) {
         super(tier, props);
     }
 
@@ -94,7 +94,7 @@ public class OnyxDaggerItem extends SwordItem {
             dmg.addTransientModifier(new AttributeModifier(MOD_DAMAGE_ID, 2.0, AttributeModifier.Operation.ADD_VALUE));
         }
         if (spd != null && spd.getModifier(MOD_SPEED_ID) == null) {
-            spd.addTransientModifier(new AttributeModifier(MOD_SPEED_ID, 7.0, AttributeModifier.Operation.ADD_VALUE));
+            spd.addTransientModifier(new AttributeModifier(MOD_SPEED_ID, 10.0, AttributeModifier.Operation.ADD_VALUE));
         }
     }
 

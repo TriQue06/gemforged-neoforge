@@ -1,5 +1,16 @@
 {
-  "item.gemforged.onyx_dagger": "Onyx Dagger",
+  "item.gemforged.onyx": "Onyx",
+  "item.gemforged.shadowstep_dagger": "Shadowstep Dagger",
+  "item.gemforged.garnet": "Garnet",
+  "item.gemforged.battle_charm": "Battle Charm",
+  "item.gemforged.topaz": "Topaz",
+  "item.gemforged.sandburst_staff": "Sandburst Staff",
+  "item.gemforged.malachite": "Malachite",
+  "item.gemforged.venomfang_blade": "Venomfang Blade",
+  "item.gemforged.sapphire": "Sapphire",
+  "item.gemforged.frostbinder_wand": "Frostbinder Wand",
+
+  "effect.gemforged.garnet_rage": "Garnet Rage",
 
   "gemforged.tab1": "Gemforged"
 }
