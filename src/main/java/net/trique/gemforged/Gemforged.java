@@ -24,22 +24,13 @@ public class Gemforged {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Gemforged(IEventBus modEventBus, ModContainer modContainer) {
-        // ---- Mod lifecycle ----
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
-
-        // ---- Registries ----
         GemforgedItems.register(modEventBus);
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
-
-        // ---- Config ----
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
-        // ---- Global (game) event'leri dinlemek için bu sınıfı kaydet ----
         NeoForge.EVENT_BUS.register(this);
-
-        // ---- CLIENT event'leri: RageOverlay sadece client'ta kaydedilir ----
         if (FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
             NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());
@@ -51,7 +42,6 @@ public class Gemforged {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        // creative tab içerikleri ekliyorsan burada kalabilir
     }
 
     @SubscribeEvent

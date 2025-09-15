@@ -30,6 +30,7 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.FROSTBINDER_WAND);
                         output.accept(GemforgedItems.SHIMMER_POWDER);
                         output.accept(GemforgedItems.SHIMMER_BOTTLE);
+                        output.accept(GemforgedItems.PHOENIX_CHARM);
                     }).build());
 
     public static void register(IEventBus eventBus) {

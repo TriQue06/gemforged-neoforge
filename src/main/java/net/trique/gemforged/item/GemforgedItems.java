@@ -35,10 +35,10 @@ public class GemforgedItems {
              () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> BATTLE_CHARM = ITEMS.register("battle_charm",
-             () -> new BattleCharmItem(new Item.Properties().stacksTo(1)));
+             () -> new BattleCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SANDBURST_STAFF = ITEMS.register("sandburst_staff",
-             () -> new SandburstStaffItem(new Item.Properties().stacksTo(1)));
+             () -> new SandburstStaffItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SHADOWSTEP_DAGGER = ITEMS.register("shadowstep_dagger", () -> {
         ItemAttributeModifiers.Builder attrs = ItemAttributeModifiers.builder();
@@ -69,17 +69,21 @@ public class GemforgedItems {
     });
 
     public static final DeferredItem<Item> VENOMFANG_BLADE = ITEMS.register("venomfang_blade",
-            () -> new VenomfangBladeItem(new Item.Properties()));
+            () -> new VenomfangBladeItem(new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> FROSTBINDER_WAND = ITEMS.register("frostbinder_wand",
-            () -> new FrostbinderWandItem(new Item.Properties().stacksTo(1)));
+            () -> new FrostbinderWandItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SHIMMER_BOTTLE =
             ITEMS.register("shimmer_bottle",
-                    () -> new ShimmerBottleItem(new Item.Properties().stacksTo(16).food(Foods.GOLDEN_APPLE)));
+                    () -> new ShimmerBottleItem(new Item.Properties().stacksTo(16).food(Foods.GOLDEN_APPLE).rarity(Rarity.RARE)));
 
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+
+    public static final DeferredItem<Item> PHOENIX_CHARM = ITEMS.register("phoenix_charm",
+            () -> new PhoenixCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
