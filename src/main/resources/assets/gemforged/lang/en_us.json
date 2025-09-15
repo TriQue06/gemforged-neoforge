@@ -10,7 +10,12 @@
   "item.gemforged.sapphire": "Sapphire",
   "item.gemforged.frostbinder_wand": "Frostbinder Wand",
 
+  "item.gemforged.shimmer_powder": "Shimmer Powderr",
+  "item.gemforged.shimmer_bottle": "Shimmer Bottle",
+
   "effect.gemforged.garnet_rage": "Garnet Rage",
+  "effect.gemforged.shimmer_rage": "Shimmer Rage",
+  "effect.gemforged.freeze": "Freeze",
 
   "gemforged.tab1": "Gemforged"
 }

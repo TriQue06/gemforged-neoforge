@@ -28,6 +28,8 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.SANDBURST_STAFF);
                         output.accept(GemforgedItems.VENOMFANG_BLADE);
                         output.accept(GemforgedItems.FROSTBINDER_WAND);
+                        output.accept(GemforgedItems.SHIMMER_POWDER);
+                        output.accept(GemforgedItems.SHIMMER_BOTTLE);
                     }).build());
 
     public static void register(IEventBus eventBus) {

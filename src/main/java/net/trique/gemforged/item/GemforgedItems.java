@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
@@ -12,6 +13,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.trique.gemforged.Gemforged;
+import net.trique.gemforged.item.custom.ShimmerBottleItem;
 import net.trique.gemforged.item.gear.*;
 
 public class GemforgedItems {
@@ -71,6 +73,13 @@ public class GemforgedItems {
 
     public static final DeferredItem<Item> FROSTBINDER_WAND = ITEMS.register("frostbinder_wand",
             () -> new FrostbinderWandItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> SHIMMER_BOTTLE =
+            ITEMS.register("shimmer_bottle",
+                    () -> new ShimmerBottleItem(new Item.Properties().stacksTo(16).food(Foods.GOLDEN_APPLE)));
+
+    public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

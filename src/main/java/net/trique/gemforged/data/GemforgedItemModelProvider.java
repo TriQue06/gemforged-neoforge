@@ -27,6 +27,8 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.VENOMFANG_BLADE);
         generatedItem(GemforgedItems.SAPPHIRE);
         handheldItem(GemforgedItems.FROSTBINDER_WAND);
+        generatedItem(GemforgedItems.SHIMMER_POWDER);
+        generatedItem(GemforgedItems.SHIMMER_BOTTLE);
     }
 
     private ItemModelBuilder generatedItem(DeferredItem<?> item) {

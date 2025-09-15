@@ -23,7 +23,7 @@ import org.joml.Vector3f;
 public class SandburstStaffItem extends Item {
 
     private static final float MAX_RADIUS = 10.0f;
-    private static final float BASE_KNOCKBACK = 4.0f;
+    private static final float BASE_KNOCKBACK = 8.0f; // x2
     private static final double VERTICAL_BOOST = 0.28;
     private static final int COOLDOWN_TICKS = 100;
     private static final float MAGIC_DAMAGE = 5.0f;
@@ -49,14 +49,10 @@ public class SandburstStaffItem extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
+    public UseAnim getUseAnimation(ItemStack stack) { return UseAnim.BOW; }
 
     @Override
-    public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return USE_DURATION_TICKS;
-    }
+    public int getUseDuration(ItemStack stack, LivingEntity entity) { return USE_DURATION_TICKS; }
 
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
@@ -117,13 +113,18 @@ public class SandburstStaffItem extends Item {
 
     private void spawn3DRing(ServerLevel server, Vec3 center, float radius, double height, float fade) {
         double cx = center.x, cy = center.y, cz = center.z;
-        int points = Math.max(36, (int) (radius * 18));
+
+        // yoğunluk faktörü: merkez 0.5x → kenar 1.5x
+        float factor = 0.5f + (radius / MAX_RADIUS); // 0.5 .. 1.5
+        int points = Math.max(24, (int) (radius * 18 * factor));
+
         for (int i = 0; i < points; i++) {
             double angle = (2 * Math.PI * i) / points;
             double px = cx + radius * Math.cos(angle);
             double pz = cz + radius * Math.sin(angle);
             for (int h = 0; h <= 8; h++) {
                 double py = cy + (h / 8.0) * height;
+
                 DustParticleOptions dust;
                 float rnd = server.random.nextFloat();
                 if (rnd < 0.3f) {
@@ -133,10 +134,12 @@ public class SandburstStaffItem extends Item {
                 } else {
                     dust = new DustParticleOptions(TOPAZ_DEEP, PARTICLE_SIZE * (0.6f + fade));
                 }
+
                 double sx = (server.random.nextDouble() - 0.5) * 0.04;
                 double sy = (server.random.nextDouble() - 0.5) * 0.04;
                 double sz = (server.random.nextDouble() - 0.5) * 0.04;
                 server.sendParticles(dust, px, py, pz, 1, sx, sy, sz, 0.0);
+
                 if (server.random.nextFloat() < 0.02f) {
                     server.sendParticles(ParticleTypes.END_ROD, px, py, pz, 1, 0, 0, 0, 0);
                 }

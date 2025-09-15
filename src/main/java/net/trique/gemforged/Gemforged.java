@@ -2,6 +2,7 @@ package net.trique.gemforged;
 
 import com.mojang.logging.LogUtils;
 import net.trique.gemforged.client.GarnetRageOverlay;
+import net.trique.gemforged.client.ShimmerRageOverlay;
 import net.trique.gemforged.effect.GemforgedEffects;
 import net.trique.gemforged.item.GemforgedCreativeModeTabs;
 import net.trique.gemforged.item.GemforgedItems;
@@ -41,6 +42,7 @@ public class Gemforged {
         // ---- CLIENT event'leri: RageOverlay sadece client'ta kaydedilir ----
         if (FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
+            NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());
         }
     }
 
