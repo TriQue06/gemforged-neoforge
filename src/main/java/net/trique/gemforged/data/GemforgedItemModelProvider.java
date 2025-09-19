@@ -21,15 +21,13 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.SHADOWSTEP_DAGGER);
         generatedItem(GemforgedItems.GARNET);
         handheldItem(GemforgedItems.BATTLE_CHARM);
-        generatedItem(GemforgedItems.TOPAZ);
+        generatedItem(GemforgedItems.CITRINE);
         handheldItem(GemforgedItems.SANDBURST_STAFF);
         generatedItem(GemforgedItems.MALACHITE);
         handheldItem(GemforgedItems.VENOMFANG_BLADE);
-        generatedItem(GemforgedItems.SAPPHIRE);
-        handheldItem(GemforgedItems.FROSTBINDER_WAND);
-        generatedItem(GemforgedItems.SHIMMER_POWDER);
-        generatedItem(GemforgedItems.SHIMMER_BOTTLE);
+        generatedItem(GemforgedItems.CARNELIAN);
         handheldItem(GemforgedItems.PHOENIX_CHARM);
+        generatedItem(GemforgedItems.SHIMMER_POWDER);
     }
 
     private ItemModelBuilder generatedItem(DeferredItem<?> item) {

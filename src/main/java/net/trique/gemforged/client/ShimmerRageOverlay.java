@@ -15,7 +15,6 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.trique.gemforged.effect.GemforgedEffects;
 
 public class ShimmerRageOverlay {
-
     private static final float BASE_ALPHA   = 0.40f;
     private static final float PULSE_ALPHA  = 0.20f;
     private static final int   PERIOD_TICKS = 40; // ~2 sn

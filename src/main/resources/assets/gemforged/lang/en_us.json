@@ -3,20 +3,23 @@
   "item.gemforged.shadowstep_dagger": "Shadowstep Dagger",
   "item.gemforged.garnet": "Garnet",
   "item.gemforged.battle_charm": "Battle Charm",
-  "item.gemforged.topaz": "Topaz",
+  "item.gemforged.citrine": "Citrine",
   "item.gemforged.sandburst_staff": "Sandburst Staff",
   "item.gemforged.malachite": "Malachite",
   "item.gemforged.venomfang_blade": "Venomfang Blade",
-  "item.gemforged.sapphire": "Sapphire",
-  "item.gemforged.frostbinder_wand": "Frostbinder Wand",
+  "item.gemforged.carnelian": "Carnelian",
   "item.gemforged.phoenix_charm": "Phoenix Charm",
 
   "item.gemforged.shimmer_powder": "Shimmer Powder",
-  "item.gemforged.shimmer_bottle": "Shimmer Bottle",
+
+  "item.minecraft.potion.effect.shimmer": "Shimmer",
+  "item.minecraft.splash_potion.effect.shimmer": "Splash Shimmer",
+  "item.minecraft.lingering_potion.effect.shimmer": "Lingering Shimmer",
+  "item.minecraft.tipped_arrow.effect.shimmer": "Arrow of Shimmer",
 
   "effect.gemforged.garnet_rage": "Garnet Rage",
   "effect.gemforged.shimmer_rage": "Shimmer Rage",
-  "effect.gemforged.freeze": "Freeze",
+  "effect.gemforged.phoenix": "Phoenix",
 
   "gemforged.tab1": "Gemforged"
 }

@@ -58,16 +58,14 @@ public class PhoenixEffect extends MobEffect {
         if (player.level() instanceof ServerLevel level) {
             Vec3 pos = player.position();
 
-            // Güçlü ses efekti
             level.playSound(null, pos.x, pos.y, pos.z,
                     SoundEvents.FIREWORK_ROCKET_BLAST, SoundSource.PLAYERS, 2.0f, 1.0f);
             level.playSound(null, pos.x, pos.y, pos.z,
                     SoundEvents.BLAZE_BURN, SoundSource.PLAYERS, 1.5f, 0.8f);
 
-            // --- Genişleyen halka şovu ---
-            int rings = 5;             // halka sayısı
-            int pointsPerRing = 120;   // her halkadaki partikül noktası
-            double maxRadius = 8.0;    // son halkanın yarıçapı
+            int rings = 5;
+            int pointsPerRing = 120;
+            double maxRadius = 8.0;
 
             for (int r = 0; r < rings; r++) {
                 double radius = (maxRadius / rings) * (r + 1);
@@ -89,7 +87,6 @@ public class PhoenixEffect extends MobEffect {
                 }
             }
 
-            // --- Yukarıya doğru alev sütunları ---
             for (int col = 0; col < 16; col++) {
                 double angle = (Math.PI * 2 * col) / 16.0;
                 double px = pos.x + Math.cos(angle) * 2.0;
@@ -106,7 +103,6 @@ public class PhoenixEffect extends MobEffect {
                 }
             }
 
-            // --- Final patlama efekti ---
             level.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y + 1, pos.z,
                     4, 1.0, 1.0, 1.0, 0.0);
         }

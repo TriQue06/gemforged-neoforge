@@ -4,7 +4,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
@@ -13,7 +12,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.trique.gemforged.Gemforged;
-import net.trique.gemforged.item.custom.ShimmerBottleItem;
 import net.trique.gemforged.item.gear.*;
 
 public class GemforgedItems {
@@ -25,13 +23,13 @@ public class GemforgedItems {
     public static final DeferredItem<Item> GARNET = ITEMS.register("garnet",
              () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> TOPAZ = ITEMS.register("topaz",
+    public static final DeferredItem<Item> CITRINE = ITEMS.register("citrine",
              () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> MALACHITE = ITEMS.register("malachite",
              () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> SAPPHIRE = ITEMS.register("sapphire",
+    public static final DeferredItem<Item> CARNELIAN = ITEMS.register("carnelian",
              () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> BATTLE_CHARM = ITEMS.register("battle_charm",
@@ -70,13 +68,6 @@ public class GemforgedItems {
 
     public static final DeferredItem<Item> VENOMFANG_BLADE = ITEMS.register("venomfang_blade",
             () -> new VenomfangBladeItem(new Item.Properties().rarity(Rarity.EPIC)));
-
-    public static final DeferredItem<Item> FROSTBINDER_WAND = ITEMS.register("frostbinder_wand",
-            () -> new FrostbinderWandItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
-    public static final DeferredItem<Item> SHIMMER_BOTTLE =
-            ITEMS.register("shimmer_bottle",
-                    () -> new ShimmerBottleItem(new Item.Properties().stacksTo(16).food(Foods.GOLDEN_APPLE).rarity(Rarity.RARE)));
 
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
             () -> new Item(new Item.Properties().rarity(Rarity.RARE)));

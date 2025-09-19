@@ -20,13 +20,6 @@ public class GemforgedEffects {
     public static final DeferredHolder<MobEffect, MobEffect> GARNET_RAGE =
             EFFECTS.register(GARNET_RAGE_KEY.location().getPath(), GarnetRageEffect::new);
 
-    // --- Sapphire Freeze ---
-    public static final ResourceKey<MobEffect> FREEZE_KEY =
-            ResourceKey.create(Registries.MOB_EFFECT,
-                    ResourceLocation.fromNamespaceAndPath(MODID, "freeze"));
-    public static final DeferredHolder<MobEffect, MobEffect> FREEZE =
-            EFFECTS.register(FREEZE_KEY.location().getPath(), FreezeEffect::new);
-
     // --- Shimmer Rage ---
     public static final ResourceKey<MobEffect> SHIMMER_RAGE_KEY =
             ResourceKey.create(Registries.MOB_EFFECT,

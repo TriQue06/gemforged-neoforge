@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemforged:item/topaz"
+    "layer0": "gemforged:item/citrine"
   }
 }

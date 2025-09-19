@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.trique.gemforged.client.GarnetRageOverlay;
 import net.trique.gemforged.client.ShimmerRageOverlay;
 import net.trique.gemforged.effect.GemforgedEffects;
+import net.trique.gemforged.event.GemforgedEvents;
 import net.trique.gemforged.item.GemforgedCreativeModeTabs;
 import net.trique.gemforged.item.GemforgedItems;
 import net.neoforged.bus.api.IEventBus;
@@ -16,6 +17,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.trique.gemforged.potion.GemforgedPotions;
 import org.slf4j.Logger;
 
 @Mod(Gemforged.MODID)
@@ -29,8 +31,10 @@ public class Gemforged {
         GemforgedItems.register(modEventBus);
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
+        GemforgedPotions.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister); // <-- değişen satır
         if (FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
             NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());

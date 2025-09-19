@@ -15,7 +15,6 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.trique.gemforged.effect.GemforgedEffects;
 
 public class GarnetRageOverlay {
-
     private static final float BASE_ALPHA   = 0.32f;  // genel opaklık
     private static final float PULSE_ALPHA  = 0.16f;  // nefes genliği (±)
     private static final int   PERIOD_TICKS = 40;    // 20t = 1sn → 160t ≈ 8sn

@@ -11,6 +11,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_blaze_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blaze_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_pitcher_plant": {
       "conditions": {
         "items": [
@@ -32,7 +42,8 @@
     [
       "has_the_recipe",
       "has_pitcher_plant",
-      "has_amethyst_shard"
+      "has_amethyst_shard",
+      "has_blaze_powder"
     ]
   ],
   "rewards": {

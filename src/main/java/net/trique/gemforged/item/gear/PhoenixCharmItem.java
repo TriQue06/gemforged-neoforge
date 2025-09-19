@@ -28,7 +28,6 @@ public class PhoenixCharmItem extends Item {
     private static final int USE_DURATION_TICKS = 20; // 1s şarj
     private static final int EFFECT_DURATION = 20 * 30; // 30s
 
-    // Turuncu / Sarı toz partikülleri
     private static final DustParticleOptions ORANGE =
             new DustParticleOptions(new Vector3f(1.0f, 0.5f, 0.0f), 2.0f);
     private static final DustParticleOptions YELLOW =
