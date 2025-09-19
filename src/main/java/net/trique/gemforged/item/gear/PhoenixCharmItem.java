@@ -18,15 +18,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
-
 import net.trique.gemforged.effect.GemforgedEffects;
 
 import java.util.List;
 
 public class PhoenixCharmItem extends Item {
 
-    private static final int USE_DURATION_TICKS = 20; // 1s şarj
-    private static final int EFFECT_DURATION = 20 * 30; // 30s
+    private static final int USE_DURATION_TICKS = 20;
+    private static final int EFFECT_DURATION = 20 * 30;
+    private static final int COOLDOWN_TICKS = 20 * 60 * 5;
 
     private static final DustParticleOptions ORANGE =
             new DustParticleOptions(new Vector3f(1.0f, 0.5f, 0.0f), 2.0f);
@@ -61,6 +61,7 @@ public class PhoenixCharmItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide && user instanceof Player player) {
             applyPhoenixEffect((ServerLevel) level, player);
+            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
             stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
         }
         return stack;
@@ -68,36 +69,29 @@ public class PhoenixCharmItem extends Item {
 
     private void applyPhoenixEffect(ServerLevel level, Player user) {
         Vec3 c = user.position();
-
-        // Sesler
         level.playSound(null, c.x, c.y, c.z,
                 SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
         level.playSound(null, c.x, c.y, c.z,
                 SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.PLAYERS, 0.8f, 1.2f);
 
-        // Dost oyuncu + mob seçimi
         AABB area = AABB.ofSize(c, 8, 8, 8);
         List<LivingEntity> targets = level.getEntitiesOfClass(LivingEntity.class, area,
                 e -> e.isAlive() && (e == user || e.isAlliedTo(user)));
 
-        // Efekti uygula
         for (LivingEntity e : targets) {
-            e.addEffect(new MobEffectInstance(GemforgedEffects.PHOENIX,
-                    EFFECT_DURATION, 0, true, true));
+            e.addEffect(new MobEffectInstance(GemforgedEffects.PHOENIX, EFFECT_DURATION, 0, true, true));
 
-            // Spiral partikül efekti
             Vec3 base = e.position();
             for (int i = 0; i < 80; i++) {
                 double angle = (Math.PI * 2 * i) / 20.0;
                 double radius = 0.5 + 0.1 * Math.sin(i * 0.5);
                 double px = base.x + radius * Math.cos(angle);
                 double pz = base.z + radius * Math.sin(angle);
-                double py = base.y + 0.2 + (i % 20) * 0.1; // 2 blok yükseklik
+                double py = base.y + 0.2 + (i % 20) * 0.1;
 
                 DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
                 level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
 
-                // Ateş + alev karışımı
                 if (i % 5 == 0) {
                     level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0, 0, 0, 0.01);
                     level.sendParticles(ParticleTypes.SMALL_FLAME, px, py, pz, 1, 0, 0, 0, 0.02);
