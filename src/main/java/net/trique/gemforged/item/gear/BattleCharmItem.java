@@ -28,10 +28,10 @@ import java.util.List;
 
 public class BattleCharmItem extends Item {
 
-    private static final float PARTICLE_DENSITY_SCALE = 0.75f;
+    private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
 
-    private static final float RADIUS = 5.5f;
+    private static final float RADIUS = 5f;
     private static final int COOLDOWN_TICKS = 20 * 1;
     private static final int USE_DURATION_TICKS = 20;
 
@@ -39,12 +39,12 @@ public class BattleCharmItem extends Item {
     private static final int AMP_GARNET = 0;
 
     private static final int FRAME_STEP = 2;
-    private static final int FRAMES = 18;
+    private static final int FRAMES = 16;
     private static final float WAVE_START = RADIUS * 0.8f;
-    private static final float WAVE_END = RADIUS * 2.9f;
+    private static final float WAVE_END = RADIUS * 3.0f;
 
     private static final int VERTICAL_COLUMNS = 12;
-    private static final float COLUMN_HEIGHT = 3.7f;
+    private static final float COLUMN_HEIGHT = 3.5f;
 
     private static final DustParticleOptions RED_MAIN =
             new DustParticleOptions(new Vector3f(0.98f, 0.07f, 0.10f), 2.0f * DUST_SIZE_SCALE);

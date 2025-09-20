@@ -26,7 +26,6 @@ public class SandburstStaffItem extends Item {
     private static final int COOLDOWN_TICKS = 300;
     private static final float MAGIC_DAMAGE = 5.0f;
     private static final int USE_DURATION_TICKS = 20;
-
     private static final Vector3f CITRINE_MIX = new Vector3f(0.95f, 0.90f, 0.60f);
     private static final Vector3f CITRINE_DEEP = new Vector3f(1.0f, 0.75f, 0.25f);
     private static final float PARTICLE_SIZE = 1.0f;
@@ -67,8 +66,8 @@ public class SandburstStaffItem extends Item {
         if (user instanceof Player p) {
             ServerLevel server = (ServerLevel) level;
             Vec3 c = p.getEyePosition(1.0f).add(p.getViewVector(1.0f).scale(0.4));
-            server.sendParticles(new DustParticleOptions(CITRINE_MIX, PARTICLE_SIZE),
-                    c.x, c.y - 0.2, c.z, 3, 0.03, 0.03, 0.03, 0.0);
+            server.sendParticles(new DustParticleOptions(CITRINE_DEEP, PARTICLE_SIZE),
+                    c.x, c.y - 0.2, c.z, 2, 0.0, 0.0, 0.0, 0.0);
         }
     }
 
@@ -101,9 +100,7 @@ public class SandburstStaffItem extends Item {
                 final float t = f / (float) waveLifetime;
                 final float radius = t * MAX_RADIUS;
                 final float alpha = 1.0f - t;
-                server.getServer().tell(new TickTask(when, () -> {
-                    spawn3DRing(server, center, radius, 2.0, alpha);
-                }));
+                server.getServer().tell(new TickTask(when, () -> spawn3DRing(server, center, radius, 2.0, alpha)));
             }
         }
     }
@@ -111,29 +108,29 @@ public class SandburstStaffItem extends Item {
     private void spawn3DRing(ServerLevel server, Vec3 center, float radius, double height, float fade) {
         double cx = center.x, cy = center.y, cz = center.z;
         float factor = 0.5f + (radius / MAX_RADIUS);
-        int points = Math.max(24, (int) (radius * 16 * factor));
+        int basePoints = Math.max(24, (int) (radius * 16 * factor));
+        int points = Math.max(8, (int) (basePoints * 0.8f));
+        int heightSteps = 7;
+
         for (int i = 0; i < points; i++) {
             double angle = (2 * Math.PI * i) / points;
             double px = cx + radius * Math.cos(angle);
             double pz = cz + radius * Math.sin(angle);
-            for (int h = 0; h <= 8; h++) {
-                double py = cy + (h / 8.0) * height;
-                DustParticleOptions dust;
-                float rnd = server.random.nextFloat();
-                if (rnd < 0.7f) {
-                    dust = new DustParticleOptions(CITRINE_MIX, PARTICLE_SIZE * (0.5f + fade));
-                } else {
-                    dust = new DustParticleOptions(CITRINE_DEEP, PARTICLE_SIZE * (0.5f + fade));
+
+            for (int h = 0; h < heightSteps; h++) {
+                double py = cy + (h / (double) (heightSteps - 1)) * height;
+
+                DustParticleOptions dust = ((i + h) % 3 == 0)
+                        ? new DustParticleOptions(CITRINE_DEEP, PARTICLE_SIZE * (0.5f + fade))
+                        : new DustParticleOptions(CITRINE_MIX,  PARTICLE_SIZE * (0.5f + fade));
+
+                server.sendParticles(dust, px, py, pz, 1, 0.0, 0.0, 0.0, 0.0);
+
+                if ((i % 12 == 0) && (h % 3 == 0)) {
+                    server.sendParticles(ParticleTypes.END_ROD, px, py, pz, 1, 0.0, 0.0, 0.0, 0.0);
                 }
-                double sx = (server.random.nextDouble() - 0.5) * 0.04;
-                double sy = (server.random.nextDouble() - 0.5) * 0.04;
-                double sz = (server.random.nextDouble() - 0.5) * 0.04;
-                server.sendParticles(dust, px, py, pz, 1, sx, sy, sz, 0.0);
-                if (server.random.nextFloat() < 0.02f) {
-                    server.sendParticles(ParticleTypes.END_ROD, px, py, pz, 1, 0, 0, 0, 0);
-                }
-                if (server.random.nextFloat() < 0.015f) {
-                    server.sendParticles(ParticleTypes.CRIT, px, py, pz, 1, 0.02, 0.02, 0.02, 0.0);
+                if ((i % 20 == 0) && (h == 0)) {
+                    server.sendParticles(ParticleTypes.CRIT, px, py, pz, 1, 0.0, 0.0, 0.0, 0.0);
                 }
             }
         }

@@ -33,7 +33,7 @@ public class ShimmerRageEffect extends MobEffect {
 
     private static final double MOVE_MULT   = 0.25D;
     private static final double ATKDAM_MULT = 1.00D;
-    private static final double SCALE_MULT  = 0.50D;
+    private static final double SCALE_MULT  = 0.75D;
     private static final double HEALTH_MULT = 1.00D;
     private static final double JUMP_MULT = 0.50D;
 

@@ -30,5 +30,4 @@ public class GemforgedEffects {
                     ResourceLocation.fromNamespaceAndPath(MODID, "phoenix"));
     public static final DeferredHolder<MobEffect, MobEffect> PHOENIX =
             EFFECTS.register(PHOENIX_KEY.location().getPath(), PhoenixEffect::new);
-
 }

@@ -2,7 +2,6 @@ package net.trique.gemforged.item;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -39,8 +38,8 @@ public class GemforgedItems {
     public static final DeferredItem<Item> VENOMFANG_BLADE = ITEMS.register("venomfang_blade",
             () -> new VenomfangBladeItem(new Item.Properties().rarity(Rarity.EPIC).durability(240)));
 
-    public static final DeferredItem<Item> PHOENIX_CHARM = ITEMS.register("phoenix_charm",
-            () -> new PhoenixCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> PHOENIX_RELIC = ITEMS.register("phoenix_relic",
+            () -> new PhoenixRelicItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));

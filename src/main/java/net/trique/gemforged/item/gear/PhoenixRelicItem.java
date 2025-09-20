@@ -22,7 +22,7 @@ import net.trique.gemforged.effect.GemforgedEffects;
 
 import java.util.List;
 
-public class PhoenixCharmItem extends Item {
+public class PhoenixRelicItem extends Item {
 
     private static final int USE_DURATION_TICKS = 20;
     private static final int EFFECT_DURATION = 20 * 30;
@@ -33,7 +33,7 @@ public class PhoenixCharmItem extends Item {
     private static final DustParticleOptions YELLOW =
             new DustParticleOptions(new Vector3f(1.0f, 0.9f, 0.2f), 2.0f);
 
-    public PhoenixCharmItem(Item.Properties props) {
+    public PhoenixRelicItem(Item.Properties props) {
         super(props.durability(240));
     }
 
