@@ -182,7 +182,6 @@ public class PhoenixEffect extends MobEffect {
             level.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y + 1, pos.z,
                     3, 1.0, 1.0, 1.0, 0.0);
         }
-
         return true;
     }
 
