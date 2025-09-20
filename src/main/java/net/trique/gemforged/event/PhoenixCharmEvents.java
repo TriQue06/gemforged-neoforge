@@ -18,7 +18,7 @@ public class PhoenixCharmEvents {
         if (damage >= health) {
             boolean revived = PhoenixEffect.tryRevive(player);
             if (revived) {
-                event.setAmount(0.0F); // ölümü engelle
+                event.setAmount(0.0F);
             }
         }
     }

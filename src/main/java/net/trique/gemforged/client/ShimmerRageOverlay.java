@@ -17,8 +17,8 @@ import net.trique.gemforged.effect.GemforgedEffects;
 public class ShimmerRageOverlay {
     private static final float BASE_ALPHA   = 0.40f;
     private static final float PULSE_ALPHA  = 0.20f;
-    private static final int   PERIOD_TICKS = 40; // ~2 sn
-    private static final int   PURPLE_RGB   = 0x00A020F0; // mor (RGB, alpha sonradan eklenecek)
+    private static final int   PERIOD_TICKS = 40;
+    private static final int   PURPLE_RGB   = 0x00A020F0;
 
     @SubscribeEvent
     public void onOverlay(RenderGuiLayerEvent.Post event) {

@@ -70,11 +70,10 @@ public class GemforgedItems {
             () -> new VenomfangBladeItem(new Item.Properties().rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
-            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final DeferredItem<Item> PHOENIX_CHARM = ITEMS.register("phoenix_charm",
             () -> new PhoenixCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

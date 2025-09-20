@@ -27,12 +27,10 @@ public class ShimmerRageEffect extends MobEffect {
     private static final ResourceLocation SCALE_ID  =
             ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_scale");
 
-    private static final double MOVE_MULT   = 0.40D;
-    private static final double ATKDAM_MULT = 0.80D;
-    private static final double SCALE_MULT  = 0.40D;
+    private static final double MOVE_MULT   = 0.25D;
+    private static final double ATKDAM_MULT = 1.00D;
+    private static final double SCALE_MULT  = 0.50D;
 
-    // Daha MOR tonlar (pembelik azaltıldı)
-    // RGB 0..1 aralığı: royal mor ve koyu viyole
     private static final DustParticleOptions ROYAL_PURPLE =
             new DustParticleOptions(new Vector3f(0.55f, 0.00f, 0.85f), 2.0f);
     private static final DustParticleOptions DEEP_VIOLET  =
@@ -58,10 +56,9 @@ public class ShimmerRageEffect extends MobEffect {
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!(entity.level() instanceof ServerLevel level)) return true;
 
-        // Hafif regen takviyesi
         entity.addEffect(new MobEffectInstance(
                 MobEffects.REGENERATION,
-                40,
+                100,
                 2,
                 true, true, true));
 
@@ -98,7 +95,6 @@ public class ShimmerRageEffect extends MobEffect {
                 double py = cy + offset.y;
                 double pz = cz + offset.z;
 
-                // Pembeyi kaldırıp mor skalada iki ton kullandık
                 DustParticleOptions dust = ((s + i) % 2 == 0) ? ROYAL_PURPLE : DEEP_VIOLET;
                 level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
 

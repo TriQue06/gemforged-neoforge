@@ -21,7 +21,7 @@ public class GarnetRageEffect extends MobEffect {
     private static final double BASE_MOVE_MULT   = 0.40D;
     private static final double BASE_ATKDAM_MULT = 0.40D;
     private static final double BASE_ATKSPD_MULT = 0.70D;
-    private static final double BASE_SCALE_MULT  = 0.20D; // ilk seviye %20
+    private static final double BASE_SCALE_MULT  = 0.20D;
 
     public GarnetRageEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xB80E2A);

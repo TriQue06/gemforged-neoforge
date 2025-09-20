@@ -21,7 +21,6 @@ public class PhoenixEffect extends MobEffect {
 
     private static final Map<UUID, SavedState> STATES = new HashMap<>();
 
-    // Sıcak palet (0..1 RGB)
     private static final DustParticleOptions RED =
             new DustParticleOptions(new Vector3f(1.00f, 0.05f, 0.02f), 2.0f);
     private static final DustParticleOptions ORANGE =
@@ -33,9 +32,6 @@ public class PhoenixEffect extends MobEffect {
         super(MobEffectCategory.BENEFICIAL, 0xFF7A00); // turuncu taban rengi
     }
 
-    /* -------------------------
-       Etki başla/bitir hook’ları
-       ------------------------- */
     public void onEffectStarted(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
             Vec3 pos = player.position();
@@ -49,37 +45,29 @@ public class PhoenixEffect extends MobEffect {
             STATES.remove(player.getUUID());
         }
     }
-
-    /* --------------------------------
-       Aktifken arkadan ateş izleri bırak
-       -------------------------------- */
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        return true; // her tikte uygula
+        return true;
     }
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!(entity.level() instanceof ServerLevel level)) return true;
 
-        // Shimmer benzeri: hareket yönünün tersine, çok segmentli halka izi
         Vec3 look = entity.getLookAngle();
         Vec3 pos  = entity.position();
 
-        // hızla yoğunluk artsın
         double speed = entity.getDeltaMovement().length();
         int densityBoost = (int) Math.min(10, Math.floor(speed * 25.0));
-        int perSegParticles = 6 + densityBoost; // 6..16 arası
-        int segments = 3;                       // 3 halka segmenti
+        int perSegParticles = 6 + densityBoost;
+        int segments = 3;
         double segStep = 0.5;
 
-        // oyuncunun sırtına doğru taban konum
         double backDist = 0.75 + entity.getRandom().nextDouble() * 0.35;
         double baseX = pos.x - look.x * backDist;
         double baseY = pos.y + 0.55;
         double baseZ = pos.z - look.z * backDist;
 
-        // halka düzlemini tanımla
         Vec3 up = new Vec3(0, 1, 0);
         Vec3 side = up.cross(look).normalize();
         Vec3 upTilt = look.cross(side).normalize();
@@ -101,19 +89,16 @@ public class PhoenixEffect extends MobEffect {
                 double py = cy + offset.y;
                 double pz = cz + offset.z;
 
-                // Üçlü sıcak paleti döndür: RED → ORANGE → GOLD
                 int sel = (s + i) % 3;
                 DustParticleOptions dust = (sel == 0) ? RED : (sel == 1) ? ORANGE : GOLD;
                 level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
 
-                // Alev parıltısı – seyrek
                 if (i % 4 == 0) {
                     level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0.0, 0.0, 0.0, 0.01);
                 }
             }
         }
 
-        // Ara ara çıtırtı/yanma sesi
         if (entity.tickCount % 50 == 0) {
             level.playSound(null, pos.x, pos.y, pos.z,
                     SoundEvents.BLAZE_BURN, SoundSource.PLAYERS,
@@ -123,9 +108,6 @@ public class PhoenixEffect extends MobEffect {
         return true;
     }
 
-    /* -------------------------
-       Phoenix "revive" efekti
-       ------------------------- */
     public static boolean tryRevive(Player player) {
         SavedState state = STATES.get(player.getUUID());
         if (state == null) return false;
