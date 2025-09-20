@@ -32,9 +32,8 @@ public class Gemforged {
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
         GemforgedPotions.register(modEventBus);
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NeoForge.EVENT_BUS.register(this);
-        NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister); // <-- değişen satır
+        NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister);
         if (FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
             NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());

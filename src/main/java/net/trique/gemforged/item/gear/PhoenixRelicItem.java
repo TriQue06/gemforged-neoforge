@@ -23,7 +23,6 @@ import net.trique.gemforged.effect.GemforgedEffects;
 import java.util.List;
 
 public class PhoenixRelicItem extends Item {
-
     private static final int USE_DURATION_TICKS = 20;
     private static final int EFFECT_DURATION = 20 * 30;
     private static final int COOLDOWN_TICKS = 20 * 60 * 5;
@@ -42,7 +41,7 @@ public class PhoenixRelicItem extends Item {
         player.startUsingItem(hand);
         if (!level.isClientSide) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0f, 1.0f);
+                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.75f, 1.25f);
         }
         return InteractionResultHolder.consume(player.getItemInHand(hand));
     }

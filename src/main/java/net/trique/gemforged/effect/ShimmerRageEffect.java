@@ -116,8 +116,8 @@ public class ShimmerRageEffect extends MobEffect {
 
         if (entity.tickCount % 60 == 0) {
             level.playSound(null, pos.x, pos.y, pos.z,
-                    SoundEvents.BLAZE_BURN, SoundSource.PLAYERS,
-                    1.0f, 0.55f + entity.getRandom().nextFloat() * 0.15f);
+                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS,
+                    1.5f, 0.10f + entity.getRandom().nextFloat() * 0.20f);
         }
 
         return true;

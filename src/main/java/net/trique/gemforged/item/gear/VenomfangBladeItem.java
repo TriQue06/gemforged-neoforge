@@ -21,29 +21,23 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 public class VenomfangBladeItem extends SwordItem {
-
-    private static final int HIT_THRESHOLD   = 3;
+    private static final int HIT_THRESHOLD = 3;
     private static final int SUPER_THRESHOLD = 10;
-
     private static final float MAGIC_DAMAGE = 3.0f;
-
     private static final float WAVE_MAX_RADIUS = 7.0f;
-    private static final int   WAVE_FRAMES     = 16;
-    private static final int   WAVE_FRAME_STEP = 2;
-    private static final int   WAVE_COUNT      = 3;
-    private static final int   WAVE_GAP_TICKS  = 6;
-
-    private static final int    POISON_DURATION    = 10 * 20;
-    private static final int    WITHER_DURATION    = 10 * 20;
+    private static final int WAVE_FRAMES = 16;
+    private static final int WAVE_FRAME_STEP = 2;
+    private static final int WAVE_COUNT = 3;
+    private static final int WAVE_GAP_TICKS = 6;
+    private static final int POISON_DURATION = 10 * 20;
+    private static final int WITHER_DURATION = 10 * 20;
     private static final double KNOCKBACK_STRENGTH = 1.5;
     private static final double KNOCKBACK_VERTICAL = 0.25;
-
-    private static final Vector3f MALACHITE        = new Vector3f(0.25f, 0.90f, 0.60f);
-    private static final float    MALACHITE_SCALE  = 1.8f;
-
-    private static final Vector3f DARK_GREEN       = new Vector3f(0.10f, 0.35f, 0.10f); // normal koyu yeşil
-    private static final Vector3f PURPLE_LAVENDER  = new Vector3f(0.55f, 0.25f, 0.65f); // mor-eflatun
-    private static final float    DARK_SCALE       = 2.1f;
+    private static final Vector3f MALACHITE = new Vector3f(0.25f, 0.90f, 0.60f);
+    private static final float MALACHITE_SCALE = 1.8f;
+    private static final Vector3f DARK_GREEN = new Vector3f(0.10f, 0.35f, 0.10f);
+    private static final Vector3f PURPLE_LAVENDER = new Vector3f(0.55f, 0.25f, 0.65f);
+    private static final float DARK_SCALE = 2.1f;
 
     public VenomfangBladeItem(Item.Properties props) {
         super(Tiers.DIAMOND, props

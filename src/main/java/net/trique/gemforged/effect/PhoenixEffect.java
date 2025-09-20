@@ -101,8 +101,8 @@ public class PhoenixEffect extends MobEffect {
 
         if (entity.tickCount % 50 == 0) {
             level.playSound(null, pos.x, pos.y, pos.z,
-                    SoundEvents.BLAZE_BURN, SoundSource.PLAYERS,
-                    0.8f, 0.9f + entity.getRandom().nextFloat() * 0.2f);
+                    SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS,
+                    0.5f, 0.10f + entity.getRandom().nextFloat() * 0.20f);
         }
 
         return true;
@@ -126,7 +126,7 @@ public class PhoenixEffect extends MobEffect {
             level.playSound(null, pos.x, pos.y, pos.z,
                     SoundEvents.FIREWORK_ROCKET_BLAST, SoundSource.PLAYERS, 2.0f, 1.0f);
             level.playSound(null, pos.x, pos.y, pos.z,
-                    SoundEvents.BLAZE_BURN,           SoundSource.PLAYERS, 1.5f, 0.8f);
+                    SoundEvents.BLAZE_BURN, SoundSource.PLAYERS, 1.5f, 0.8f);
 
             int rings = 5;
             int pointsPerRing = 120;

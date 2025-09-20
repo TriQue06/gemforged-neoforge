@@ -27,22 +27,17 @@ import net.trique.gemforged.effect.GemforgedEffects;
 import java.util.List;
 
 public class BattleCharmItem extends Item {
-
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
-
     private static final float RADIUS = 5f;
     private static final int COOLDOWN_TICKS = 20 * 1;
     private static final int USE_DURATION_TICKS = 20;
-
     private static final int DURATION_GARNET_TICKS = 20 * 30;
     private static final int AMP_GARNET = 0;
-
     private static final int FRAME_STEP = 2;
     private static final int FRAMES = 16;
     private static final float WAVE_START = RADIUS * 0.8f;
     private static final float WAVE_END = RADIUS * 3.0f;
-
     private static final int VERTICAL_COLUMNS = 12;
     private static final float COLUMN_HEIGHT = 3.5f;
 
@@ -62,7 +57,7 @@ public class BattleCharmItem extends Item {
         player.startUsingItem(hand);
         if (!level.isClientSide) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.6f, 1.35f);
+                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.75f, 1.25f);
         }
         return InteractionResultHolder.consume(player.getItemInHand(hand));
     }
