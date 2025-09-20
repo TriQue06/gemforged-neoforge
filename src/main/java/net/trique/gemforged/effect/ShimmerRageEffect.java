@@ -26,10 +26,16 @@ public class ShimmerRageEffect extends MobEffect {
             ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_attack_damage");
     private static final ResourceLocation SCALE_ID  =
             ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_scale");
+    private static final ResourceLocation HEALTH_ID =
+            ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_max_health");
+    private static final ResourceLocation JUMP_ID =
+            ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_jump");
 
     private static final double MOVE_MULT   = 0.25D;
     private static final double ATKDAM_MULT = 1.00D;
     private static final double SCALE_MULT  = 0.50D;
+    private static final double HEALTH_MULT = 1.00D;
+    private static final double JUMP_MULT = 0.50D;
 
     private static final DustParticleOptions ROYAL_PURPLE =
             new DustParticleOptions(new Vector3f(0.55f, 0.00f, 0.85f), 2.0f);
@@ -37,7 +43,7 @@ public class ShimmerRageEffect extends MobEffect {
             new DustParticleOptions(new Vector3f(0.38f, 0.00f, 0.72f), 2.0f);
 
     public ShimmerRageEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x8A2BE2); // mor (blue-violet)
+        super(MobEffectCategory.BENEFICIAL, 0x8A2BE2);
 
         addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,
                 MOVE_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
@@ -45,6 +51,10 @@ public class ShimmerRageEffect extends MobEffect {
                 ATKDAM_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.SCALE, SCALE_ID,
                 SCALE_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.MAX_HEALTH, HEALTH_ID,
+                HEALTH_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.JUMP_STRENGTH, JUMP_ID,
+                JUMP_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override
@@ -89,7 +99,7 @@ public class ShimmerRageEffect extends MobEffect {
             for (int i = 0; i < perSegParticles; i++) {
                 double a = (Math.PI * 2 * i) / perSegParticles + entity.tickCount * 0.25;
                 Vec3 offset = side.scale(r * Mth.cos((float) a))
-                        .add(upTilt.scale(r * Mth.sin((float) a) * 2.0)); // 2 blok yüksekliğe kadar
+                        .add(upTilt.scale(r * Mth.sin((float) a) * 2.0));
 
                 double px = cx + offset.x;
                 double py = cy + offset.y;

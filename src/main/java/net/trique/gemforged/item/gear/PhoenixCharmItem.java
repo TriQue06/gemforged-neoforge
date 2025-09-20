@@ -33,8 +33,8 @@ public class PhoenixCharmItem extends Item {
     private static final DustParticleOptions YELLOW =
             new DustParticleOptions(new Vector3f(1.0f, 0.9f, 0.2f), 2.0f);
 
-    public PhoenixCharmItem(Properties props) {
-        super(props);
+    public PhoenixCharmItem(Item.Properties props) {
+        super(props.durability(240));
     }
 
     @Override
@@ -82,20 +82,34 @@ public class PhoenixCharmItem extends Item {
             e.addEffect(new MobEffectInstance(GemforgedEffects.PHOENIX, EFFECT_DURATION, 0, true, true));
 
             Vec3 base = e.position();
-            for (int i = 0; i < 80; i++) {
-                double angle = (Math.PI * 2 * i) / 20.0;
-                double radius = 0.5 + 0.1 * Math.sin(i * 0.5);
+
+            for (int wing = -1; wing <= 1; wing += 2) {
+                for (int i = 0; i < 50; i++) {
+                    double progress = i / 50.0;
+                    double angle = progress * Math.PI / 1.2;
+                    double radius = 1.5 * Math.sin(angle);
+                    double px = base.x + wing * radius;
+                    double py = base.y + 0.5 + progress * 2.5;
+                    double pz = base.z + (progress - 0.5) * 2.0;
+
+                    DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
+                    level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
+
+                    if (i % 10 == 0) {
+                        level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0, 0, 0, 0.01);
+                    }
+                }
+            }
+
+            for (int i = 0; i < 40; i++) {
+                double angle = (Math.PI * 2 * i) / 40.0;
+                double radius = 0.6;
                 double px = base.x + radius * Math.cos(angle);
                 double pz = base.z + radius * Math.sin(angle);
-                double py = base.y + 0.2 + (i % 20) * 0.1;
+                double py = base.y + 0.3 + (i % 10) * 0.1;
 
                 DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
                 level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-
-                if (i % 5 == 0) {
-                    level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0, 0, 0, 0.01);
-                    level.sendParticles(ParticleTypes.SMALL_FLAME, px, py, pz, 1, 0, 0, 0, 0.02);
-                }
             }
         }
     }

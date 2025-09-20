@@ -29,7 +29,7 @@ public class PhoenixEffect extends MobEffect {
             new DustParticleOptions(new Vector3f(1.00f, 0.78f, 0.08f), 2.0f);
 
     public PhoenixEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xFF7A00); // turuncu taban rengi
+        super(MobEffectCategory.BENEFICIAL, 0xFF7A00);
     }
 
     public void onEffectStarted(LivingEntity entity, int amplifier) {

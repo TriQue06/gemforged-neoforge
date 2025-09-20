@@ -15,13 +15,10 @@ public class GarnetRageEffect extends MobEffect {
             ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage_attack_speed");
     private static final ResourceLocation ATKDAM_ID =
             ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage_attack_damage");
-    private static final ResourceLocation SCALE_ID =
-            ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage_scale");
 
-    private static final double BASE_MOVE_MULT   = 0.40D;
-    private static final double BASE_ATKDAM_MULT = 0.40D;
-    private static final double BASE_ATKSPD_MULT = 0.70D;
-    private static final double BASE_SCALE_MULT  = 0.20D;
+    private static final double BASE_MOVE_MULT   = 0.50D;
+    private static final double BASE_ATKDAM_MULT = 0.50D;
+    private static final double BASE_ATKSPD_MULT = 0.75D;
 
     public GarnetRageEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xB80E2A);
@@ -29,6 +26,5 @@ public class GarnetRageEffect extends MobEffect {
         addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,   BASE_MOVE_MULT,   AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.ATTACK_SPEED,   ATKSPD_ID, BASE_ATKSPD_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.ATTACK_DAMAGE,  ATKDAM_ID, BASE_ATKDAM_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(Attributes.SCALE,          SCALE_ID,  BASE_SCALE_MULT,  AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }

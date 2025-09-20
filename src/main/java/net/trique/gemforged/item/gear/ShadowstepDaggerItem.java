@@ -3,6 +3,7 @@ package net.trique.gemforged.item.gear;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -16,13 +17,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public class ShadowstepDaggerItem extends SwordItem {
 
@@ -37,8 +37,12 @@ public class ShadowstepDaggerItem extends SwordItem {
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
     private static final ResourceLocation MOD_SPEED_ID = ResourceLocation.parse("gemforged:onyx_combo_speed");
 
-    public ShadowstepDaggerItem(Tier tier, Properties props) {
-        super(tier, props);
+    private static final Vector3f SHADOW_PURPLE = new Vector3f(0.176f, 0.129f, 0.251f);
+
+    public ShadowstepDaggerItem(Item.Properties props) {
+        super(Tiers.DIAMOND, props
+                .durability(240)
+                .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
     }
 
     @Override
@@ -135,8 +139,10 @@ public class ShadowstepDaggerItem extends SwordItem {
     }
 
     private void spawnShadowSmoke(ServerLevel level, double x, double y, double z) {
-        level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z, 40, 0.6, 0.25, 0.6, 0.02);
-        level.sendParticles(ParticleTypes.ASH, x, y, z, 20, 0.5, 0.2, 0.5, 0.01);
+        level.sendParticles(new DustParticleOptions(SHADOW_PURPLE, 1.5f),
+                x, y, z, 30, 0.6, 0.25, 0.6, 0.02);
+        level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
+        level.sendParticles(ParticleTypes.ASH, x, y, z, 10, 0.5, 0.2, 0.5, 0.01);
     }
 
     private void playShadowTeleportSound(ServerLevel level, double x, double y, double z) {

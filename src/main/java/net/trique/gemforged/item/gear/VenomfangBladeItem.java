@@ -41,14 +41,13 @@ public class VenomfangBladeItem extends SwordItem {
     private static final Vector3f MALACHITE        = new Vector3f(0.25f, 0.90f, 0.60f);
     private static final float    MALACHITE_SCALE  = 1.8f;
 
-    // Wither patlaması için renkler (açık tonlara çekilmiş)
     private static final Vector3f DARK_GREEN       = new Vector3f(0.10f, 0.35f, 0.10f); // normal koyu yeşil
     private static final Vector3f PURPLE_LAVENDER  = new Vector3f(0.55f, 0.25f, 0.65f); // mor-eflatun
     private static final float    DARK_SCALE       = 2.1f;
 
     public VenomfangBladeItem(Item.Properties props) {
         super(Tiers.DIAMOND, props
-                .durability(1800)
+                .durability(240)
                 .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
     }
 

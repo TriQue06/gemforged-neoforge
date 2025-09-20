@@ -1,6 +1,7 @@
 package net.trique.gemforged.item.gear;
 
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -11,9 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -22,16 +21,18 @@ import org.joml.Vector3f;
 public class SandburstStaffItem extends Item {
 
     private static final float MAX_RADIUS = 10.0f;
-    private static final float BASE_KNOCKBACK = 7.5f;
+    private static final float BASE_KNOCKBACK = 8.0f;
+    private static final double VERTICAL_BOOST = 0.5;
     private static final int COOLDOWN_TICKS = 300;
     private static final float MAGIC_DAMAGE = 5.0f;
     private static final int USE_DURATION_TICKS = 20;
 
-    private static final Vector3f SAND_COLOR = new Vector3f(0.9f, 0.8f, 0.5f);
+    private static final Vector3f CITRINE_MIX = new Vector3f(0.95f, 0.90f, 0.60f);
+    private static final Vector3f CITRINE_DEEP = new Vector3f(1.0f, 0.75f, 0.25f);
     private static final float PARTICLE_SIZE = 1.0f;
 
-    public SandburstStaffItem(Properties properties) {
-        super(properties);
+    public SandburstStaffItem(Item.Properties props) {
+        super(props.durability(240));
     }
 
     @Override
@@ -58,6 +59,17 @@ public class SandburstStaffItem extends Item {
             level.playSound(null, user.getX(), user.getY(), user.getZ(),
                     SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.7F, 1.05F);
         }
+        if (elapsed % 5 == 0) {
+            float pitch = 0.9f + (elapsed / (float) USE_DURATION_TICKS) * 0.5f;
+            level.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 0.35F, pitch);
+        }
+        if (user instanceof Player p) {
+            ServerLevel server = (ServerLevel) level;
+            Vec3 c = p.getEyePosition(1.0f).add(p.getViewVector(1.0f).scale(0.4));
+            server.sendParticles(new DustParticleOptions(CITRINE_MIX, PARTICLE_SIZE),
+                    c.x, c.y - 0.2, c.z, 3, 0.03, 0.03, 0.03, 0.0);
+        }
     }
 
     @Override
@@ -72,43 +84,57 @@ public class SandburstStaffItem extends Item {
 
     private void triggerBurst(ServerLevel server, Player player) {
         Vec3 origin = player.position().add(0, 0.2, 0);
-        server.playSound(null, origin.x, origin.y, origin.z,
-                SoundEvents.WIND_CHARGE_BURST, SoundSource.PLAYERS, 0.8f, 1.1f);
-        server.playSound(null, origin.x, origin.y, origin.z,
-                SoundEvents.SAND_BREAK, SoundSource.PLAYERS, 1.0f, 0.9f);
+        server.playSound(null, origin.x, origin.y, origin.z, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 0.6f, 1.55f);
+        server.playSound(null, origin.x, origin.y, origin.z, SoundEvents.SAND_BREAK, SoundSource.PLAYERS, 1.2f, 0.85f);
         scheduleWave(server, origin);
         affectEntities(server, player);
     }
 
     private void scheduleWave(ServerLevel server, Vec3 center) {
         final int startTick = server.getServer().getTickCount();
-        final int waves = 3;
-        final int waveLifetime = 15;
+        final int waves = 5;
+        final int waveLifetime = 20;
         for (int w = 0; w < waves; w++) {
             final int waveStart = startTick + w * 6;
             for (int f = 0; f <= waveLifetime; f++) {
                 final int when = waveStart + f;
                 final float t = f / (float) waveLifetime;
                 final float radius = t * MAX_RADIUS;
-                server.getServer().tell(new TickTask(when, () ->
-                        spawnRing(server, center, radius, 2.0)));
+                final float alpha = 1.0f - t;
+                server.getServer().tell(new TickTask(when, () -> {
+                    spawn3DRing(server, center, radius, 2.0, alpha);
+                }));
             }
         }
     }
 
-    private void spawnRing(ServerLevel server, Vec3 center, float radius, double height) {
-        if (radius < 1.0f) return; // merkezde partikül yok
+    private void spawn3DRing(ServerLevel server, Vec3 center, float radius, double height, float fade) {
         double cx = center.x, cy = center.y, cz = center.z;
-        int points = Math.max(8, (int) (radius * 10));
-
+        float factor = 0.5f + (radius / MAX_RADIUS);
+        int points = Math.max(24, (int) (radius * 16 * factor));
         for (int i = 0; i < points; i++) {
             double angle = (2 * Math.PI * i) / points;
             double px = cx + radius * Math.cos(angle);
             double pz = cz + radius * Math.sin(angle);
             for (int h = 0; h <= 8; h++) {
                 double py = cy + (h / 8.0) * height;
-                server.sendParticles(new DustParticleOptions(SAND_COLOR, PARTICLE_SIZE),
-                        px, py, pz, 1, 0.01, 0.01, 0.01, 0.0);
+                DustParticleOptions dust;
+                float rnd = server.random.nextFloat();
+                if (rnd < 0.7f) {
+                    dust = new DustParticleOptions(CITRINE_MIX, PARTICLE_SIZE * (0.5f + fade));
+                } else {
+                    dust = new DustParticleOptions(CITRINE_DEEP, PARTICLE_SIZE * (0.5f + fade));
+                }
+                double sx = (server.random.nextDouble() - 0.5) * 0.04;
+                double sy = (server.random.nextDouble() - 0.5) * 0.04;
+                double sz = (server.random.nextDouble() - 0.5) * 0.04;
+                server.sendParticles(dust, px, py, pz, 1, sx, sy, sz, 0.0);
+                if (server.random.nextFloat() < 0.02f) {
+                    server.sendParticles(ParticleTypes.END_ROD, px, py, pz, 1, 0, 0, 0, 0);
+                }
+                if (server.random.nextFloat() < 0.015f) {
+                    server.sendParticles(ParticleTypes.CRIT, px, py, pz, 1, 0.02, 0.02, 0.02, 0.0);
+                }
             }
         }
     }
@@ -117,7 +143,7 @@ public class SandburstStaffItem extends Item {
         Vec3 center = source.position();
         AABB box = new AABB(
                 center.x - MAX_RADIUS, center.y - 1.0, center.z - MAX_RADIUS,
-                center.x + MAX_RADIUS, center.y + 2.0, center.z + MAX_RADIUS
+                center.x + MAX_RADIUS, center.y + 2.5, center.z + MAX_RADIUS
         );
         for (Entity e : server.getEntities(source, box)) {
             if (e == source || !e.isPushable()) continue;
@@ -126,12 +152,11 @@ public class SandburstStaffItem extends Item {
             double dist = horizontal.length();
             if (dist <= 0.0001 || dist > MAX_RADIUS) continue;
             double falloff = Math.max(0.0, 1.0 - (dist / MAX_RADIUS));
-            double hScale = BASE_KNOCKBACK * falloff;
-            Vec3 push = horizontal.normalize().scale(hScale);
-            e.push(push.x, 0.0, push.z); // dikey yok
+            double strength = BASE_KNOCKBACK * falloff;
+            Vec3 push = horizontal.normalize().scale(strength);
+            e.push(push.x, VERTICAL_BOOST * falloff, push.z);
             e.hurtMarked = true;
-            server.playSound(null, e.getX(), e.getY(), e.getZ(),
-                    SoundEvents.WIND_CHARGE_BURST, SoundSource.PLAYERS, 0.4f, 1.0f);
+            server.playSound(null, e.blockPosition(), SoundEvents.SAND_HIT, SoundSource.PLAYERS, 0.45f, 1.15f);
             if (e instanceof LivingEntity le) {
                 le.hurt(server.damageSources().indirectMagic(source, source), MAGIC_DAMAGE);
             }
