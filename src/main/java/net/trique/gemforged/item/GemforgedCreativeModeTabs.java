@@ -31,6 +31,7 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.VENOMFANG_BLADE);
                         output.accept(GemforgedItems.CARNELIAN);
                         output.accept(GemforgedItems.PHOENIX_RELIC);
+                        output.accept(GemforgedItems.ZIRCON_PRISM);
                         output.accept(GemforgedItems.SHIMMER_POWDER);
                         output.accept(PotionContents.createItemStack(Items.POTION, GemforgedPotions.SHIMMER));
                         output.accept(PotionContents.createItemStack(Items.SPLASH_POTION, GemforgedPotions.SHIMMER));

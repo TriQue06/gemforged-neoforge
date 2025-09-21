@@ -29,13 +29,13 @@ import java.util.List;
 public class BattleCharmItem extends Item {
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
-    private static final float RADIUS = 5f;
+    private static final float RADIUS = 8f;
     private static final int COOLDOWN_TICKS = 20 * 1;
     private static final int USE_DURATION_TICKS = 20;
-    private static final int DURATION_GARNET_TICKS = 20 * 30;
+    private static final int DURATION_GARNET_RAGE = 20 * 30;
     private static final int AMP_GARNET = 0;
-    private static final int FRAME_STEP = 2;
-    private static final int FRAMES = 16;
+    private static final int FRAME_STEP = 1;
+    private static final int FRAMES = 8;
     private static final float WAVE_START = RADIUS * 0.8f;
     private static final float WAVE_END = RADIUS * 3.0f;
     private static final int VERTICAL_COLUMNS = 12;
@@ -100,7 +100,7 @@ public class BattleCharmItem extends Item {
                 .getOrThrow(GemforgedEffects.GARNET_RAGE_KEY);
 
         for (LivingEntity e : targets) {
-            e.addEffect(new MobEffectInstance(garnetRage, DURATION_GARNET_TICKS, AMP_GARNET, true, true));
+            e.addEffect(new MobEffectInstance(garnetRage, DURATION_GARNET_RAGE, AMP_GARNET, true, true));
         }
     }
 

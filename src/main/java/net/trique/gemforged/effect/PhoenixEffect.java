@@ -2,6 +2,7 @@ package net.trique.gemforged.effect;
 
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -9,6 +10,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
@@ -18,6 +21,17 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PhoenixEffect extends MobEffect {
+    private static final String MODID = "gemforged";
+
+    private static final ResourceLocation MOVE_ID  =
+            ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage_move");
+
+    private static final double BASE_MOVE_MULT   = 0.25D;
+
+    public PhoenixEffect() {
+        super(MobEffectCategory.BENEFICIAL, 0xFF7A00);
+        addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,   BASE_MOVE_MULT,   AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    }
 
     private static final Map<UUID, SavedState> STATES = new HashMap<>();
 
@@ -27,10 +41,6 @@ public class PhoenixEffect extends MobEffect {
             new DustParticleOptions(new Vector3f(1.00f, 0.40f, 0.05f), 2.0f);
     private static final DustParticleOptions GOLD =
             new DustParticleOptions(new Vector3f(1.00f, 0.78f, 0.08f), 2.0f);
-
-    public PhoenixEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xFF7A00);
-    }
 
     public void onEffectStarted(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
@@ -45,6 +55,7 @@ public class PhoenixEffect extends MobEffect {
             STATES.remove(player.getUUID());
         }
     }
+
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;

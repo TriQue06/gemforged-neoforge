@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.trique.gemforged.client.GarnetRageOverlay;
 import net.trique.gemforged.client.ShimmerRageOverlay;
 import net.trique.gemforged.effect.GemforgedEffects;
+import net.trique.gemforged.entity.GemforgedEntities;
 import net.trique.gemforged.event.GemforgedEvents;
 import net.trique.gemforged.item.GemforgedCreativeModeTabs;
 import net.trique.gemforged.item.GemforgedItems;
@@ -28,6 +29,7 @@ public class Gemforged {
     public Gemforged(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
+        GemforgedEntities.register(modEventBus);
         GemforgedItems.register(modEventBus);
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
@@ -37,6 +39,8 @@ public class Gemforged {
         if (FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
             NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());
+            modEventBus.addListener(GemforgedClient::registerEntityRenderers);
+
         }
     }
 

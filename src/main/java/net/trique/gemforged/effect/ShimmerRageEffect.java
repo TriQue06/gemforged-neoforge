@@ -20,8 +20,6 @@ import org.joml.Vector3f;
 public class ShimmerRageEffect extends MobEffect {
     private static final String MODID = "gemforged";
 
-    private static final ResourceLocation MOVE_ID   =
-            ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_move");
     private static final ResourceLocation ATKDAM_ID =
             ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_attack_damage");
     private static final ResourceLocation SCALE_ID  =
@@ -31,7 +29,6 @@ public class ShimmerRageEffect extends MobEffect {
     private static final ResourceLocation JUMP_ID =
             ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage_jump");
 
-    private static final double MOVE_MULT   = 0.25D;
     private static final double ATKDAM_MULT = 1.00D;
     private static final double SCALE_MULT  = 0.75D;
     private static final double HEALTH_MULT = 1.00D;
@@ -45,8 +42,6 @@ public class ShimmerRageEffect extends MobEffect {
     public ShimmerRageEffect() {
         super(MobEffectCategory.BENEFICIAL, 0x8A2BE2);
 
-        addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,
-                MOVE_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.ATTACK_DAMAGE, ATKDAM_ID,
                 ATKDAM_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.SCALE, SCALE_ID,

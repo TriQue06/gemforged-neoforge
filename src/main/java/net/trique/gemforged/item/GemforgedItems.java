@@ -41,6 +41,9 @@ public class GemforgedItems {
     public static final DeferredItem<Item> PHOENIX_RELIC = ITEMS.register("phoenix_relic",
             () -> new PhoenixRelicItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
+    public static final DeferredItem<Item> ZIRCON_PRISM = ITEMS.register("zircon_prism",
+            () -> new ZirconPrismItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
