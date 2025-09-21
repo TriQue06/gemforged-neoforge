@@ -1,0 +1,27 @@
+{
+  "item.gemforged.onyx": "Oniks",
+  "item.gemforged.shadowstep_dagger": "Gölgeli Adım Hançeri",
+  "item.gemforged.garnet": "Garnet",
+  "item.gemforged.battle_charm": "Kevser Nine'nin Savaş Tılsımı",
+  "item.gemforged.citrine": "Sitrin",
+  "item.gemforged.sandburst_staff": "Kum Patlaması Asası",
+  "item.gemforged.malachite": "Malakit",
+  "item.gemforged.venomfang_blade": "Zehirdiş Kılıcı",
+  "item.gemforged.carnelian": "Karnelyan",
+  "item.gemforged.phoenix_relic": "Anka Kalıntısı",
+  "item.gemforged.zircon": "Zirkon",
+  "item.gemforged.thunder_prism": "Gök Gürültüsü Prizması",
+
+  "item.gemforged.shimmer_powder": "Işıltı Tozu",
+
+  "item.minecraft.potion.effect.shimmer": "Işıltı İksiri",
+  "item.minecraft.splash_potion.effect.shimmer": "Patlayıcı Işıltı İksiri",
+  "item.minecraft.lingering_potion.effect.shimmer": "Kalıcı Işıltı İksiri",
+  "item.minecraft.tipped_arrow.effect.shimmer": "Işıltı Oku",
+
+  "effect.gemforged.garnet_rage": "Garnet Öfkesi",
+  "effect.gemforged.shimmer_rage": "Işıltı Öfkesi",
+  "effect.gemforged.phoenix": "Yeniden Doğuş",
+
+  "gemforged.tab1": "Gemforged"
+}
