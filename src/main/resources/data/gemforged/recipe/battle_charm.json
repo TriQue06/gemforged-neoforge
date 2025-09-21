@@ -7,9 +7,9 @@
     }
   },
   "pattern": [
-    "GGG",
+    " G ",
     "G G",
-    "GGG"
+    " G "
   ],
   "result": {
     "count": 1,

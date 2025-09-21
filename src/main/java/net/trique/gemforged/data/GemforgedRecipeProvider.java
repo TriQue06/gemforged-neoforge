@@ -48,17 +48,17 @@ public class GemforgedRecipeProvider extends RecipeProvider implements IConditio
                 .save(out);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GemforgedItems.BATTLE_CHARM.get())
-                .pattern("GGG")
+                .pattern(" G ")
                 .pattern("G G")
-                .pattern("GGG")
+                .pattern(" G ")
                 .define('G', GemforgedItems.GARNET.get())
                 .unlockedBy("has_garnet", has(GemforgedItems.GARNET.get()))
                 .save(out);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GemforgedItems.PHOENIX_RELIC.get())
-                .pattern("CCC")
+                .pattern(" C ")
                 .pattern("C C")
-                .pattern("CCC")
+                .pattern(" C ")
                 .define('C', GemforgedItems.CARNELIAN.get())
                 .unlockedBy("has_carnelian", has(GemforgedItems.CARNELIAN.get()))
                 .save(out);
@@ -66,7 +66,7 @@ public class GemforgedRecipeProvider extends RecipeProvider implements IConditio
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GemforgedItems.SANDBURST_STAFF.get())
                 .pattern(" # ")
                 .pattern(" ##")
-                .pattern(" O ")
+                .pattern("O  ")
                 .define('#', GemforgedItems.CITRINE.get())
                 .define('O', Items.STICK)
                 .unlockedBy("has_citrine", has(GemforgedItems.CITRINE.get()))
@@ -74,7 +74,6 @@ public class GemforgedRecipeProvider extends RecipeProvider implements IConditio
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GemforgedItems.THUNDER_PRISM.get())
                 .pattern(" A ")
-                .pattern("AA ")
                 .pattern("AAA")
                 .define('A', GemforgedItems.ZIRCON.get())
                 .unlockedBy("has_zircon", has(GemforgedItems.ZIRCON.get()))

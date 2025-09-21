@@ -25,13 +25,11 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 public class ShadowstepDaggerItem extends SwordItem {
-
     private static final String TAG_COMBO = "onyx_combo";
     private static final String TAG_LASTHIT = "onyx_last_hit";
-
     private static final int MAX_COMBO = 6;
     private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 1;
+    private static final int COOLDOWN_TICKS = 20 * 30 * 1;
     private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");

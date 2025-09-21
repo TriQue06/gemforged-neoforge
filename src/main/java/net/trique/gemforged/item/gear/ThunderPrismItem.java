@@ -32,7 +32,7 @@ public class ThunderPrismItem extends Item {
             prism.setItem(prismStack);
             level.addFreshEntity(prism);
 
-            player.getCooldowns().addCooldown(this, 20 * 60 * 1);
+            player.getCooldowns().addCooldown(this, 20 * 30 * 1);
 
             if (!player.isCreative()) {
                 stack.shrink(1);

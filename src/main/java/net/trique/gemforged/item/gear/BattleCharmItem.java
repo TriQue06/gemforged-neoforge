@@ -30,7 +30,7 @@ public class BattleCharmItem extends Item {
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
     private static final float RADIUS = 8f;
-    private static final int COOLDOWN_TICKS = 20 * 60 * 3;
+    private static final int COOLDOWN_TICKS = 20 * 30 * 3;
     private static final int USE_DURATION_TICKS = 20;
     private static final int DURATION_GARNET_RAGE = 20 * 30;
     private static final int AMP_GARNET = 0;
