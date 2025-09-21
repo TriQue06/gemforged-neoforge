@@ -30,7 +30,7 @@ public class BattleCharmItem extends Item {
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
     private static final float RADIUS = 8f;
-    private static final int COOLDOWN_TICKS = 20 * 1;
+    private static final int COOLDOWN_TICKS = 1;
     private static final int USE_DURATION_TICKS = 20;
     private static final int DURATION_GARNET_RAGE = 20 * 30;
     private static final int AMP_GARNET = 0;
@@ -49,7 +49,7 @@ public class BattleCharmItem extends Item {
             new DustParticleOptions(new Vector3f(0.55f, 0.0f, 0.08f), 1.6f * DUST_SIZE_SCALE);
 
     public BattleCharmItem(Item.Properties props) {
-        super(props.durability(240));
+        super(props.durability(100));
     }
 
     @Override

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemforged:thunder_prism"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_zircon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemforged:zircon"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_zircon"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemforged:thunder_prism"
+    ]
+  }
+}

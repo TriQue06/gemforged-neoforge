@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_onyx": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemforged:onyx"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemforged:shadowstep_dagger"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_onyx"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemforged:shadowstep_dagger"
+    ]
+  }
+}

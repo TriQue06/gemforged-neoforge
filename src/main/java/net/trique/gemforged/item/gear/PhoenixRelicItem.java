@@ -33,7 +33,7 @@ public class PhoenixRelicItem extends Item {
             new DustParticleOptions(new Vector3f(1.0f, 0.9f, 0.2f), 2.0f);
 
     public PhoenixRelicItem(Item.Properties props) {
-        super(props.durability(240));
+        super(props.durability(100));
     }
 
     @Override

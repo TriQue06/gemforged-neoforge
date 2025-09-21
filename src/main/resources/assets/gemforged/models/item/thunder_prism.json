@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "gemforged:item/zircon_prism"
+    "layer0": "gemforged:item/thunder_prism"
   }
 }

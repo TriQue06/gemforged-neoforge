@@ -27,7 +27,8 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.VENOMFANG_BLADE);
         generatedItem(GemforgedItems.CARNELIAN);
         handheldItem(GemforgedItems.PHOENIX_RELIC);
-        handheldItem(GemforgedItems.ZIRCON_PRISM);
+        generatedItem(GemforgedItems.ZIRCON);
+        handheldItem(GemforgedItems.THUNDER_PRISM);
         generatedItem(GemforgedItems.SHIMMER_POWDER);
     }
 

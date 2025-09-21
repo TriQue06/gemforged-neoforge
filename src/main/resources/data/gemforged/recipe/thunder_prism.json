@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemforged:zircon"
+    }
+  },
+  "pattern": [
+    " A ",
+    "AA ",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:thunder_prism"
+  }
+}

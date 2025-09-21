@@ -23,7 +23,7 @@ public class GemforgedClient {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(GemforgedEntities.ZIRCON_PRISM.get(),
+        event.registerEntityRenderer(GemforgedEntities.THUNDER_PRISM.get(),
                 ctx -> new ThrownItemRenderer<>(ctx, 1.0F, false));
     }
 

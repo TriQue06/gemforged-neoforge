@@ -26,6 +26,9 @@ public class GemforgedItems {
     public static final DeferredItem<Item> CARNELIAN = ITEMS.register("carnelian",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> ZIRCON = ITEMS.register("zircon",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> SHADOWSTEP_DAGGER = ITEMS.register("shadowstep_dagger",
             () -> new ShadowstepDaggerItem(new Item.Properties().rarity(Rarity.EPIC).durability(240)));
 
@@ -41,8 +44,8 @@ public class GemforgedItems {
     public static final DeferredItem<Item> PHOENIX_RELIC = ITEMS.register("phoenix_relic",
             () -> new PhoenixRelicItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
-    public static final DeferredItem<Item> ZIRCON_PRISM = ITEMS.register("zircon_prism",
-            () -> new ZirconPrismItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> THUNDER_PRISM = ITEMS.register("thunder_prism",
+            () -> new ThunderPrismItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));

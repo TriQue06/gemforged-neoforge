@@ -31,7 +31,7 @@ public class ShadowstepDaggerItem extends SwordItem {
 
     private static final int MAX_COMBO = 6;
     private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 20 * 20;
+    private static final int COOLDOWN_TICKS = 1;
     private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
@@ -41,7 +41,7 @@ public class ShadowstepDaggerItem extends SwordItem {
 
     public ShadowstepDaggerItem(Item.Properties props) {
         super(Tiers.DIAMOND, props
-                .durability(240)
+                .durability(100)
                 .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
     }
 

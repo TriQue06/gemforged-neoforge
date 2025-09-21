@@ -41,7 +41,7 @@ public class VenomfangBladeItem extends SwordItem {
 
     public VenomfangBladeItem(Item.Properties props) {
         super(Tiers.DIAMOND, props
-                .durability(240)
+                .durability(100)
                 .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
     }
 

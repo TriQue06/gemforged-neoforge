@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "gemforged:citrine"
+    },
+    "O": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    " ##",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:sandburst_staff"
+  }
+}
