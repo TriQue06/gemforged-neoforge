@@ -30,7 +30,7 @@ public class BattleCharmItem extends Item {
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
     private static final float RADIUS = 8f;
-    private static final int COOLDOWN_TICKS = 1;
+    private static final int COOLDOWN_TICKS = 20 * 60 * 3;
     private static final int USE_DURATION_TICKS = 20;
     private static final int DURATION_GARNET_RAGE = 20 * 30;
     private static final int AMP_GARNET = 0;
@@ -49,7 +49,7 @@ public class BattleCharmItem extends Item {
             new DustParticleOptions(new Vector3f(0.55f, 0.0f, 0.08f), 1.6f * DUST_SIZE_SCALE);
 
     public BattleCharmItem(Item.Properties props) {
-        super(props.durability(100));
+        super(props.durability(250));
     }
 
     @Override
@@ -60,6 +60,21 @@ public class BattleCharmItem extends Item {
                     SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.75f, 1.25f);
         }
         return InteractionResultHolder.consume(player.getItemInHand(hand));
+    }
+
+    @Override
+    public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        if (level.isClientSide) return;
+        int elapsed = getUseDuration(stack, user) - remainingUseTicks;
+        if (elapsed == 1) {
+            level.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.7F, 1.05F);
+        }
+        if (elapsed % 5 == 0) {
+            float pitch = 0.9f + (elapsed / (float) USE_DURATION_TICKS) * 0.5f;
+            level.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 0.35F, pitch);
+        }
     }
 
     @Override

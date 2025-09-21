@@ -33,7 +33,7 @@ public class PhoenixRelicItem extends Item {
             new DustParticleOptions(new Vector3f(1.0f, 0.9f, 0.2f), 2.0f);
 
     public PhoenixRelicItem(Item.Properties props) {
-        super(props.durability(100));
+        super(props.durability(250));
     }
 
     @Override
@@ -44,6 +44,21 @@ public class PhoenixRelicItem extends Item {
                     SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.75f, 1.25f);
         }
         return InteractionResultHolder.consume(player.getItemInHand(hand));
+    }
+
+    @Override
+    public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        if (level.isClientSide) return;
+        int elapsed = getUseDuration(stack, user) - remainingUseTicks;
+        if (elapsed == 1) {
+            level.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.7F, 1.05F);
+        }
+        if (elapsed % 5 == 0) {
+            float pitch = 0.9f + (elapsed / (float) USE_DURATION_TICKS) * 0.5f;
+            level.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 0.35F, pitch);
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.trique.gemforged.entity.ThunderPrismEntity;
 public class ThunderPrismItem extends Item {
 
     public ThunderPrismItem(Properties props) {
-        super(props.durability(100));
+        super(props.durability(250));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ThunderPrismItem extends Item {
             prism.setItem(prismStack);
             level.addFreshEntity(prism);
 
-            player.getCooldowns().addCooldown(this, 20 * 60);
+            player.getCooldowns().addCooldown(this, 20 * 60 * 1);
 
             if (!player.isCreative()) {
                 stack.shrink(1);

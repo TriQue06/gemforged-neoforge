@@ -21,7 +21,7 @@ public class SandburstStaffItem extends Item {
     private static final float MAX_RADIUS = 10.0f;
     private static final float BASE_KNOCKBACK = 16.0f;
     private static final double VERTICAL_BOOST = 1.0;
-    private static final int COOLDOWN_TICKS = 1;
+    private static final int COOLDOWN_TICKS = 20 * 60 * 1;
     private static final float MAGIC_DAMAGE = 5.0f;
     private static final int USE_DURATION_TICKS = 20;
     private static final Vector3f CITRINE_MIX  = new Vector3f(0.95f, 0.90f, 0.60f);
@@ -36,7 +36,7 @@ public class SandburstStaffItem extends Item {
     private static final float RINGS_HEIGHT = 2.0f;
 
     public SandburstStaffItem(Item.Properties props) {
-        super(props.durability(100));
+        super(props.durability(250));
     }
 
     @Override

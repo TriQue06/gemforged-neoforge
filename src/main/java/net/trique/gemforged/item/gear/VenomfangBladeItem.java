@@ -40,9 +40,7 @@ public class VenomfangBladeItem extends SwordItem {
     private static final float DARK_SCALE = 2.1f;
 
     public VenomfangBladeItem(Item.Properties props) {
-        super(Tiers.DIAMOND, props
-                .durability(100)
-                .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
+        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
     }
 
     @Override
