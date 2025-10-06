@@ -17,19 +17,33 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generatedItem(GemforgedItems.ONYX);
         handheldItem(GemforgedItems.SHADOWSTEP_DAGGER);
-        generatedItem(GemforgedItems.GARNET);
         handheldItem(GemforgedItems.BATTLE_CHARM);
-        generatedItem(GemforgedItems.CITRINE);
         handheldItem(GemforgedItems.SANDBURST_STAFF);
-        generatedItem(GemforgedItems.MALACHITE);
         handheldItem(GemforgedItems.VENOMFANG_BLADE);
-        generatedItem(GemforgedItems.CARNELIAN);
         handheldItem(GemforgedItems.PHOENIX_RELIC);
-        generatedItem(GemforgedItems.ZIRCON);
         handheldItem(GemforgedItems.THUNDER_PRISM);
+
         generatedItem(GemforgedItems.SHIMMER_POWDER);
+        generatedItem(GemforgedItems.AMETHYST_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.CITRINE_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.CITRINE_SHARD);
+        generatedItem(GemforgedItems.DIAMOND_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.ELECTRUM_ALLOY_DUST);
+        generatedItem(GemforgedItems.ELECTRUM_INGOT);
+        generatedItem(GemforgedItems.EMERALD_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.NYXITE_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.OBSIDIAN_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.PHOENIXITE_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.PRISMYTE_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.QUARTZ_CRYSTAL_POWDER);
+        generatedItem(GemforgedItems.SCARLET_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.SOLARIUM_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.STEEL_ALLOY_DUST);
+        generatedItem(GemforgedItems.STEEL_INGOT);
+        generatedItem(GemforgedItems.VENOMYTE_FUSION_CRYSTAL);
+        generatedItem(GemforgedItems.YASHARIUM_ALLOY_DUST);
+        generatedItem(GemforgedItems.YASHARIUM_INGOT);
     }
 
     private ItemModelBuilder generatedItem(DeferredItem<?> item) {

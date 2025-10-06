@@ -12,14 +12,12 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.trique.gemforged.potion.GemforgedPotions;
-import net.trique.gemforged.util.GemforgedLootTableModifiers;
 import org.slf4j.Logger;
 
 @Mod(Gemforged.MODID)
@@ -35,7 +33,6 @@ public class Gemforged {
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
         GemforgedPotions.register(modEventBus);
-        GemforgedLootTableModifiers.register();
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister);
         if (FMLEnvironment.dist.isClient()) {

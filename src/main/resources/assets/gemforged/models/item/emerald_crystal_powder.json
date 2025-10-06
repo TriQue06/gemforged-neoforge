@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemforged:item/onyx"
+    "layer0": "gemforged:item/emerald_crystal_powder"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemforged:item/malachite"
+    "layer0": "gemforged:item/quartz_crystal_powder"
   }
 }
