@@ -21,29 +21,26 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.BATTLE_CHARM);
         handheldItem(GemforgedItems.SANDBURST_STAFF);
         handheldItem(GemforgedItems.VENOMFANG_BLADE);
-        handheldItem(GemforgedItems.PHOENIX_RELIC);
+        handheldItem(GemforgedItems.PHOENIX_CHARM);
         handheldItem(GemforgedItems.THUNDER_PRISM);
+        handheldItem(GemforgedItems.GRAVITY_HORN);
+
+        generatedItem(GemforgedItems.NYXITE);
+        generatedItem(GemforgedItems.BLOODSTONE);
+        generatedItem(GemforgedItems.SOLARIUM);
+        generatedItem(GemforgedItems.VENOMYTE);
+        generatedItem(GemforgedItems.PHOENIXTONE);
+        generatedItem(GemforgedItems.PRISMYTE);
+        generatedItem(GemforgedItems.GRAVITIUM);
 
         generatedItem(GemforgedItems.SHIMMER_POWDER);
-        generatedItem(GemforgedItems.AMETHYST_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.CITRINE_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.CITRINE_SHARD);
-        generatedItem(GemforgedItems.DIAMOND_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.ELECTRUM_ALLOY_DUST);
-        generatedItem(GemforgedItems.ELECTRUM_INGOT);
-        generatedItem(GemforgedItems.EMERALD_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.NYXITE_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.OBSIDIAN_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.PHOENIXITE_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.PRISMYTE_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.QUARTZ_CRYSTAL_POWDER);
-        generatedItem(GemforgedItems.SCARLET_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.SOLARIUM_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.STEEL_ALLOY_DUST);
-        generatedItem(GemforgedItems.STEEL_INGOT);
-        generatedItem(GemforgedItems.VENOMYTE_FUSION_CRYSTAL);
-        generatedItem(GemforgedItems.YASHARIUM_ALLOY_DUST);
-        generatedItem(GemforgedItems.YASHARIUM_INGOT);
+
+        handheldItem(GemforgedItems.DAGGER_TEMPLATE);
+        handheldItem(GemforgedItems.CHARM_TEMPLATE);
+        handheldItem(GemforgedItems.STAFF_TEMPLATE);
+        handheldItem(GemforgedItems.PRISM_TEMPLATE);
+        handheldItem(GemforgedItems.BLADE_TEMPLATE);
+        handheldItem(GemforgedItems.HORN_TEMPLATE);
     }
 
     private ItemModelBuilder generatedItem(DeferredItem<?> item) {

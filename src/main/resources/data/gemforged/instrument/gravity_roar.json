@@ -1,0 +1,5 @@
+{
+  "sound_event": "minecraft:entity.ender_dragon.growl",
+  "use_duration": 60,
+  "range": 256
+}

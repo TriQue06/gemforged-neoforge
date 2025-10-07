@@ -25,33 +25,30 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.BATTLE_CHARM);
                         output.accept(GemforgedItems.SANDBURST_STAFF);
                         output.accept(GemforgedItems.VENOMFANG_BLADE);
-                        output.accept(GemforgedItems.PHOENIX_RELIC);
+                        output.accept(GemforgedItems.PHOENIX_CHARM);
                         output.accept(GemforgedItems.THUNDER_PRISM);
+                        output.accept(GemforgedItems.GRAVITY_HORN);
+
+                        output.accept(GemforgedItems.NYXITE);
+                        output.accept(GemforgedItems.BLOODSTONE);
+                        output.accept(GemforgedItems.SOLARIUM);
+                        output.accept(GemforgedItems.VENOMYTE);
+                        output.accept(GemforgedItems.PHOENIXTONE);
+                        output.accept(GemforgedItems.PRISMYTE);
+                        output.accept(GemforgedItems.GRAVITIUM);
+
                         output.accept(GemforgedItems.SHIMMER_POWDER);
                         output.accept(PotionContents.createItemStack(Items.POTION, GemforgedPotions.SHIMMER));
                         output.accept(PotionContents.createItemStack(Items.SPLASH_POTION, GemforgedPotions.SHIMMER));
                         output.accept(PotionContents.createItemStack(Items.LINGERING_POTION, GemforgedPotions.SHIMMER));
                         output.accept(PotionContents.createItemStack(Items.TIPPED_ARROW, GemforgedPotions.SHIMMER));
 
-                        output.accept(GemforgedItems.AMETHYST_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.CITRINE_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.CITRINE_SHARD);
-                        output.accept(GemforgedItems.DIAMOND_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.ELECTRUM_ALLOY_DUST);
-                        output.accept(GemforgedItems.ELECTRUM_INGOT);
-                        output.accept(GemforgedItems.EMERALD_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.NYXITE_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.OBSIDIAN_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.PHOENIXITE_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.PRISMYTE_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.QUARTZ_CRYSTAL_POWDER);
-                        output.accept(GemforgedItems.SCARLET_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.SOLARIUM_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.STEEL_ALLOY_DUST);
-                        output.accept(GemforgedItems.STEEL_INGOT);
-                        output.accept(GemforgedItems.VENOMYTE_FUSION_CRYSTAL);
-                        output.accept(GemforgedItems.YASHARIUM_ALLOY_DUST);
-                        output.accept(GemforgedItems.YASHARIUM_INGOT);
+                        output.accept(GemforgedItems.DAGGER_TEMPLATE);
+                        output.accept(GemforgedItems.CHARM_TEMPLATE);
+                        output.accept(GemforgedItems.STAFF_TEMPLATE);
+                        output.accept(GemforgedItems.PRISM_TEMPLATE);
+                        output.accept(GemforgedItems.BLADE_TEMPLATE);
+                        output.accept(GemforgedItems.HORN_TEMPLATE);
                     }).build());
 
     public static void register(IEventBus eventBus) {
