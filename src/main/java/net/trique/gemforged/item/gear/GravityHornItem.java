@@ -18,18 +18,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import net.trique.gemforged.item.GemforgedItems;
 
 import java.util.List;
 
 public class GravityHornItem extends Item {
-    private static final float RADIUS = 16f;
-    private static final int COOLDOWN_TICKS = 1;
+    private static final float RADIUS = 16f; // hem partikül hem etki alanı
+    private static final int COOLDOWN_TICKS = 20 * 30;
     private static final int USE_DURATION_TICKS = 20;
 
     private static final DustParticleOptions PURPLE =
-            new DustParticleOptions(new Vector3f(0.7f, 0.2f, 0.9f), 2.0f);
+            new DustParticleOptions(new Vector3f(0.7f, 0.2f, 0.9f), 3.0f); // daha kalın
     private static final DustParticleOptions LILAC =
-            new DustParticleOptions(new Vector3f(0.9f, 0.5f, 1.0f), 2.0f);
+            new DustParticleOptions(new Vector3f(0.9f, 0.5f, 1.0f), 3.0f);
 
     public GravityHornItem(Item.Properties props) {
         super(props.durability(250));
@@ -56,11 +57,28 @@ public class GravityHornItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide && user instanceof Player player) {
-            triggerBurst((ServerLevel) level, player);
-            stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
-            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+            boolean creative = player.getAbilities().instabuild;
+            ItemStack chargeResource = findChargeResource(player);
+
+            if (creative || !chargeResource.isEmpty()) {
+                triggerBurst((ServerLevel) level, player);
+
+                if (!creative) {
+                    chargeResource.shrink(1);
+                    player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+                    stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+                }
+            }
         }
         return super.finishUsingItem(stack, level, user);
+    }
+
+    private ItemStack findChargeResource(Player player) {
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.GRAVITIUM.get())) return s;
+        }
+        return ItemStack.EMPTY;
     }
 
     private void triggerBurst(ServerLevel level, Player player) {
@@ -73,16 +91,18 @@ public class GravityHornItem extends Item {
         level.playSound(null, c.x, c.y, c.z,
                 SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 2.5f, 0.9f);
 
-        spawnRing(level, c.add(0, 0.3, 0), RADIUS, 800, PURPLE, 0.7f);
-        spawnRing(level, c.add(0, 0.35, 0), RADIUS, 800, LILAC, 0.7f);
+        // Daha yoğun ve kalın partikül halkaları
+        spawnRing(level, c.add(0, 0.3, 0), RADIUS, 1200, PURPLE, 1.0f);
+        spawnRing(level, c.add(0, 0.35, 0), RADIUS, 1200, LILAC, 1.0f);
 
-        spawnStar(level, c.add(0, 0.5, 0), 9.0, 5, PURPLE);
-        spawnStar(level, c.add(0, 0.5, 0), 9.0, 5, LILAC);
+        // Yıldız daha büyük
+        spawnStar(level, c.add(0, 0.5, 0), 12.0, 5, PURPLE);
+        spawnStar(level, c.add(0, 0.5, 0), 12.0, 5, LILAC);
 
-        // Oyuncu merkezli 16x16x16 küp
+        // Etki alanı da aynı radius ile eşleşiyor
         AABB box = new AABB(
-                c.x - 8, c.y - 8, c.z - 8,
-                c.x + 8, c.y + 8, c.z + 8
+                c.x - RADIUS, c.y - RADIUS, c.z - RADIUS,
+                c.x + RADIUS, c.y + RADIUS, c.z + RADIUS
         );
 
         List<LivingEntity> targets = level.getEntitiesOfClass(LivingEntity.class, box,
@@ -100,7 +120,7 @@ public class GravityHornItem extends Item {
             double px = cx + radius * Math.cos(a);
             double pz = cz + radius * Math.sin(a);
             double py = cy + (level.random.nextDouble() - 0.5) * heightSpread * 2;
-            level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0.0);
+            level.sendParticles(dust, px, py, pz, 2, 0.04, 0.04, 0.04, 0.01);
         }
     }
 
@@ -122,12 +142,12 @@ public class GravityHornItem extends Item {
     }
 
     private void spawnLine(ServerLevel level, double cy, double x1, double z1, double x2, double z2, DustParticleOptions dust) {
-        int steps = 60;
+        int steps = 100; // daha sık partikül
         for (int i = 0; i <= steps; i++) {
             double t = i / (double) steps;
             double px = x1 + (x2 - x1) * t;
             double pz = z1 + (z2 - z1) * t;
-            level.sendParticles(dust, px, cy, pz, 1, 0, 0, 0, 0.0);
+            level.sendParticles(dust, px, cy, pz, 2, 0.05, 0.05, 0.05, 0.01);
         }
     }
 }

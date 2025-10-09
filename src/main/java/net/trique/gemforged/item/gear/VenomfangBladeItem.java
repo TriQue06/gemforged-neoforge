@@ -11,13 +11,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.trique.gemforged.item.GemforgedItems;
 import org.joml.Vector3f;
 
 public class VenomfangBladeItem extends SwordItem {
@@ -40,7 +38,7 @@ public class VenomfangBladeItem extends SwordItem {
     private static final float DARK_SCALE = 2.1f;
 
     public VenomfangBladeItem(Item.Properties props) {
-        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
+        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
     }
 
     @Override
@@ -52,15 +50,25 @@ public class VenomfangBladeItem extends SwordItem {
             CompoundTag tag = data.copyTag();
 
             int count = tag.getInt("venomfang_hits") + 1;
+            int superCount = tag.getInt("venomfang_super") + 1;
+
+            // 3. vuruş (Poison dalgası)
             if (count >= HIT_THRESHOLD) {
-                triggerVenomWaves((ServerLevel) player.level(), player, target);
-                count = 0;
+                if (consumeVenomyte(player)) {
+                    triggerVenomWaves((ServerLevel) player.level(), player, target);
+                    count = 0;
+                } else {
+                    count = 0;
+                }
             }
 
-            int superCount = tag.getInt("venomfang_super") + 1;
             if (superCount >= SUPER_THRESHOLD) {
-                triggerWitherBlast((ServerLevel) player.level(), player, target);
-                superCount = 0;
+                if (consumeVenomyte(player)) {
+                    triggerWitherBlast((ServerLevel) player.level(), player, target);
+                    superCount = 0;
+                } else {
+                    superCount = 0;
+                }
             }
 
             tag.putInt("venomfang_hits", count);
@@ -68,6 +76,18 @@ public class VenomfangBladeItem extends SwordItem {
             stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
         }
         return res;
+    }
+
+    private boolean consumeVenomyte(Player player) {
+        if (player.getAbilities().instabuild) return true; // creative mod
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.VENOMYTE.get())) {
+                s.shrink(1);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void triggerVenomWaves(ServerLevel level, Player attacker, LivingEntity source) {

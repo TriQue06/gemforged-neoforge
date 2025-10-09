@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:dagger_template"
+    },
+    {
+      "item": "gemforged:nyxite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:shadowstep_dagger"
+  }
+}

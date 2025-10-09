@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gemforged:charm_template"
+    },
+    {
+      "item": "gemforged:bloodstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:battle_charm"
+  }
+}

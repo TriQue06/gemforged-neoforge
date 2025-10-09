@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:horn_template"
+    },
+    {
+      "item": "gemforged:gravitium"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:gravity_horn"
+  }
+}

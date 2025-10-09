@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemforged:venomyte_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_venomyte_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemforged:venomyte_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_venomyte_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemforged:venomyte_from_block"
+    ]
+  }
+}

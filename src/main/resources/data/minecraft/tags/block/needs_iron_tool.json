@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "gemforged:nyxite_ore",
+    "gemforged:deepslate_nyxite_ore",
+    "gemforged:nyxite_block",
+
+    "gemforged:bloodstone_ore",
+    "gemforged:deepslate_bloodstone_ore",
+    "gemforged:bloodstone_block",
+
+    "gemforged:solarium_ore",
+    "gemforged:deepslate_solarium_ore",
+    "gemforged:solarium_block",
+
+    "gemforged:venomyte_ore",
+    "gemforged:deepslate_venomyte_ore",
+    "gemforged:venomyte_block",
+
+    "gemforged:phoenixtone_ore",
+    "gemforged:deepslate_phoenixtone_ore",
+    "gemforged:phoenixtone_block",
+
+    "gemforged:prismyte_ore",
+    "gemforged:deepslate_prismyte_ore",
+    "gemforged:prismyte_block",
+
+    "gemforged:gravitium_ore",
+    "gemforged:deepslate_gravitium_ore",
+    "gemforged:gravitium_block"
+  ]
+}

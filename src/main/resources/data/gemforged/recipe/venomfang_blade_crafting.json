@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:blade_template"
+    },
+    {
+      "item": "gemforged:venomyte"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:venomfang_blade"
+  }
+}

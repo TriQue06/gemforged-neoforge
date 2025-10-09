@@ -19,13 +19,14 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 import net.trique.gemforged.effect.GemforgedEffects;
+import net.trique.gemforged.item.GemforgedItems;
 
 import java.util.List;
 
 public class PhoenixCharmItem extends Item {
     private static final int USE_DURATION_TICKS = 20;
     private static final int EFFECT_DURATION = 20 * 30;
-    private static final int COOLDOWN_TICKS = 20 * 60 * 5;
+    private static final int COOLDOWN_TICKS = 20 * 60 * 4;
 
     private static final DustParticleOptions ORANGE =
             new DustParticleOptions(new Vector3f(1.0f, 0.5f, 0.0f), 2.0f);
@@ -74,11 +75,28 @@ public class PhoenixCharmItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide && user instanceof Player player) {
-            applyPhoenixEffect((ServerLevel) level, player);
-            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
-            stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+            boolean creative = player.getAbilities().instabuild;
+            ItemStack chargeResource = findChargeResource(player);
+
+            if (creative || !chargeResource.isEmpty()) {
+                applyPhoenixEffect((ServerLevel) level, player);
+
+                if (!creative) {
+                    chargeResource.shrink(1); // Phoenixtone tüket
+                    player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+                    stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+                }
+            }
         }
         return stack;
+    }
+
+    private ItemStack findChargeResource(Player player) {
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.PHOENIXTONE.get())) return s;
+        }
+        return ItemStack.EMPTY;
     }
 
     private void applyPhoenixEffect(ServerLevel level, Player user) {

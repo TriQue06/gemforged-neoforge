@@ -16,13 +16,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import net.trique.gemforged.item.GemforgedItems;
 
 public class SandburstStaffItem extends Item {
     private static final float MAX_RADIUS = 10.0f;
     private static final float BASE_KNOCKBACK = 16.0f;
     private static final double VERTICAL_BOOST = 1.0;
-    private static final int COOLDOWN_TICKS = 20 * 30 * 1;
-    private static final float MAGIC_DAMAGE = 5.0f;
+    private static final int COOLDOWN_TICKS = 20 * 20;
+    private static final float MAGIC_DAMAGE = 5.5f;
     private static final int USE_DURATION_TICKS = 20;
     private static final Vector3f CITRINE_MIX  = new Vector3f(0.95f, 0.90f, 0.60f);
     private static final Vector3f CITRINE_DEEP = new Vector3f(1.00f, 0.75f, 0.25f);
@@ -73,11 +74,28 @@ public class SandburstStaffItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide && user instanceof Player player) {
-            triggerBurst((ServerLevel) level, player);
-            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
-            stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+            boolean creative = player.getAbilities().instabuild;
+            ItemStack chargeResource = findChargeResource(player);
+
+            if (creative || !chargeResource.isEmpty()) {
+                triggerBurst((ServerLevel) level, player);
+
+                if (!creative) {
+                    chargeResource.shrink(1); // 1 Solarium tüket
+                    player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+                    stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+                }
+            }
         }
         return super.finishUsingItem(stack, level, user);
+    }
+
+    private ItemStack findChargeResource(Player player) {
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.SOLARIUM.get())) return s;
+        }
+        return ItemStack.EMPTY;
     }
 
     private void triggerBurst(ServerLevel server, Player player) {
@@ -95,13 +113,12 @@ public class SandburstStaffItem extends Item {
             for (int f = 0; f <= WAVE_FRAMES; f += WAVE_FRAME_STEP) {
                 final int when   = waveStart + f;
                 final float t    = f / (float) WAVE_FRAMES;
-                final float eased= (float)Math.pow(t, 0.6); // ease-out radius growth
+                final float eased= (float)Math.pow(t, 0.6);
                 final float rad  = MIN_RENDER_RADIUS + eased * (MAX_RADIUS - MIN_RENDER_RADIUS);
                 final float fade = 1.0f - t;
                 final Vec3  cNow = center;
 
                 server.getServer().tell(new TickTask(when, () -> {
-                    // Same "ring + spikes" motif as Venomfang, but with citrine colors
                     spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, CITRINE_MIX,  CITRINE_SCALE_SOFT);
                     spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, CITRINE_DEEP, CITRINE_SCALE_DEEP);
                 }));

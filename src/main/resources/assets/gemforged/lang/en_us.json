@@ -32,5 +32,33 @@
   "effect.gemforged.shimmer_rage": "Shimmer Rage",
   "effect.gemforged.phoenix": "Phoenix Rebirth",
 
+  "block.gemforged.nyxite_ore": "Nyxite Ore",
+  "block.gemforged.deepslate_nyxite_ore": "Deepslate Nyxite Ore",
+  "block.gemforged.nyxite_block": "Block of Nyxite",
+
+  "block.gemforged.bloodstone_ore": "Bloodstone Ore",
+  "block.gemforged.deepslate_bloodstone_ore": "Deepslate Bloodstone Ore",
+  "block.gemforged.bloodstone_block": "Block of Bloodstone",
+
+  "block.gemforged.solarium_ore": "Solarium Ore",
+  "block.gemforged.deepslate_solarium_ore": "Deepslate Solarium Ore",
+  "block.gemforged.solarium_block": "Block of Solarium",
+
+  "block.gemforged.venomyte_ore": "Venomyte Ore",
+  "block.gemforged.deepslate_venomyte_ore": "Deepslate Venomyte Ore",
+  "block.gemforged.venomyte_block": "Block of Venomyte",
+
+  "block.gemforged.phoenixtone_ore": "Phoenixtone Ore",
+  "block.gemforged.deepslate_phoenixtone_ore": "Deepslate Phoenixtone Ore",
+  "block.gemforged.phoenixtone_block": "Block of Phoenixtone",
+
+  "block.gemforged.prismyte_ore": "Prismyte Ore",
+  "block.gemforged.deepslate_prismyte_ore": "Deepslate Prismyte Ore",
+  "block.gemforged.prismyte_block": "Block of Prismyte",
+
+  "block.gemforged.gravitium_ore": "Gravitium Ore",
+  "block.gemforged.deepslate_gravitium_ore": "Deepslate Gravitium Ore",
+  "block.gemforged.gravitium_block": "Block of Gravitium",
+
   "gemforged.tab1": "Gemforged"
 }

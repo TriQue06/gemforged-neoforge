@@ -1,6 +1,7 @@
 package net.trique.gemforged;
 
 import com.mojang.logging.LogUtils;
+import net.trique.gemforged.block.GemforgedBlocks;
 import net.trique.gemforged.client.GarnetRageOverlay;
 import net.trique.gemforged.client.ShimmerRageOverlay;
 import net.trique.gemforged.effect.GemforgedEffects;
@@ -18,6 +19,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.trique.gemforged.potion.GemforgedPotions;
+import net.trique.gemforged.util.GemforgedLootTableModifiers;
 import org.slf4j.Logger;
 
 @Mod(Gemforged.MODID)
@@ -28,11 +30,13 @@ public class Gemforged {
     public Gemforged(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
+        GemforgedBlocks.register(modEventBus);
         GemforgedEntities.register(modEventBus);
         GemforgedItems.register(modEventBus);
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
         GemforgedPotions.register(modEventBus);
+        GemforgedLootTableModifiers.register();
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister);
         if (FMLEnvironment.dist.isClient()) {

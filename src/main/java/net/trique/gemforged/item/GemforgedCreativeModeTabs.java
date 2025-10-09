@@ -9,6 +9,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.trique.gemforged.Gemforged;
+import net.trique.gemforged.block.GemforgedBlocks;
 import net.trique.gemforged.potion.GemforgedPotions;
 
 import java.util.function.Supplier;
@@ -18,9 +19,37 @@ public class GemforgedCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Gemforged.MODID);
 
     public static final Supplier<CreativeModeTab> GEMFORGED_ITEMS_TAB = CREATIVE_MODE_TAB.register("gemforgeditemstab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(GemforgedItems.SHADOWSTEP_DAGGER.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(GemforgedItems.GRAVITY_HORN.get()))
                     .title(Component.translatable("gemforged.tab1"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(GemforgedBlocks.NYXITE_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_NYXITE_ORE);
+                        output.accept(GemforgedBlocks.NYXITE_BLOCK);
+
+                        output.accept(GemforgedBlocks.BLOODSTONE_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_BLOODSTONE_ORE);
+                        output.accept(GemforgedBlocks.BLOODSTONE_BLOCK);
+
+                        output.accept(GemforgedBlocks.SOLARIUM_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_SOLARIUM_ORE);
+                        output.accept(GemforgedBlocks.SOLARIUM_BLOCK);
+
+                        output.accept(GemforgedBlocks.VENOMYTE_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_VENOMYTE_ORE);
+                        output.accept(GemforgedBlocks.VENOMYTE_BLOCK);
+
+                        output.accept(GemforgedBlocks.PHOENIXTONE_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_PHOENIXTONE_ORE);
+                        output.accept(GemforgedBlocks.PHOENIXTONE_BLOCK);
+
+                        output.accept(GemforgedBlocks.PRISMYTE_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_PRISMYTE_ORE);
+                        output.accept(GemforgedBlocks.PRISMYTE_BLOCK);
+
+                        output.accept(GemforgedBlocks.GRAVITIUM_ORE);
+                        output.accept(GemforgedBlocks.DEEPSLATE_GRAVITIUM_ORE);
+                        output.accept(GemforgedBlocks.GRAVITIUM_BLOCK);
+
                         output.accept(GemforgedItems.SHADOWSTEP_DAGGER);
                         output.accept(GemforgedItems.BATTLE_CHARM);
                         output.accept(GemforgedItems.SANDBURST_STAFF);

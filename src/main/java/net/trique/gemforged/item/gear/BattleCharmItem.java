@@ -23,6 +23,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 import net.trique.gemforged.effect.GemforgedEffects;
+import net.trique.gemforged.item.GemforgedItems;
 
 import java.util.List;
 
@@ -86,11 +87,28 @@ public class BattleCharmItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide && user instanceof Player player) {
-            triggerBurst((ServerLevel) level, player);
-            stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
-            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+            boolean creative = player.getAbilities().instabuild;
+
+            ItemStack chargeResource = findChargeResource(player);
+            if (creative || !chargeResource.isEmpty()) {
+                triggerBurst((ServerLevel) level, player);
+
+                if (!creative) {
+                    chargeResource.shrink(1); // 1 Bloodstone tüket
+                    player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+                    stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+                }
+            }
         }
         return super.finishUsingItem(stack, level, user);
+    }
+
+    private ItemStack findChargeResource(Player player) {
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.BLOODSTONE.get())) return s;
+        }
+        return ItemStack.EMPTY;
     }
 
     private void triggerBurst(ServerLevel level, Player player) {
@@ -103,7 +121,6 @@ public class BattleCharmItem extends Item {
         spawnRing(level, c.add(0, 0.5, 0), RADIUS * 0.75f, scaledCount(85), RED_GLOW);
 
         spawnLingeringCloud(level, c, 3.0f, RADIUS * 1.1f);
-
         scheduleWave(level, c);
 
         AABB box = AABB.ofSize(c, 10.0, 8.0, 10.0);

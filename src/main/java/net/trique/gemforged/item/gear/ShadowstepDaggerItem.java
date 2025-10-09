@@ -23,13 +23,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import net.trique.gemforged.item.GemforgedItems;
 
 public class ShadowstepDaggerItem extends SwordItem {
     private static final String TAG_COMBO = "onyx_combo";
     private static final String TAG_LASTHIT = "onyx_last_hit";
     private static final int MAX_COMBO = 6;
     private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 20 * 30 * 1;
+    private static final int COOLDOWN_TICKS = 20 * 30 * 2;
     private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
@@ -38,7 +39,7 @@ public class ShadowstepDaggerItem extends SwordItem {
     private static final Vector3f SHADOW_PURPLE = new Vector3f(0.176f, 0.129f, 0.251f);
 
     public ShadowstepDaggerItem(Item.Properties props) {
-        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 1, -2.0f)));
+        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
     }
 
     @Override
@@ -63,6 +64,16 @@ public class ShadowstepDaggerItem extends SwordItem {
             return true;
         }
 
+        // Combo başlatmadan önce Nyxite kontrolü
+        if (combo == 0) {
+            ItemStack nyxite = findChargeResource(player);
+            boolean creative = player.getAbilities().instabuild;
+            if (!creative && nyxite.isEmpty()) {
+                // Nyxite yok -> normal kılıç gibi davran
+                return true;
+            }
+        }
+
         if (player instanceof ServerPlayer sp && target.isAlive()) {
             tryTeleportAround((ServerLevel) level, sp, target);
             sp.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());
@@ -78,13 +89,30 @@ public class ShadowstepDaggerItem extends SwordItem {
         }
 
         if (combo >= MAX_COMBO) {
-            player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+            boolean creative = player.getAbilities().instabuild;
+            ItemStack nyxite = findChargeResource(player);
+
+            if (creative || !nyxite.isEmpty()) {
+                if (!creative) {
+                    nyxite.shrink(1); // 1 Nyxite tüket
+                }
+                player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
+            }
+
             tag.putInt(TAG_COMBO, 0);
             stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
             removeComboModifiers(player);
         }
 
         return true;
+    }
+
+    private ItemStack findChargeResource(Player player) {
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack s = player.getInventory().getItem(i);
+            if (s.is(GemforgedItems.NYXITE.get())) return s;
+        }
+        return ItemStack.EMPTY;
     }
 
     private void addComboModifiers(Player player) {
@@ -146,11 +174,11 @@ public class ShadowstepDaggerItem extends SwordItem {
         level.playSound(null, x, y, z, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.8f, 0.9f + level.random.nextFloat() * 0.1f);
     }
 
-    private BlockPos findStandable(ServerLevel lvl, BlockPos origin, int vRange) {
-        BlockPos.MutableBlockPos m = origin.mutable();
+    private BlockPos findStandable(ServerLevel lvl, BlockPos pos, int vRange) {
+        BlockPos.MutableBlockPos m = pos.mutable();
         for (int dy = 0; dy <= vRange; dy++) {
-            if (isStandable(lvl, m.set(origin.getX(), origin.getY() + dy, origin.getZ()))) return m.immutable();
-            if (isStandable(lvl, m.set(origin.getX(), origin.getY() - dy, origin.getZ()))) return m.immutable();
+            if (isStandable(lvl, m.set(pos.getX(), pos.getY() + dy, pos.getZ()))) return m.immutable();
+            if (isStandable(lvl, m.set(pos.getX(), pos.getY() - dy, pos.getZ()))) return m.immutable();
         }
         return null;
     }

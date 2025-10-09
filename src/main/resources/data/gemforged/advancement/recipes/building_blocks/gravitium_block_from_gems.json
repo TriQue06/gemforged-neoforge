@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gravitium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemforged:gravitium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemforged:gravitium_block_from_gems"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gravitium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemforged:gravitium_block_from_gems"
+    ]
+  }
+}
