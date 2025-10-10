@@ -13,11 +13,11 @@ public class GemforgedEffects {
     public static final DeferredRegister<MobEffect> EFFECTS =
             DeferredRegister.create(Registries.MOB_EFFECT, MODID);
 
-    public static final ResourceKey<MobEffect> GARNET_RAGE_KEY =
+    public static final ResourceKey<MobEffect> RAGE_KEY =
             ResourceKey.create(Registries.MOB_EFFECT,
-                    ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage"));
-    public static final DeferredHolder<MobEffect, MobEffect> GARNET_RAGE =
-            EFFECTS.register(GARNET_RAGE_KEY.location().getPath(), GarnetRageEffect::new);
+                    ResourceLocation.fromNamespaceAndPath(MODID, "rage"));
+    public static final DeferredHolder<MobEffect, MobEffect> RAGE =
+            EFFECTS.register(RAGE_KEY.location().getPath(), RageEffect::new);
 
     public static final ResourceKey<MobEffect> SHIMMER_RAGE_KEY =
             ResourceKey.create(Registries.MOB_EFFECT,

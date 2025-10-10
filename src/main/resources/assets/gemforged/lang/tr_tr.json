@@ -1,27 +1,65 @@
 {
-  "item.gemforged.onyx": "Oniks",
-  "item.gemforged.shadowstep_dagger": "Gölgeli Adım Hançeri",
-  "item.gemforged.garnet": "Garnet",
-  "item.gemforged.battle_charm": "Kevser Nine'nin Savaş Tılsımı",
-  "item.gemforged.citrine": "Sitrin",
+  "item.gemforged.shadowstep_dagger": "Gölge Adım Hançeri",
+  "item.gemforged.battle_charm": "Kevser Nine'nin Savaş Çığlığı",
   "item.gemforged.sandburst_staff": "Kum Patlaması Asası",
-  "item.gemforged.malachite": "Malakit",
-  "item.gemforged.venomfang_blade": "Zehirdiş Kılıcı",
-  "item.gemforged.carnelian": "Karnelyan",
-  "item.gemforged.phoenix_relic": "Anka Kalıntısı",
-  "item.gemforged.zircon": "Zirkon",
+  "item.gemforged.venomfang_blade": "Zehirdiş Kılıc",
+  "item.gemforged.phoenix_charm": "Anka Tılsımı",
   "item.gemforged.thunder_prism": "Gök Gürültüsü Prizması",
+  "item.gemforged.gravity_horn": "Yerçekimi Boynuzu",
+
+  "item.gemforged.nyxite": "Niksit",
+  "item.gemforged.bloodstone": "Kan Taşı",
+  "item.gemforged.solarium": "Solaryum",
+  "item.gemforged.venomyte": "Venomit",
+  "item.gemforged.phoenixtone": "Ankataşı",
+  "item.gemforged.prismyte": "Prizmit",
+  "item.gemforged.gravitium": "Gravityum",
 
   "item.gemforged.shimmer_powder": "Işıltı Tozu",
+
+  "item.gemforged.dagger_template": "Hançer Kalıbı",
+  "item.gemforged.charm_template": "Tılsım Kalıbı",
+  "item.gemforged.staff_template": "Asa Kalıbı",
+  "item.gemforged.prism_template": "Prizma Kalıbı",
+  "item.gemforged.blade_template": "Kılıç Kalıbı",
+  "item.gemforged.horn_template": "Boynuz Kalıbı",
 
   "item.minecraft.potion.effect.shimmer": "Işıltı İksiri",
   "item.minecraft.splash_potion.effect.shimmer": "Patlayıcı Işıltı İksiri",
   "item.minecraft.lingering_potion.effect.shimmer": "Kalıcı Işıltı İksiri",
   "item.minecraft.tipped_arrow.effect.shimmer": "Işıltı Oku",
 
-  "effect.gemforged.garnet_rage": "Garnet Öfkesi",
+  "effect.gemforged.rage": "Öfke",
   "effect.gemforged.shimmer_rage": "Işıltı Öfkesi",
-  "effect.gemforged.phoenix": "Yeniden Doğuş",
+  "effect.gemforged.phoenix": "Anka",
+
+  "block.gemforged.nyxite_ore": "Niksit Cevheri",
+  "block.gemforged.deepslate_nyxite_ore": "Kayrak Taşında Niksit Cevheri",
+  "block.gemforged.nyxite_block": "Niksit Bloğu",
+
+  "block.gemforged.bloodstone_ore": "Kan Taşı Cevheri",
+  "block.gemforged.deepslate_bloodstone_ore": "Kayrak Taşında Kan Taşı Cevheri",
+  "block.gemforged.bloodstone_block": "Kan Taşı Bloğu",
+
+  "block.gemforged.solarium_ore": "Solaryum Cevheri",
+  "block.gemforged.deepslate_solarium_ore": "Kayrak Taşında Solaryum Cevheri",
+  "block.gemforged.solarium_block": "Solaryum Bloğu",
+
+  "block.gemforged.venomyte_ore": "Venomit Cevheri",
+  "block.gemforged.deepslate_venomyte_ore": "Kayrak Taşında Venomit Cevheri",
+  "block.gemforged.venomyte_block": "Venomit Bloğu",
+
+  "block.gemforged.phoenixtone_ore": "Ankataşı Cevheri",
+  "block.gemforged.deepslate_phoenixtone_ore": "Kayrak Taşında Ankataşı Cevheri",
+  "block.gemforged.phoenixtone_block": "Ankataşı Bloğu",
+
+  "block.gemforged.prismyte_ore": "Prizmit Cevheri",
+  "block.gemforged.deepslate_prismyte_ore": "Kayrak Taşında Prizmit Cevheri",
+  "block.gemforged.prismyte_block": "Prizmit Bloğu",
+
+  "block.gemforged.gravitium_ore": "Gravityum Cevheri",
+  "block.gemforged.deepslate_gravitium_ore": "Kayrak Taşında Gravityum Cevheri",
+  "block.gemforged.gravitium_block": "Gravityum Bloğu",
 
   "gemforged.tab1": "Gemforged"
 }

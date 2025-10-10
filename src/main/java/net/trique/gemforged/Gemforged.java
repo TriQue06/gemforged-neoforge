@@ -2,7 +2,7 @@ package net.trique.gemforged;
 
 import com.mojang.logging.LogUtils;
 import net.trique.gemforged.block.GemforgedBlocks;
-import net.trique.gemforged.client.GarnetRageOverlay;
+import net.trique.gemforged.client.RageOverlay;
 import net.trique.gemforged.client.ShimmerRageOverlay;
 import net.trique.gemforged.effect.GemforgedEffects;
 import net.trique.gemforged.entity.GemforgedEntities;
@@ -40,7 +40,7 @@ public class Gemforged {
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(GemforgedEvents::onBrewingRecipeRegister);
         if (FMLEnvironment.dist.isClient()) {
-            NeoForge.EVENT_BUS.register(new GarnetRageOverlay());
+            NeoForge.EVENT_BUS.register(new RageOverlay());
             NeoForge.EVENT_BUS.register(new ShimmerRageOverlay());
             modEventBus.addListener(GemforgedClient::registerEntityRenderers);
 

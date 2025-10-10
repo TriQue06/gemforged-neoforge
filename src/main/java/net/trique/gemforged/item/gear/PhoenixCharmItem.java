@@ -1,7 +1,6 @@
 package net.trique.gemforged.item.gear;
 
 import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -29,9 +28,9 @@ public class PhoenixCharmItem extends Item {
     private static final int COOLDOWN_TICKS = 20 * 60 * 4;
 
     private static final DustParticleOptions ORANGE =
-            new DustParticleOptions(new Vector3f(1.0f, 0.5f, 0.0f), 2.0f);
+            new DustParticleOptions(new Vector3f(0.7725f, 0.2353f, 0.0627f), 2.0f);
     private static final DustParticleOptions YELLOW =
-            new DustParticleOptions(new Vector3f(1.0f, 0.9f, 0.2f), 2.0f);
+            new DustParticleOptions(new Vector3f(0.9725f, 0.7294f, 0.3843f), 2.0f);
 
     public PhoenixCharmItem(Item.Properties props) {
         super(props.durability(250));
@@ -82,7 +81,7 @@ public class PhoenixCharmItem extends Item {
                 applyPhoenixEffect((ServerLevel) level, player);
 
                 if (!creative) {
-                    chargeResource.shrink(1); // Phoenixtone tüket
+                    chargeResource.shrink(1);
                     player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
                     stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
                 }
@@ -126,10 +125,6 @@ public class PhoenixCharmItem extends Item {
 
                     DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
                     level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-
-                    if (i % 10 == 0) {
-                        level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0, 0, 0, 0.01);
-                    }
                 }
             }
 

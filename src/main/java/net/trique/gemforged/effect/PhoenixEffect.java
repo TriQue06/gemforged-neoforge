@@ -24,7 +24,7 @@ public class PhoenixEffect extends MobEffect {
     private static final String MODID = "gemforged";
 
     private static final ResourceLocation MOVE_ID  =
-            ResourceLocation.fromNamespaceAndPath(MODID, "garnet_rage_move");
+            ResourceLocation.fromNamespaceAndPath(MODID, "rage_move");
 
     private static final double BASE_MOVE_MULT   = 0.25D;
 
@@ -38,9 +38,9 @@ public class PhoenixEffect extends MobEffect {
     private static final DustParticleOptions RED =
             new DustParticleOptions(new Vector3f(1.00f, 0.05f, 0.02f), 2.0f);
     private static final DustParticleOptions ORANGE =
-            new DustParticleOptions(new Vector3f(1.00f, 0.40f, 0.05f), 2.0f);
-    private static final DustParticleOptions GOLD =
-            new DustParticleOptions(new Vector3f(1.00f, 0.78f, 0.08f), 2.0f);
+            new DustParticleOptions(new Vector3f(0.7725f, 0.2353f, 0.0627f), 2.0f);
+    private static final DustParticleOptions YELLOW =
+            new DustParticleOptions(new Vector3f(0.9725f, 0.7294f, 0.3843f), 2.0f);
 
     public void onEffectStarted(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
@@ -94,19 +94,15 @@ public class PhoenixEffect extends MobEffect {
             for (int i = 0; i < perSegParticles; i++) {
                 double a = (Math.PI * 2 * i) / perSegParticles + entity.tickCount * 0.28;
                 Vec3 offset = side.scale(r * Mth.cos((float) a))
-                        .add(upTilt.scale(r * Mth.sin((float) a) * 1.8)); // ~2 blok yüksekliğe kadar
+                        .add(upTilt.scale(r * Mth.sin((float) a) * 1.8));
 
                 double px = cx + offset.x;
                 double py = cy + offset.y;
                 double pz = cz + offset.z;
 
                 int sel = (s + i) % 3;
-                DustParticleOptions dust = (sel == 0) ? RED : (sel == 1) ? ORANGE : GOLD;
+                DustParticleOptions dust = (sel == 0) ? RED : (sel == 1) ? ORANGE : YELLOW;
                 level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-
-                if (i % 4 == 0) {
-                    level.sendParticles(ParticleTypes.FLAME, px, py, pz, 1, 0.0, 0.0, 0.0, 0.01);
-                }
             }
         }
 
@@ -154,17 +150,8 @@ public class PhoenixEffect extends MobEffect {
                     double py = yBase + Math.sin(i * 0.15 + r) * 0.2;
 
                     int selector = (i + r) % 3;
-                    DustParticleOptions dust = (selector == 0) ? RED : (selector == 1) ? ORANGE : GOLD;
+                    DustParticleOptions dust = (selector == 0) ? RED : (selector == 1) ? ORANGE : YELLOW;
                     level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-
-                    if (i % 15 == 0) {
-                        level.sendParticles(ParticleTypes.FLAME, px, py, pz,
-                                2, 0.05, 0.05, 0.05, 0.01);
-                    }
-                    if ((i + r) % 40 == 0) {
-                        level.sendParticles(ParticleTypes.LAVA, px, py + 0.05, pz,
-                                1, 0.02, 0.02, 0.02, 0.0);
-                    }
                 }
             }
 
@@ -176,17 +163,8 @@ public class PhoenixEffect extends MobEffect {
 
                 for (int h = 0; h < 20; h++) {
                     double py = pos.y + 0.2 + h * 0.15;
-                    DustParticleOptions dust = (h > 13) ? GOLD : (h > 6) ? ORANGE : RED;
+                    DustParticleOptions dust = (h > 13) ? YELLOW : (h > 6) ? ORANGE : RED;
                     level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-
-                    if (h % 5 == 0) {
-                        level.sendParticles(ParticleTypes.FLAME, px, py, pz,
-                                1, 0.05, 0.05, 0.05, 0.01);
-                    }
-                    if (h % 9 == 0) {
-                        level.sendParticles(ParticleTypes.LAVA, px, py + 0.02, pz,
-                                1, 0.01, 0.01, 0.01, 0.0);
-                    }
                 }
             }
 

@@ -2,6 +2,7 @@ package net.trique.gemforged.item.gear;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
@@ -31,10 +32,10 @@ public class VenomfangBladeItem extends SwordItem {
     private static final int WITHER_DURATION = 10 * 20;
     private static final double KNOCKBACK_STRENGTH = 1.5;
     private static final double KNOCKBACK_VERTICAL = 0.25;
-    private static final Vector3f MALACHITE = new Vector3f(0.25f, 0.90f, 0.60f);
-    private static final float MALACHITE_SCALE = 1.8f;
-    private static final Vector3f DARK_GREEN = new Vector3f(0.10f, 0.35f, 0.10f);
-    private static final Vector3f PURPLE_LAVENDER = new Vector3f(0.55f, 0.25f, 0.65f);
+    private static final Vector3f GREEN = new Vector3f(0.1961f, 0.7451f, 0.5529f);
+    private static final float GREEN_SCALE = 1.8f;
+    private static final Vector3f DARK_GREEN = new Vector3f(0.0706f, 0.2549f, 0.1608f);
+    private static final Vector3f WITHER = new Vector3f(0.1608f, 0.1608f, 0.1608f);
     private static final float DARK_SCALE = 2.1f;
 
     public VenomfangBladeItem(Item.Properties props) {
@@ -52,7 +53,6 @@ public class VenomfangBladeItem extends SwordItem {
             int count = tag.getInt("venomfang_hits") + 1;
             int superCount = tag.getInt("venomfang_super") + 1;
 
-            // 3. vuruş (Poison dalgası)
             if (count >= HIT_THRESHOLD) {
                 if (consumeVenomyte(player)) {
                     triggerVenomWaves((ServerLevel) player.level(), player, target);
@@ -79,7 +79,7 @@ public class VenomfangBladeItem extends SwordItem {
     }
 
     private boolean consumeVenomyte(Player player) {
-        if (player.getAbilities().instabuild) return true; // creative mod
+        if (player.getAbilities().instabuild) return true;
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
             ItemStack s = player.getInventory().getItem(i);
             if (s.is(GemforgedItems.VENOMYTE.get())) {
@@ -93,7 +93,7 @@ public class VenomfangBladeItem extends SwordItem {
     private void triggerVenomWaves(ServerLevel level, Player attacker, LivingEntity source) {
         Vec3 center = source.position().add(0, 0.05, 0);
 
-        level.playSound(null, center.x, center.y, center.z, SoundEvents.WITCH_DRINK,        SoundSource.PLAYERS, 0.9f, 0.95f);
+        level.playSound(null, center.x, center.y, center.z, SoundEvents.WITCH_DRINK, SoundSource.PLAYERS, 0.9f, 0.95f);
         level.playSound(null, center.x, center.y, center.z, SoundEvents.BREWING_STAND_BREW, SoundSource.PLAYERS, 0.9f, 1.25f);
 
         final int start = level.getServer().getTickCount();
@@ -102,16 +102,16 @@ public class VenomfangBladeItem extends SwordItem {
             final int waveStart = start + w * WAVE_GAP_TICKS;
 
             level.getServer().tell(new TickTask(waveStart, () -> {
-                level.playSound(null, center.x, center.y, center.z, SoundEvents.SLIME_SQUISH,  SoundSource.PLAYERS, 0.75f, 0.8f);
+                level.playSound(null, center.x, center.y, center.z, SoundEvents.SLIME_SQUISH, SoundSource.PLAYERS, 0.75f, 0.8f);
                 level.playSound(null, center.x, center.y, center.z, SoundEvents.SPIDER_AMBIENT, SoundSource.PLAYERS, 0.6f, 0.55f);
             }));
 
             for (int f = 0; f <= WAVE_FRAMES; f++) {
-                final int when   = waveStart + f * WAVE_FRAME_STEP;
-                final float t    = f / (float) WAVE_FRAMES;
-                final float rad  = t * WAVE_MAX_RADIUS;
+                final int when = waveStart + f * WAVE_FRAME_STEP;
+                final float t = f / (float) WAVE_FRAMES;
+                final float rad = t * WAVE_MAX_RADIUS;
                 final float fade = 1.0f - t;
-                final Vec3  cNow = center;
+                final Vec3 cNow = center;
 
                 level.getServer().tell(new TickTask(when, () ->
                         spawnRingWithSpikes(level, cNow, rad, 2.0, fade)));
@@ -140,15 +140,16 @@ public class VenomfangBladeItem extends SwordItem {
 
         final int start = level.getServer().getTickCount();
         for (int f = 0; f <= WAVE_FRAMES; f++) {
-            final int when   = start + f * WAVE_FRAME_STEP;
-            final float t    = f / (float) WAVE_FRAMES;
-            final float rad  = t * WAVE_MAX_RADIUS;
+            final int when = start + f * WAVE_FRAME_STEP;
+            final float t = f / (float) WAVE_FRAMES;
+            final float rad = t * WAVE_MAX_RADIUS;
             final float fade = 1.0f - t;
-            final Vec3  cNow = center;
+            final Vec3 cNow = center;
 
             level.getServer().tell(new TickTask(when, () -> {
-                spawnRingWithSpikesColored(level, cNow, rad, 2.0, fade, DARK_GREEN,      DARK_SCALE);
-                spawnRingWithSpikesColored(level, cNow, rad, 2.0, fade, PURPLE_LAVENDER, DARK_SCALE);
+                spawnRingWithSpikesColored(level, cNow, rad, 2.0, fade, DARK_GREEN, DARK_SCALE);
+                spawnRingWithSpikesColored(level, cNow, rad, 2.0, fade, WITHER, DARK_SCALE);
+                level.sendParticles(ParticleTypes.SMOKE, cNow.x, cNow.y, cNow.z, 8, rad * 0.2, 0.2, rad * 0.2, 0.01);
             }));
         }
 
@@ -163,7 +164,7 @@ public class VenomfangBladeItem extends SwordItem {
     }
 
     private void spawnRingWithSpikes(ServerLevel level, Vec3 center, float radius, double height, float fade) {
-        spawnRingWithSpikesColored(level, center, radius, height, fade, MALACHITE, MALACHITE_SCALE);
+        spawnRingWithSpikesColored(level, center, radius, height, fade, GREEN, GREEN_SCALE);
     }
 
     private void spawnRingWithSpikesColored(ServerLevel level, Vec3 center, float radius, double height, float fade,
@@ -172,7 +173,7 @@ public class VenomfangBladeItem extends SwordItem {
 
         final double cx = center.x, cy = center.y, cz = center.z;
 
-        float r01     = Math.min(1f, radius / WAVE_MAX_RADIUS);
+        float r01 = Math.min(1f, radius / WAVE_MAX_RADIUS);
         float density = 0.25f + (float) Math.pow(r01, 1.6);
 
         int points = Math.max(12, (int) (radius * 18 * density));
@@ -181,7 +182,7 @@ public class VenomfangBladeItem extends SwordItem {
         DustParticleOptions dust = new DustParticleOptions(color, scale * (0.8f + 0.5f * fade));
 
         for (int i = 0; i < points; i++) {
-            double a  = (Math.PI * 2 * i) / points;
+            double a = (Math.PI * 2 * i) / points;
             double px = cx + radius * Math.cos(a);
             double pz = cz + radius * Math.sin(a);
             double py = cy + height * 0.5;
@@ -190,7 +191,7 @@ public class VenomfangBladeItem extends SwordItem {
 
         if (radius >= WAVE_MAX_RADIUS * 0.35f) {
             for (int k = 0; k < 8; k++) {
-                double a  = (Math.PI / 4.0) * k;
+                double a = (Math.PI / 4.0) * k;
                 double px = cx + radius * Math.cos(a);
                 double pz = cz + radius * Math.sin(a);
                 for (int h = 0; h <= layers; h++) {

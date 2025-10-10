@@ -25,10 +25,10 @@ public class SandburstStaffItem extends Item {
     private static final int COOLDOWN_TICKS = 20 * 20;
     private static final float MAGIC_DAMAGE = 5.5f;
     private static final int USE_DURATION_TICKS = 20;
-    private static final Vector3f CITRINE_MIX  = new Vector3f(0.95f, 0.90f, 0.60f);
-    private static final Vector3f CITRINE_DEEP = new Vector3f(1.00f, 0.75f, 0.25f);
-    private static final float CITRINE_SCALE_SOFT = 1.6f;
-    private static final float CITRINE_SCALE_DEEP = 2.0f;
+    private static final Vector3f YELLOW = new Vector3f(0.9176f, 0.7765f, 0.1569f);
+    private static final Vector3f SAND   = new Vector3f(0.7922f, 0.5843f, 0.1020f);
+    private static final float YELLOW_SCALE = 1.6f;
+    private static final float SAND_SCALE   = 2.0f;
     private static final int WAVE_COUNT = 3;
     private static final int WAVE_FRAMES = 16;
     private static final int WAVE_FRAME_STEP = 2;
@@ -81,7 +81,7 @@ public class SandburstStaffItem extends Item {
                 triggerBurst((ServerLevel) level, player);
 
                 if (!creative) {
-                    chargeResource.shrink(1); // 1 Solarium tüket
+                    chargeResource.shrink(1);
                     player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
                     stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
                 }
@@ -119,8 +119,8 @@ public class SandburstStaffItem extends Item {
                 final Vec3  cNow = center;
 
                 server.getServer().tell(new TickTask(when, () -> {
-                    spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, CITRINE_MIX,  CITRINE_SCALE_SOFT);
-                    spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, CITRINE_DEEP, CITRINE_SCALE_DEEP);
+                    spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, YELLOW, YELLOW_SCALE);
+                    spawnRingWithSpikesColored(server, cNow, rad, RINGS_HEIGHT, fade, SAND,   SAND_SCALE);
                 }));
             }
         }

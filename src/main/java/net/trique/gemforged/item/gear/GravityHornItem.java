@@ -23,14 +23,14 @@ import net.trique.gemforged.item.GemforgedItems;
 import java.util.List;
 
 public class GravityHornItem extends Item {
-    private static final float RADIUS = 16f; // hem partikül hem etki alanı
+    private static final float RADIUS = 16f;
     private static final int COOLDOWN_TICKS = 20 * 30;
     private static final int USE_DURATION_TICKS = 20;
 
     private static final DustParticleOptions PURPLE =
-            new DustParticleOptions(new Vector3f(0.7f, 0.2f, 0.9f), 3.0f); // daha kalın
+            new DustParticleOptions(new Vector3f(0.3843f, 0.0784f, 0.4078f), 3.0f);
     private static final DustParticleOptions LILAC =
-            new DustParticleOptions(new Vector3f(0.9f, 0.5f, 1.0f), 3.0f);
+            new DustParticleOptions(new Vector3f(0.8196f, 0.1647f, 0.8588f), 3.0f);
 
     public GravityHornItem(Item.Properties props) {
         super(props.durability(250));
@@ -91,15 +91,12 @@ public class GravityHornItem extends Item {
         level.playSound(null, c.x, c.y, c.z,
                 SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 2.5f, 0.9f);
 
-        // Daha yoğun ve kalın partikül halkaları
         spawnRing(level, c.add(0, 0.3, 0), RADIUS, 1200, PURPLE, 1.0f);
         spawnRing(level, c.add(0, 0.35, 0), RADIUS, 1200, LILAC, 1.0f);
 
-        // Yıldız daha büyük
         spawnStar(level, c.add(0, 0.5, 0), 12.0, 5, PURPLE);
         spawnStar(level, c.add(0, 0.5, 0), 12.0, 5, LILAC);
 
-        // Etki alanı da aynı radius ile eşleşiyor
         AABB box = new AABB(
                 c.x - RADIUS, c.y - RADIUS, c.z - RADIUS,
                 c.x + RADIUS, c.y + RADIUS, c.z + RADIUS
@@ -109,7 +106,7 @@ public class GravityHornItem extends Item {
                 e -> e.isAlive() && e != player);
 
         for (LivingEntity e : targets) {
-            e.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20 * 5, 4, true, true));
+            e.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20 * 5, 2, true, true));
         }
     }
 
@@ -142,7 +139,7 @@ public class GravityHornItem extends Item {
     }
 
     private void spawnLine(ServerLevel level, double cy, double x1, double z1, double x2, double z2, DustParticleOptions dust) {
-        int steps = 100; // daha sık partikül
+        int steps = 100;
         for (int i = 0; i <= steps; i++) {
             double t = i / (double) steps;
             double px = x1 + (x2 - x1) * t;

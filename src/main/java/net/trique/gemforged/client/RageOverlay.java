@@ -14,7 +14,7 @@ import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.trique.gemforged.effect.GemforgedEffects;
 
-public class GarnetRageOverlay {
+public class RageOverlay {
     private static final float BASE_ALPHA   = 0.32f;
     private static final float PULSE_ALPHA  = 0.16f;
     private static final int   PERIOD_TICKS = 30;
@@ -30,10 +30,10 @@ public class GarnetRageOverlay {
 
         if (!mc.options.getCameraType().isFirstPerson()) return;
 
-        Holder<MobEffect> garnet = player.level().registryAccess()
+        Holder<MobEffect> rage = player.level().registryAccess()
                 .lookupOrThrow(Registries.MOB_EFFECT)
-                .getOrThrow(GemforgedEffects.GARNET_RAGE_KEY);
-        MobEffectInstance eff = player.getEffect(garnet);
+                .getOrThrow(GemforgedEffects.RAGE_KEY);
+        MobEffectInstance eff = player.getEffect(rage);
         if (eff == null) return;
 
         long gt = player.level().getGameTime();

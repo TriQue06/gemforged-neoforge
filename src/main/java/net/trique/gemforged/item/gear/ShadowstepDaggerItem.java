@@ -36,7 +36,8 @@ public class ShadowstepDaggerItem extends SwordItem {
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
     private static final ResourceLocation MOD_SPEED_ID = ResourceLocation.parse("gemforged:onyx_combo_speed");
 
-    private static final Vector3f SHADOW_PURPLE = new Vector3f(0.176f, 0.129f, 0.251f);
+    private static final Vector3f SHADOW_PURPLE = new Vector3f(0.2627f, 0.1569f, 0.3843f);
+    private static final Vector3f SHADOW_LIGHT  = new Vector3f(0.4745f, 0.3294f, 0.6118f);
 
     public ShadowstepDaggerItem(Item.Properties props) {
         super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
@@ -64,12 +65,10 @@ public class ShadowstepDaggerItem extends SwordItem {
             return true;
         }
 
-        // Combo başlatmadan önce Nyxite kontrolü
         if (combo == 0) {
             ItemStack nyxite = findChargeResource(player);
             boolean creative = player.getAbilities().instabuild;
             if (!creative && nyxite.isEmpty()) {
-                // Nyxite yok -> normal kılıç gibi davran
                 return true;
             }
         }
@@ -94,7 +93,7 @@ public class ShadowstepDaggerItem extends SwordItem {
 
             if (creative || !nyxite.isEmpty()) {
                 if (!creative) {
-                    nyxite.shrink(1); // 1 Nyxite tüket
+                    nyxite.shrink(1);
                 }
                 player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
             }
@@ -164,7 +163,9 @@ public class ShadowstepDaggerItem extends SwordItem {
 
     private void spawnShadowSmoke(ServerLevel level, double x, double y, double z) {
         level.sendParticles(new DustParticleOptions(SHADOW_PURPLE, 1.5f),
-                x, y, z, 30, 0.6, 0.25, 0.6, 0.02);
+                x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
+        level.sendParticles(new DustParticleOptions(SHADOW_LIGHT, 1.5f),
+                x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
         level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
         level.sendParticles(ParticleTypes.ASH, x, y, z, 10, 0.5, 0.2, 0.5, 0.01);
     }
