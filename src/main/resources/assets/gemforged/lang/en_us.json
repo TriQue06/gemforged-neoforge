@@ -15,19 +15,12 @@
   "item.gemforged.prismyte": "Prismyte",
   "item.gemforged.gravitium": "Gravitium",
 
-  "item.gemforged.shimmer_powder": "Shimmer Powder",
-
   "item.gemforged.dagger_template": "Dagger Template",
   "item.gemforged.charm_template": "Charm Template",
   "item.gemforged.staff_template": "Staff Template",
   "item.gemforged.prism_template": "Prism Template",
   "item.gemforged.blade_template": "Blade Template",
   "item.gemforged.horn_template": "Horn Template",
-
-  "item.minecraft.potion.effect.shimmer": "Shimmer",
-  "item.minecraft.splash_potion.effect.shimmer": "Splash Shimmer",
-  "item.minecraft.lingering_potion.effect.shimmer": "Lingering Shimmer",
-  "item.minecraft.tipped_arrow.effect.shimmer": "Arrow of Shimmer",
 
   "effect.gemforged.rage": "Rage",
   "effect.gemforged.shimmer_rage": "Shimmer Rage",

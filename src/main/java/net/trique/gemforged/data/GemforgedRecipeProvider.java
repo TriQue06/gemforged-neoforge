@@ -25,15 +25,6 @@ public class GemforgedRecipeProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildRecipes(RecipeOutput out) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, GemforgedItems.SHIMMER_POWDER.get(), 1)
-                .requires(Items.PITCHER_PLANT)
-                .requires(Items.AMETHYST_SHARD)
-                .requires(Items.BLAZE_POWDER)
-                .unlockedBy("has_pitcher_plant", has(Items.PITCHER_PLANT))
-                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
-                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
-                .save(out);
-
         makeStorageRecipes(out, GemforgedItems.NYXITE.get(), GemforgedBlocks.NYXITE_BLOCK.get(), "nyxite");
         makeStorageRecipes(out, GemforgedItems.BLOODSTONE.get(), GemforgedBlocks.BLOODSTONE_BLOCK.get(), "bloodstone");
         makeStorageRecipes(out, GemforgedItems.SOLARIUM.get(), GemforgedBlocks.SOLARIUM_BLOCK.get(), "solarium");

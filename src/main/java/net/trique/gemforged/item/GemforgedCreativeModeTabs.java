@@ -4,13 +4,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.trique.gemforged.Gemforged;
 import net.trique.gemforged.block.GemforgedBlocks;
-import net.trique.gemforged.potion.GemforgedPotions;
 
 import java.util.function.Supplier;
 
@@ -65,12 +62,6 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.PHOENIXTONE);
                         output.accept(GemforgedItems.PRISMYTE);
                         output.accept(GemforgedItems.GRAVITIUM);
-
-                        output.accept(GemforgedItems.SHIMMER_POWDER);
-                        output.accept(PotionContents.createItemStack(Items.POTION, GemforgedPotions.SHIMMER));
-                        output.accept(PotionContents.createItemStack(Items.SPLASH_POTION, GemforgedPotions.SHIMMER));
-                        output.accept(PotionContents.createItemStack(Items.LINGERING_POTION, GemforgedPotions.SHIMMER));
-                        output.accept(PotionContents.createItemStack(Items.TIPPED_ARROW, GemforgedPotions.SHIMMER));
 
                         output.accept(GemforgedItems.DAGGER_TEMPLATE);
                         output.accept(GemforgedItems.CHARM_TEMPLATE);

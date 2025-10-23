@@ -50,9 +50,6 @@ public class GemforgedItems {
     public static final DeferredItem<Item> GRAVITIUM = ITEMS.register("gravitium",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
-    public static final DeferredItem<Item> SHIMMER_POWDER = ITEMS.register("shimmer_powder",
-            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-
     public static final DeferredItem<Item> DAGGER_TEMPLATE = ITEMS.register("dagger_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final DeferredItem<Item> CHARM_TEMPLATE = ITEMS.register("charm_template",

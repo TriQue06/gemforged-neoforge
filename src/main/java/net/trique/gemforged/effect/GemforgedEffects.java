@@ -19,12 +19,6 @@ public class GemforgedEffects {
     public static final DeferredHolder<MobEffect, MobEffect> RAGE =
             EFFECTS.register(RAGE_KEY.location().getPath(), RageEffect::new);
 
-    public static final ResourceKey<MobEffect> SHIMMER_RAGE_KEY =
-            ResourceKey.create(Registries.MOB_EFFECT,
-                    ResourceLocation.fromNamespaceAndPath(MODID, "shimmer_rage"));
-    public static final DeferredHolder<MobEffect, MobEffect> SHIMMER_RAGE =
-            EFFECTS.register(SHIMMER_RAGE_KEY.location().getPath(), ShimmerRageEffect::new);
-
     public static final ResourceKey<MobEffect> PHOENIX_KEY =
             ResourceKey.create(Registries.MOB_EFFECT,
                     ResourceLocation.fromNamespaceAndPath(MODID, "phoenix"));

@@ -33,8 +33,6 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         generatedItem(GemforgedItems.PRISMYTE);
         generatedItem(GemforgedItems.GRAVITIUM);
 
-        generatedItem(GemforgedItems.SHIMMER_POWDER);
-
         handheldItem(GemforgedItems.DAGGER_TEMPLATE);
         handheldItem(GemforgedItems.CHARM_TEMPLATE);
         handheldItem(GemforgedItems.STAFF_TEMPLATE);
