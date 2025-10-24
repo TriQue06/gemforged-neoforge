@@ -29,43 +29,36 @@ public class GemforgedConfiguredFeatures {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-        // Nyxite
         List<OreConfiguration.TargetBlockState> nyxiteTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.NYXITE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_NYXITE_ORE.get().defaultBlockState()));
         register(context, NYXITE_ORE_KEY, Feature.ORE, new OreConfiguration(nyxiteTargets, 5));
 
-        // Bloodstone
         List<OreConfiguration.TargetBlockState> bloodstoneTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.BLOODSTONE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_BLOODSTONE_ORE.get().defaultBlockState()));
         register(context, BLOODSTONE_ORE_KEY, Feature.ORE, new OreConfiguration(bloodstoneTargets, 5));
 
-        // Solarium
         List<OreConfiguration.TargetBlockState> solariumTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.SOLARIUM_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_SOLARIUM_ORE.get().defaultBlockState()));
         register(context, SOLARIUM_ORE_KEY, Feature.ORE, new OreConfiguration(solariumTargets, 5));
 
-        // Venomyte
         List<OreConfiguration.TargetBlockState> venomyteTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.VENOMYTE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_VENOMYTE_ORE.get().defaultBlockState()));
         register(context, VENOMYTE_ORE_KEY, Feature.ORE, new OreConfiguration(venomyteTargets, 5));
 
-        // Phoenixtone
         List<OreConfiguration.TargetBlockState> phoenixtoneTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.PHOENIXTONE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_PHOENIXTONE_ORE.get().defaultBlockState()));
         register(context, PHOENIXTONE_ORE_KEY, Feature.ORE, new OreConfiguration(phoenixtoneTargets, 5));
 
-        // Prismyte
         List<OreConfiguration.TargetBlockState> prismyteTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.PRISMYTE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_PRISMYTE_ORE.get().defaultBlockState()));
         register(context, PRISMYTE_ORE_KEY, Feature.ORE, new OreConfiguration(prismyteTargets, 5));
 
-        // Gravitium
         List<OreConfiguration.TargetBlockState> gravitiumTargets = List.of(
                 OreConfiguration.target(stoneReplaceables, GemforgedBlocks.GRAVITIUM_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, GemforgedBlocks.DEEPSLATE_GRAVITIUM_ORE.get().defaultBlockState()));
