@@ -13,16 +13,16 @@ import net.trique.gemforged.item.GemforgedItems;
 public final class GemforgedLootTableModifiers {
     private GemforgedLootTableModifiers() {}
 
-    private static final ResourceLocation ANCIENT_CITY_CHEST   = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/ancient_city");
-    private static final ResourceLocation BASTION_BRIDGE       = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_bridge");
-    private static final ResourceLocation BASTION_HOGLIN       = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_hoglin_stable");
-    private static final ResourceLocation BASTION_OTHER        = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_other");
-    private static final ResourceLocation BASTION_TREASURE     = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_treasure");
-    private static final ResourceLocation DESERT_PYRAMID       = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/desert_pyramid");
-    private static final ResourceLocation JUNGLE_TEMPLE        = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/jungle_temple");
-    private static final ResourceLocation END_CITY_TREASURE    = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/end_city_treasure");
+    private static final ResourceLocation ANCIENT_CITY_CHEST = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/ancient_city");
+    private static final ResourceLocation BASTION_BRIDGE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_bridge");
+    private static final ResourceLocation BASTION_HOGLIN = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_hoglin_stable");
+    private static final ResourceLocation BASTION_OTHER = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_other");
+    private static final ResourceLocation BASTION_TREASURE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_treasure");
+    private static final ResourceLocation DESERT_PYRAMID = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/desert_pyramid");
+    private static final ResourceLocation JUNGLE_TEMPLE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/jungle_temple");
+    private static final ResourceLocation END_CITY_TREASURE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/end_city_treasure");
     private static final ResourceLocation OCEAN_RUIN_COLD_ARCH = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
-    //private static final ResourceLocation OCEAN_RUIN_COLD_ARCH = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
+    private static final ResourceLocation PILLAGER_OUTPOST = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/pillager_outpost");
 
     public static void register() {
         NeoForge.EVENT_BUS.addListener(GemforgedLootTableModifiers::onLootTableLoad);
@@ -66,6 +66,10 @@ public final class GemforgedLootTableModifiers {
         } else if (id.equals(END_CITY_TREASURE)) {
             event.getTable().addPool(
                     makePoolWithChance(LootItem.lootTableItem(GemforgedItems.HORN_TEMPLATE.get()), 0.25f)
+            );
+        } else if (id.equals(PILLAGER_OUTPOST)) {
+            event.getTable().addPool(
+                    makePoolWithChance(LootItem.lootTableItem(GemforgedItems.TOTEM_TEMPLATE.get()), 0.25f)
             );
         }
     }
