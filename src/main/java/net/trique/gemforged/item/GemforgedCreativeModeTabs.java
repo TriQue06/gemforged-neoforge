@@ -27,8 +27,8 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedBlocks.VERDANTITE_BLOCK);
                         output.accept(GemforgedBlocks.VENOMYTE_BLOCK);
                         output.accept(GemforgedBlocks.PRISMYTE_BLOCK);
-                        output.accept(GemforgedBlocks.GRAVITIUM_BLOCK);
                         output.accept(GemforgedBlocks.NYXITE_BLOCK);
+                        output.accept(GemforgedBlocks.GRAVITIUM_BLOCK);
 
                         output.accept(GemforgedItems.BATTLE_CHARM);
                         output.accept(GemforgedItems.PHOENIX_CHARM);
@@ -36,8 +36,8 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.VERDANT_TOTEM);
                         output.accept(GemforgedItems.VENOMFANG_BLADE);
                         output.accept(GemforgedItems.THUNDER_PRISM);
-                        output.accept(GemforgedItems.GRAVITY_HORN);
                         output.accept(GemforgedItems.SHADOWSTEP_DAGGER);
+                        output.accept(GemforgedItems.GRAVITY_HORN);
 
                         output.accept(GemforgedItems.BLOODSTONE);
                         output.accept(GemforgedItems.PHOENIXTONE);
@@ -45,16 +45,16 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.VERDANTITE);
                         output.accept(GemforgedItems.VENOMYTE);
                         output.accept(GemforgedItems.PRISMYTE);
-                        output.accept(GemforgedItems.GRAVITIUM);
                         output.accept(GemforgedItems.NYXITE);
+                        output.accept(GemforgedItems.GRAVITIUM);
 
                         output.accept(GemforgedItems.CHARM_TEMPLATE);
                         output.accept(GemforgedItems.STAFF_TEMPLATE);
                         output.accept(GemforgedItems.TOTEM_TEMPLATE);
                         output.accept(GemforgedItems.BLADE_TEMPLATE);
                         output.accept(GemforgedItems.PRISM_TEMPLATE);
-                        output.accept(GemforgedItems.HORN_TEMPLATE);
                         output.accept(GemforgedItems.DAGGER_TEMPLATE);
+                        output.accept(GemforgedItems.HORN_TEMPLATE);
                     }).build());
 
     public static void register(IEventBus eventBus) {
