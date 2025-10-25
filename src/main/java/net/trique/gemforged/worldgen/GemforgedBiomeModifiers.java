@@ -13,52 +13,15 @@ import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class GemforgedBiomeModifiers {
-    public static final ResourceKey<BiomeModifier> ADD_NYXITE_ORE = registerKey("add_nyxite_ore");
-    public static final ResourceKey<BiomeModifier> ADD_BLOODSTONE_ORE = registerKey("add_bloodstone_ore");
-    public static final ResourceKey<BiomeModifier> ADD_SOLARIUM_ORE = registerKey("add_solarium_ore");
-    public static final ResourceKey<BiomeModifier> ADD_VENOMYTE_ORE = registerKey("add_venomyte_ore");
-    public static final ResourceKey<BiomeModifier> ADD_PHOENIXTONE_ORE = registerKey("add_phoenixtone_ore");
-    public static final ResourceKey<BiomeModifier> ADD_PRISMYTE_ORE = registerKey("add_prismyte_ore");
-    public static final ResourceKey<BiomeModifier> ADD_GRAVITIUM_ORE = registerKey("add_gravitium_ore");
+    public static final ResourceKey<BiomeModifier> ADD_RANDOM_GEM_VEIN = registerKey("add_random_gem_vein");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-        // === Overworld ores ===
-        context.register(ADD_NYXITE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_RANDOM_GEM_VEIN, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.NYXITE_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_BLOODSTONE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.BLOODSTONE_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_SOLARIUM_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.SOLARIUM_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_VENOMYTE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.VENOMYTE_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_PHOENIXTONE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.PHOENIXTONE_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_PRISMYTE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.PRISMYTE_ORE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        context.register(ADD_GRAVITIUM_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.GRAVITIUM_ORE_PLACED_KEY)),
+                HolderSet.direct(placedFeatures.getOrThrow(GemforgedPlacedFeatures.RANDOM_GEM_VEIN_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
     }
 

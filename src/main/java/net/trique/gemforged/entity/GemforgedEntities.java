@@ -20,6 +20,14 @@ public class GemforgedEntities {
                             .updateInterval(1)
                             .build("thunder_prism"));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<VerdantTotemEntity>> VERDANT_TOTEM =
+            ENTITIES.register("verdant_totem",
+                    () -> EntityType.Builder.<VerdantTotemEntity>of(VerdantTotemEntity::new, MobCategory.MISC)
+                            .sized(0.6F, 0.6F)
+                            .clientTrackingRange(8)
+                            .updateInterval(2)
+                            .build("verdant_totem"));
+
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
     }

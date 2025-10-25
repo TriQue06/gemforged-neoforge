@@ -22,6 +22,7 @@ public final class GemforgedLootTableModifiers {
     private static final ResourceLocation JUNGLE_TEMPLE        = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/jungle_temple");
     private static final ResourceLocation END_CITY_TREASURE    = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/end_city_treasure");
     private static final ResourceLocation OCEAN_RUIN_COLD_ARCH = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
+    //private static final ResourceLocation OCEAN_RUIN_COLD_ARCH = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
 
     public static void register() {
         NeoForge.EVENT_BUS.addListener(GemforgedLootTableModifiers::onLootTableLoad);

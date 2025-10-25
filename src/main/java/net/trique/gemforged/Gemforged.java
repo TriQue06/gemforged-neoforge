@@ -12,7 +12,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.trique.gemforged.util.GemforgedLootTableModifiers;
 import org.slf4j.Logger;
@@ -31,11 +30,10 @@ public class Gemforged {
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
         GemforgedLootTableModifiers.register();
-        NeoForge.EVENT_BUS.register(this);
-        if (FMLEnvironment.dist.isClient()) {
-            NeoForge.EVENT_BUS.register(new RageOverlay());
-            modEventBus.addListener(GemforgedClient::registerEntityRenderers);
 
+        if (FMLEnvironment.dist.isClient()) {
+            modEventBus.addListener(GemforgedClient::registerEntityRenderers);
+            net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(new RageOverlay());
         }
     }
 

@@ -25,7 +25,7 @@ import java.util.List;
 public class PhoenixCharmItem extends Item {
     private static final int USE_DURATION_TICKS = 20;
     private static final int EFFECT_DURATION = 20 * 30;
-    private static final int COOLDOWN_TICKS = 20 * 60 * 4;
+    private static final int COOLDOWN_TICKS = 20 * 30 * 5;
 
     private static final DustParticleOptions ORANGE =
             new DustParticleOptions(new Vector3f(0.7725f, 0.2353f, 0.0627f), 2.0f);

@@ -40,7 +40,7 @@ public class ShadowstepDaggerItem extends SwordItem {
     private static final Vector3f SHADOW_LIGHT  = new Vector3f(0.4745f, 0.3294f, 0.6118f);
 
     public ShadowstepDaggerItem(Item.Properties props) {
-        super(Tiers.IRON, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
+        super(Tiers.DIAMOND, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
     }
 
     @Override

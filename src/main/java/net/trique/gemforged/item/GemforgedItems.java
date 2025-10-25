@@ -35,6 +35,9 @@ public class GemforgedItems {
     public static final DeferredItem<Item> GRAVITY_HORN = ITEMS.register("gravity_horn",
             () -> new GravityHornItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
+    public static final DeferredItem<Item> VERDANT_TOTEM = ITEMS.register("verdant_totem",
+            () -> new VerdantTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
     public static final DeferredItem<Item> NYXITE = ITEMS.register("nyxite",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> BLOODSTONE = ITEMS.register("bloodstone",
@@ -49,6 +52,8 @@ public class GemforgedItems {
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> GRAVITIUM = ITEMS.register("gravitium",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> VERDANTITE = ITEMS.register("verdantite",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final DeferredItem<Item> DAGGER_TEMPLATE = ITEMS.register("dagger_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
@@ -61,6 +66,8 @@ public class GemforgedItems {
     public static final DeferredItem<Item> BLADE_TEMPLATE = ITEMS.register("blade_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final DeferredItem<Item> HORN_TEMPLATE = ITEMS.register("horn_template",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
+    public static final DeferredItem<Item> TOTEM_TEMPLATE = ITEMS.register("totem_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {

@@ -22,7 +22,7 @@ import org.joml.Vector3f;
 public class VenomfangBladeItem extends SwordItem {
     private static final int HIT_THRESHOLD = 3;
     private static final int SUPER_THRESHOLD = 10;
-    private static final float MAGIC_DAMAGE = 3.0f;
+    private static final float MAGIC_DAMAGE = 4.0f;
     private static final float WAVE_MAX_RADIUS = 7.0f;
     private static final int WAVE_FRAMES = 16;
     private static final int WAVE_FRAME_STEP = 2;

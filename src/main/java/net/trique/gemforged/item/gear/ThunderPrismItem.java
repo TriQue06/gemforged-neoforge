@@ -41,7 +41,7 @@ public class ThunderPrismItem extends Item {
                 prism.setItem(prismStack);
                 level.addFreshEntity(prism);
 
-                player.getCooldowns().addCooldown(this, 20 * 30 * 2);
+                player.getCooldowns().addCooldown(this, 20 * 45);
 
                 if (!creative) {
                     chargeResource.shrink(1);

@@ -15,33 +15,16 @@ public class GemforgedBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(GemforgedBlocks.NYXITE_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_NYXITE_ORE);
         blockWithItem(GemforgedBlocks.NYXITE_BLOCK);
-
-        blockWithItem(GemforgedBlocks.BLOODSTONE_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_BLOODSTONE_ORE);
         blockWithItem(GemforgedBlocks.BLOODSTONE_BLOCK);
-
-        blockWithItem(GemforgedBlocks.SOLARIUM_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_SOLARIUM_ORE);
         blockWithItem(GemforgedBlocks.SOLARIUM_BLOCK);
-
-        blockWithItem(GemforgedBlocks.VENOMYTE_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_VENOMYTE_ORE);
         blockWithItem(GemforgedBlocks.VENOMYTE_BLOCK);
-
-        blockWithItem(GemforgedBlocks.PHOENIXTONE_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_PHOENIXTONE_ORE);
         blockWithItem(GemforgedBlocks.PHOENIXTONE_BLOCK);
-
-        blockWithItem(GemforgedBlocks.PRISMYTE_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_PRISMYTE_ORE);
         blockWithItem(GemforgedBlocks.PRISMYTE_BLOCK);
-
-        blockWithItem(GemforgedBlocks.GRAVITIUM_ORE);
-        blockWithItem(GemforgedBlocks.DEEPSLATE_GRAVITIUM_ORE);
         blockWithItem(GemforgedBlocks.GRAVITIUM_BLOCK);
+        blockWithItem(GemforgedBlocks.VERDANTITE_BLOCK);
+        blockWithItem(GemforgedBlocks.RANDOM_GEM_VEIN);
+        blockWithItem(GemforgedBlocks.DEEPSLATE_RANDOM_GEM_VEIN);
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

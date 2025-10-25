@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gemforged:block/random_gem_vein"
+    }
+  }
+}

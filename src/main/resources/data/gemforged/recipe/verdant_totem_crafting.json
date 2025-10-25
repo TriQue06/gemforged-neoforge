@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:totem_template"
+    },
+    {
+      "item": "gemforged:verdantite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:verdant_totem"
+  }
+}

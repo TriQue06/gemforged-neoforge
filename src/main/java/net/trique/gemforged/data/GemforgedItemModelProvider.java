@@ -24,6 +24,7 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.PHOENIX_CHARM);
         handheldItem(GemforgedItems.THUNDER_PRISM);
         handheldItem(GemforgedItems.GRAVITY_HORN);
+        handheldItem(GemforgedItems.VERDANT_TOTEM);
 
         generatedItem(GemforgedItems.NYXITE);
         generatedItem(GemforgedItems.BLOODSTONE);
@@ -32,6 +33,7 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         generatedItem(GemforgedItems.PHOENIXTONE);
         generatedItem(GemforgedItems.PRISMYTE);
         generatedItem(GemforgedItems.GRAVITIUM);
+        generatedItem(GemforgedItems.VERDANTITE);
 
         handheldItem(GemforgedItems.DAGGER_TEMPLATE);
         handheldItem(GemforgedItems.CHARM_TEMPLATE);
@@ -39,6 +41,7 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.PRISM_TEMPLATE);
         handheldItem(GemforgedItems.BLADE_TEMPLATE);
         handheldItem(GemforgedItems.HORN_TEMPLATE);
+        handheldItem(GemforgedItems.TOTEM_TEMPLATE);
     }
 
     private ItemModelBuilder generatedItem(DeferredItem<?> item) {

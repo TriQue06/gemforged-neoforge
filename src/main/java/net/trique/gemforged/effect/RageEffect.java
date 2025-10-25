@@ -17,13 +17,13 @@ public class RageEffect extends MobEffect {
             ResourceLocation.fromNamespaceAndPath(MODID, "rage_attack_damage");
 
     private static final double BASE_MOVE_MULT   = 0.50D;
-    private static final double BASE_ATKDAM_MULT = 0.50D;
+    private static final double BASE_ATKDAM_MULT = 0.75D;
     private static final double BASE_ATKSPD_MULT = 1.00D;
 
     public RageEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xB80E2A);
-        addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,   BASE_MOVE_MULT,   AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(Attributes.ATTACK_SPEED,   ATKSPD_ID, BASE_ATKSPD_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(Attributes.ATTACK_DAMAGE,  ATKDAM_ID, BASE_ATKDAM_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID, BASE_MOVE_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.ATTACK_SPEED, ATKSPD_ID, BASE_ATKSPD_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.ATTACK_DAMAGE, ATKDAM_ID, BASE_ATKDAM_MULT, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }
