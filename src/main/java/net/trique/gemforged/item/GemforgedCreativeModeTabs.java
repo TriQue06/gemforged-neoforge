@@ -17,7 +17,7 @@ public class GemforgedCreativeModeTabs {
 
     public static final Supplier<CreativeModeTab> GEMFORGED_ITEMS_TAB = CREATIVE_MODE_TAB.register("gemforgeditemstab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(GemforgedItems.PHOENIX_CHARM.get()))
-                    .title(Component.translatable("gemforged.tab1"))
+                    .title(Component.translatable("gemforged.tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(GemforgedBlocks.RANDOM_GEM_VEIN);
                         output.accept(GemforgedBlocks.DEEPSLATE_RANDOM_GEM_VEIN);

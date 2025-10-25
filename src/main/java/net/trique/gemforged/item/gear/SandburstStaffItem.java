@@ -22,8 +22,8 @@ public class SandburstStaffItem extends Item {
     private static final float MAX_RADIUS = 10.0f;
     private static final float BASE_KNOCKBACK = 16.0f;
     private static final double VERTICAL_BOOST = 1.0;
-    private static final int COOLDOWN_TICKS = 20 * 15;
-    private static final float MAGIC_DAMAGE = 5.5f;
+    private static final int COOLDOWN_TICKS = 20 * 30;
+    private static final float MAGIC_DAMAGE = 5.0f;
     private static final int USE_DURATION_TICKS = 20;
     private static final Vector3f YELLOW = new Vector3f(0.9176f, 0.7765f, 0.1569f);
     private static final Vector3f SAND   = new Vector3f(0.7922f, 0.5843f, 0.1020f);

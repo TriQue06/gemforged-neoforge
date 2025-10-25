@@ -30,7 +30,7 @@ public class ShadowstepDaggerItem extends SwordItem {
     private static final String TAG_LASTHIT = "onyx_last_hit";
     private static final int MAX_COMBO = 6;
     private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 20 * 30 * 2;
+    private static final int COOLDOWN_TICKS = 20 * 30;
     private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
     private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");

@@ -16,25 +16,18 @@ public class GemforgedItems {
 
     public static final DeferredItem<Item> SHADOWSTEP_DAGGER = ITEMS.register("shadowstep_dagger",
             () -> new ShadowstepDaggerItem(new Item.Properties().rarity(Rarity.EPIC).durability(240)));
-
     public static final DeferredItem<Item> BATTLE_CHARM = ITEMS.register("battle_charm",
             () -> new BattleCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
     public static final DeferredItem<Item> SANDBURST_STAFF = ITEMS.register("sandburst_staff",
             () -> new SandburstStaffItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
     public static final DeferredItem<Item> VENOMFANG_BLADE = ITEMS.register("venomfang_blade",
             () -> new VenomfangBladeItem(new Item.Properties().rarity(Rarity.EPIC).durability(240)));
-
     public static final DeferredItem<Item> PHOENIX_CHARM = ITEMS.register("phoenix_charm",
             () -> new PhoenixCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
     public static final DeferredItem<Item> THUNDER_PRISM = ITEMS.register("thunder_prism",
             () -> new ThunderPrismItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
-
     public static final DeferredItem<Item> GRAVITY_HORN = ITEMS.register("gravity_horn",
             () -> new GravityHornItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-
     public static final DeferredItem<Item> VERDANT_TOTEM = ITEMS.register("verdant_totem",
             () -> new VerdantTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
