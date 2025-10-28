@@ -10,6 +10,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.trique.gemforged.entity.GemforgedEntities;
+import net.trique.gemforged.entity.GhostArrowRenderer;
 
 @Mod(value = Gemforged.MODID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = Gemforged.MODID, value = Dist.CLIENT)
@@ -24,5 +25,6 @@ public class GemforgedClient {
                 ctx -> new ThrownItemRenderer<>(ctx, 1.0F, false));
         event.registerEntityRenderer(GemforgedEntities.VERDANT_TOTEM.get(),
                 ctx -> new ThrownItemRenderer<>(ctx, 1.0F, false));
+        event.registerEntityRenderer(GemforgedEntities.GHOST_ARROW.get(), GhostArrowRenderer::new);
     }
 }

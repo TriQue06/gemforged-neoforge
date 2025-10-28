@@ -28,6 +28,14 @@ public class GemforgedEntities {
                             .updateInterval(2)
                             .build("verdant_totem"));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<GhostArrow>> GHOST_ARROW =
+            ENTITIES.register("ghost_arrow",
+                    () -> EntityType.Builder.<GhostArrow>of(GhostArrow::new, MobCategory.MISC)
+                            .sized(0.5F, 0.5F)
+                            .clientTrackingRange(64)
+                            .updateInterval(1)
+                            .build("ghost_arrow"));
+
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
     }
