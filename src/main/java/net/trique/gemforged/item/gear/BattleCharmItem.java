@@ -31,9 +31,9 @@ public class BattleCharmItem extends Item {
     private static final float PARTICLE_DENSITY_SCALE = 1.0f;
     private static final float DUST_SIZE_SCALE = 2.0f;
     private static final float RADIUS = 8f;
-    private static final int COOLDOWN_TICKS = 20 * 30 * 3;
+    private static final int COOLDOWN_TICKS = 20 * 60;
     private static final int USE_DURATION_TICKS = 20;
-    private static final int DURATION_RAGE = 20 * 30;
+    private static final int DURATION_RAGE = 20 * 20;
     private static final int AMP_RAGE = 0;
     private static final int FRAME_STEP = 1;
     private static final int FRAMES = 8;
@@ -43,11 +43,11 @@ public class BattleCharmItem extends Item {
     private static final float COLUMN_HEIGHT = 3.5f;
 
     private static final DustParticleOptions MAIN =
-            new DustParticleOptions(new Vector3f(0.8431f, 0.1961f, 0.3686f), 2.0f * DUST_SIZE_SCALE);
+            new DustParticleOptions(new Vector3f(0.8471f, 0.2039f, 0.3373f), 2.0f * DUST_SIZE_SCALE);
     private static final DustParticleOptions GLOW =
-            new DustParticleOptions(new Vector3f(0.9725f, 0.4471f, 0.6823f), 2.4f * DUST_SIZE_SCALE);
+            new DustParticleOptions(new Vector3f(0.9725f, 0.4549f, 0.6510f), 2.4f * DUST_SIZE_SCALE);
     private static final DustParticleOptions DARK =
-            new DustParticleOptions(new Vector3f(0.4667f, 0.1020f, 0.1608f), 1.6f * DUST_SIZE_SCALE);
+            new DustParticleOptions(new Vector3f(0.6863f, 0.1451f, 0.2118f), 1.6f * DUST_SIZE_SCALE);
 
     public BattleCharmItem(Item.Properties props) {
         super(props.durability(250));

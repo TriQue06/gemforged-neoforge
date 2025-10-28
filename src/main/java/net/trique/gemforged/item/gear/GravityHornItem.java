@@ -26,6 +26,8 @@ public class GravityHornItem extends Item {
     private static final float RADIUS = 16f;
     private static final int COOLDOWN_TICKS = 20 * 30;
     private static final int USE_DURATION_TICKS = 20;
+    private static final int LEVITATION_DURATION = 20 * 2;
+    private static final int LEVITATION_AMPLIFIER = 4;
 
     private static final DustParticleOptions PURPLE =
             new DustParticleOptions(new Vector3f(0.3843f, 0.0784f, 0.4078f), 3.0f);
@@ -106,7 +108,7 @@ public class GravityHornItem extends Item {
                 e -> e.isAlive() && e != player);
 
         for (LivingEntity e : targets) {
-            e.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20 * 5, 2, true, true));
+            e.addEffect(new MobEffectInstance(MobEffects.LEVITATION, LEVITATION_DURATION, LEVITATION_AMPLIFIER, true, true));
         }
     }
 

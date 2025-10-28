@@ -24,7 +24,7 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.PHOENIX_CHARM);
         handheldItem(GemforgedItems.THUNDER_PRISM);
         handheldItem(GemforgedItems.GRAVITY_HORN);
-        handheldItem(GemforgedItems.VERDANT_TOTEM);
+        generatedItem(GemforgedItems.VERDANT_TOTEM);
 
         generatedItem(GemforgedItems.NYXITE);
         generatedItem(GemforgedItems.BLOODSTONE);

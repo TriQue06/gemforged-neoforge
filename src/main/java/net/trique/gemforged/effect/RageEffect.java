@@ -16,8 +16,8 @@ public class RageEffect extends MobEffect {
     private static final ResourceLocation ATKDAM_ID =
             ResourceLocation.fromNamespaceAndPath(MODID, "rage_attack_damage");
 
-    private static final double BASE_MOVE_MULT   = 0.50D;
-    private static final double BASE_ATKDAM_MULT = 0.75D;
+    private static final double BASE_MOVE_MULT   = 1.00D;
+    private static final double BASE_ATKDAM_MULT = 1.00D;
     private static final double BASE_ATKSPD_MULT = 1.00D;
 
     public RageEffect() {

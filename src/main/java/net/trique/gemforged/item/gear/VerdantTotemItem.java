@@ -38,7 +38,7 @@ public class VerdantTotemItem extends Item {
                         player.getX(), player.getY() + 1.0, player.getZ(), player);
                 level.addFreshEntity(totem);
 
-                player.getCooldowns().addCooldown(this, 20 * 45);
+                player.getCooldowns().addCooldown(this, 20 * 40);
 
                 if (!creative) {
                     chargeResource.shrink(1);
