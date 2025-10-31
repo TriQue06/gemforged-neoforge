@@ -23,15 +23,9 @@ import java.util.UUID;
 public class PhoenixEffect extends MobEffect {
     private static final String MODID = "gemforged";
 
-    private static final ResourceLocation MOVE_ID  =
-            ResourceLocation.fromNamespaceAndPath(MODID, "rage_move");
-
-    private static final double BASE_MOVE_MULT   = 0.25D;
-
     public PhoenixEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xFF7A00);
-        addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVE_ID,   BASE_MOVE_MULT,   AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-    }
+        }
 
     private static final Map<UUID, SavedState> STATES = new HashMap<>();
 

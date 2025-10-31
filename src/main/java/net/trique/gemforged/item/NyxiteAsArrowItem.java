@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import net.trique.gemforged.entity.GemforgedEntities;
 import net.trique.gemforged.entity.GhostArrow;
 
-public class NyxiteArrowItem extends ArrowItem {
-    public NyxiteArrowItem(Properties properties) {
+public class NyxiteAsArrowItem extends ArrowItem {
+    public NyxiteAsArrowItem(Properties properties) {
         super(properties);
     }
 

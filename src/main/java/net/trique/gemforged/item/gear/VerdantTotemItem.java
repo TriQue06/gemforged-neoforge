@@ -23,6 +23,7 @@ public class VerdantTotemItem extends Item {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!level.isClientSide) {
+
             if (player.getCooldowns().isOnCooldown(this))
                 return InteractionResultHolder.fail(stack);
 
@@ -30,19 +31,25 @@ public class VerdantTotemItem extends Item {
             ItemStack chargeResource = findChargeResource(player);
 
             if (creative || !chargeResource.isEmpty()) {
-                level.playSound(null, player.blockPosition(),
-                        SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS,
-                        0.9F, 0.6F + level.random.nextFloat() * 0.2F);
 
-                VerdantTotemEntity totem = new VerdantTotemEntity(level,
-                        player.getX(), player.getY() + 1.0, player.getZ(), player);
+                level.playSound(
+                        null, player.blockPosition(),
+                        SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS,
+                        0.9F, 0.6F + level.random.nextFloat() * 0.2F
+                );
+
+                VerdantTotemEntity totem = new VerdantTotemEntity(
+                        level,
+                        player.getX(), player.getY() + 1.0, player.getZ(),
+                        player
+                );
                 level.addFreshEntity(totem);
 
                 player.getCooldowns().addCooldown(this, 20 * 40);
 
                 if (!creative) {
-                    chargeResource.shrink(1);
-                    stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                    chargeResource.shrink(1); // ✅ sadece charge tüket
+                    stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND); // ✅ item dayanıklılığı azalır
                 }
             }
         }

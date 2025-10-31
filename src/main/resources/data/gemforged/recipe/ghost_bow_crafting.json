@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:bow_template"
+    },
+    {
+      "item": "gemforged:nyxite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:ghost_bow"
+  }
+}

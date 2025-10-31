@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bow_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemforged:totem_template"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemforged:ghost_bow_crafting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bow_template"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemforged:ghost_bow_crafting"
+    ]
+  }
+}

@@ -32,10 +32,13 @@ public class GemforgedCreativeModeTabs {
 
                         output.accept(GemforgedItems.BATTLE_CHARM);
                         output.accept(GemforgedItems.PHOENIX_CHARM);
+                        output.accept(GemforgedItems.PHOENIXFIRE_STAFF);
                         output.accept(GemforgedItems.SANDBURST_STAFF);
                         output.accept(GemforgedItems.VERDANT_TOTEM);
                         output.accept(GemforgedItems.VENOMFANG_BLADE);
+                        output.accept(GemforgedItems.GLACIAL_CHARM);
                         output.accept(GemforgedItems.THUNDER_PRISM);
+                        output.accept(GemforgedItems.GHOST_BOW);
                         output.accept(GemforgedItems.SHADOWSTEP_DAGGER);
                         output.accept(GemforgedItems.GRAVITY_HORN);
 
@@ -53,6 +56,7 @@ public class GemforgedCreativeModeTabs {
                         output.accept(GemforgedItems.TOTEM_TEMPLATE);
                         output.accept(GemforgedItems.BLADE_TEMPLATE);
                         output.accept(GemforgedItems.PRISM_TEMPLATE);
+                        output.accept(GemforgedItems.BOW_TEMPLATE);
                         output.accept(GemforgedItems.DAGGER_TEMPLATE);
                         output.accept(GemforgedItems.HORN_TEMPLATE);
                     }).build());

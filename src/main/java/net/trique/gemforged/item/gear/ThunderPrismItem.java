@@ -33,12 +33,11 @@ public class ThunderPrismItem extends Item {
                         SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.9F,
                         0.6F + level.random.nextFloat() * 0.2F);
 
-                ItemStack prismStack = stack.copy();
-                prismStack.setCount(1);
-
-                ThunderPrismEntity prism = new ThunderPrismEntity(level,
-                        player.getX(), player.getY() + 1.0, player.getZ(), player);
-                prism.setItem(prismStack);
+                ThunderPrismEntity prism = new ThunderPrismEntity(
+                        level,
+                        player.getX(), player.getY() + 1.0, player.getZ(),
+                        player
+                );
                 level.addFreshEntity(prism);
 
                 player.getCooldowns().addCooldown(this, 20 * 40);

@@ -7,6 +7,9 @@
   "item.gemforged.thunder_prism": "Yıldırım Prizması",
   "item.gemforged.gravity_horn": "Yerçekimi Boynuzu",
   "item.gemforged.verdant_totem": "Yeşeren Totem",
+  "item.gemforged.ghost_bow": "Hayalet Yay",
+  "item.gemforged.phoenixfire_staff": "Anka Ateşi Asası",
+  "item.gemforged.glacial_charm": "Buzul Tılsım",
 
   "item.gemforged.nyxite": "Niksit",
   "item.gemforged.bloodstone": "Kan Taşı",
@@ -27,6 +30,8 @@
 
   "effect.gemforged.rage": "Öfke",
   "effect.gemforged.phoenix": "Anka",
+  "effect.gemforged.glacial_fist": "Buzul Yumruk",
+  "effect.gemforged.glacial_freeze": "Buzul",
 
   "block.gemforged.random_gem_vein": "Rastgele Mücevher Damarı",
   "block.gemforged.deepslate_random_gem_vein": "Kayrak Taşında Rastgele Mücevher Damarı",

@@ -24,4 +24,10 @@ public class GemforgedEffects {
                     ResourceLocation.fromNamespaceAndPath(MODID, "phoenix"));
     public static final DeferredHolder<MobEffect, MobEffect> PHOENIX =
             EFFECTS.register(PHOENIX_KEY.location().getPath(), PhoenixEffect::new);
+
+    public static final ResourceKey<MobEffect> GLACIAL_FIST_KEY =
+            ResourceKey.create(Registries.MOB_EFFECT,
+                    ResourceLocation.fromNamespaceAndPath(MODID, "glacial_fist"));
+    public static final DeferredHolder<MobEffect, MobEffect> GLACIAL_FIST =
+            EFFECTS.register(GLACIAL_FIST_KEY.location().getPath(), GlacialFistEffect::new);
 }

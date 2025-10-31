@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:charm_template"
+    },
+    {
+      "item": "gemforged:prismyte"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:glacial_charm"
+  }
+}

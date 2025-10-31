@@ -1,8 +1,5 @@
 package net.trique.gemforged.item;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
@@ -30,9 +27,15 @@ public class GemforgedItems {
             () -> new GravityHornItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> VERDANT_TOTEM = ITEMS.register("verdant_totem",
             () -> new VerdantTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> GHOST_BOW = ITEMS.register("ghost_bow",
+            () -> new GhostBowItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(240)));
+    public static final DeferredItem<Item> PHOENIXFIRE_STAFF = ITEMS.register("phoenixfire_staff",
+            () -> new PhoenixfireStaffItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(240)));
+    public static final DeferredItem<Item> GLACIAL_CHARM = ITEMS.register("glacial_charm",
+            () -> new GlacialCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(240)));
 
     public static final DeferredItem<Item> NYXITE = ITEMS.register("nyxite",
-            () -> new NyxiteArrowItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+            () -> new NyxiteAsArrowItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> BLOODSTONE = ITEMS.register("bloodstone",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> SOLARIUM = ITEMS.register("solarium",
@@ -61,6 +64,8 @@ public class GemforgedItems {
     public static final DeferredItem<Item> HORN_TEMPLATE = ITEMS.register("horn_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final DeferredItem<Item> TOTEM_TEMPLATE = ITEMS.register("totem_template",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
+    public static final DeferredItem<Item> BOW_TEMPLATE = ITEMS.register("bow_template",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {

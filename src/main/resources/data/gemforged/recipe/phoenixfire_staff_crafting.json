@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gemforged:staff_template"
+    },
+    {
+      "item": "gemforged:phoenixtone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemforged:phoenixfire_staff"
+  }
+}

@@ -81,6 +81,24 @@ public class GemforgedRecipeProvider extends RecipeProvider implements IConditio
                 .requires(GemforgedItems.VERDANTITE.get())
                 .unlockedBy("has_totem_template", has(GemforgedItems.TOTEM_TEMPLATE.get()))
                 .save(out, ResourceLocation.fromNamespaceAndPath("gemforged", "verdant_totem_crafting"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GemforgedItems.GHOST_BOW.get())
+                .requires(GemforgedItems.BOW_TEMPLATE.get())
+                .requires(GemforgedItems.NYXITE.get())
+                .unlockedBy("has_bow_template", has(GemforgedItems.TOTEM_TEMPLATE.get()))
+                .save(out, ResourceLocation.fromNamespaceAndPath("gemforged", "ghost_bow_crafting"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GemforgedItems.PHOENIXFIRE_STAFF.get())
+                .requires(GemforgedItems.STAFF_TEMPLATE.get())
+                .requires(GemforgedItems.PHOENIXTONE.get())
+                .unlockedBy("has_staff_template", has(GemforgedItems.STAFF_TEMPLATE.get()))
+                .save(out, ResourceLocation.fromNamespaceAndPath("gemforged", "phoenixfire_staff_crafting"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GemforgedItems.GLACIAL_CHARM.get())
+                .requires(GemforgedItems.CHARM_TEMPLATE.get())
+                .requires(GemforgedItems.PRISMYTE.get())
+                .unlockedBy("has_charm_template", has(GemforgedItems.STAFF_TEMPLATE.get()))
+                .save(out, ResourceLocation.fromNamespaceAndPath("gemforged", "glacial_charm_crafting"));
     }
 
     private void makeStorageRecipes(RecipeOutput out, Item gem, net.minecraft.world.level.block.Block block, String name) {

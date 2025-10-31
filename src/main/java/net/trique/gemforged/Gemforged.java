@@ -13,6 +13,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.trique.gemforged.particle.GemforgedParticles;
 import net.trique.gemforged.util.GemforgedLootTableModifiers;
 import org.slf4j.Logger;
 
@@ -23,13 +24,13 @@ public class Gemforged {
 
     public Gemforged(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::addCreative);
         GemforgedBlocks.register(modEventBus);
         GemforgedEntities.register(modEventBus);
         GemforgedItems.register(modEventBus);
         GemforgedCreativeModeTabs.register(modEventBus);
         GemforgedEffects.EFFECTS.register(modEventBus);
         GemforgedLootTableModifiers.register();
+        GemforgedParticles.register(modEventBus);
 
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(GemforgedClient::registerEntityRenderers);
@@ -39,8 +40,5 @@ public class Gemforged {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("Things are working fine, probably.");
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
     }
 }

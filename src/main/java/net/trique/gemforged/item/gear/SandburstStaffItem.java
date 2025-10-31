@@ -23,12 +23,12 @@ public class SandburstStaffItem extends Item {
     private static final float BASE_KNOCKBACK = 12.0f;
     private static final double VERTICAL_BOOST = 1.0;
     private static final int COOLDOWN_TICKS = 20 * 20;
-    private static final float MAGIC_DAMAGE = 6.0f;
+    private static final float MAGIC_DAMAGE = 5.0f;
     private static final int USE_DURATION_TICKS = 20;
     private static final Vector3f YELLOW = new Vector3f(0.9176f, 0.7765f, 0.1569f);
-    private static final Vector3f SAND   = new Vector3f(0.7922f, 0.5843f, 0.1020f);
+    private static final Vector3f SAND = new Vector3f(0.7922f, 0.5843f, 0.1020f);
     private static final float YELLOW_SCALE = 1.6f;
-    private static final float SAND_SCALE   = 2.0f;
+    private static final float SAND_SCALE = 2.0f;
     private static final int WAVE_COUNT = 3;
     private static final int WAVE_FRAMES = 16;
     private static final int WAVE_FRAME_STEP = 2;
@@ -45,7 +45,7 @@ public class SandburstStaffItem extends Item {
         player.startUsingItem(hand);
         if (!level.isClientSide) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.75f, 1.25f);
+                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.00f, 1.00f);
         }
         return InteractionResultHolder.consume(player.getItemInHand(hand));
     }

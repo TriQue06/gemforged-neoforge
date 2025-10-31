@@ -7,6 +7,9 @@
     "item.gemforged.thunder_prism": "Thunder Prism",
     "item.gemforged.gravity_horn": "Gravity Horn",
     "item.gemforged.verdant_totem": "Verdant Totem",
+    "item.gemforged.ghost_bow": "Ghost Bow",
+    "item.gemforged.phoenixfire_staff": "Phoenixfire Staff",
+    "item.gemforged.glacial_charm": "Glacial Charm",
 
     "item.gemforged.nyxite": "Nyxite",
     "item.gemforged.bloodstone": "Bloodstone",
@@ -24,9 +27,12 @@
     "item.gemforged.blade_template": "Blade Template",
     "item.gemforged.horn_template": "Horn Template",
     "item.gemforged.totem_template": "Totem Template",
+    "item.gemforged.bow_template": "Bow Template",
 
     "effect.gemforged.rage": "Rage",
     "effect.gemforged.phoenix": "Phoenix",
+    "effect.gemforged.glacial_fist": "Glacial Fist",
+    "effect.gemforged.glacial_freeze": "Glacial Freeze",
 
     "block.gemforged.random_gem_vein": "Random Gem Vein",
     "block.gemforged.deepslate_random_gem_vein": "Deepslate Random Gem Vein",
