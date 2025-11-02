@@ -1,6 +1,7 @@
 package net.trique.gemforged;
 
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.SonicBoomParticle;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -17,9 +18,8 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.trique.gemforged.entity.GemforgedEntities;
-import net.trique.gemforged.entity.GhostArrowRenderer;
+import net.trique.gemforged.entity.GhostArrowEntityRenderer;
 import net.trique.gemforged.item.GemforgedItems;
-import net.trique.gemforged.particle.BeamParticleTemplate;
 import net.trique.gemforged.particle.GemforgedParticles;
 
 @Mod(value = Gemforged.MODID, dist = Dist.CLIENT)
@@ -35,12 +35,12 @@ public class GemforgedClient {
                 ctx -> new ThrownItemRenderer<>(ctx, 1.0F, false));
         event.registerEntityRenderer(GemforgedEntities.VERDANT_TOTEM.get(),
                 ctx -> new ThrownItemRenderer<>(ctx, 1.0F, false));
-        event.registerEntityRenderer(GemforgedEntities.GHOST_ARROW.get(), GhostArrowRenderer::new);
+        event.registerEntityRenderer(GemforgedEntities.GHOST_ARROW.get(), GhostArrowEntityRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(GemforgedParticles.PHOENIX_BEAM.get(), BeamParticleTemplate.Provider::new);
+        event.registerSpriteSet(GemforgedParticles.PHOENIX_BEAM.get(), SonicBoomParticle.Provider::new);
     }
 
     @SubscribeEvent

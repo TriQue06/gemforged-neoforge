@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.trique.gemforged.entity.GemforgedEntities;
-import net.trique.gemforged.entity.GhostArrow;
+import net.trique.gemforged.entity.GhostArrowEntity;
 import net.trique.gemforged.item.GemforgedItems;
 
 public class GhostBowItem extends BowItem {
@@ -56,7 +56,7 @@ public class GhostBowItem extends BowItem {
         if (power < 0.1F) return;
 
         if (!level.isClientSide()) {
-            GhostArrow arrow = new GhostArrow(
+            GhostArrowEntity arrow = new GhostArrowEntity(
                     GemforgedEntities.GHOST_ARROW.get(),
                     player,
                     level,

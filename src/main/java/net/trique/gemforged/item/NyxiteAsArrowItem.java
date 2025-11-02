@@ -10,7 +10,7 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.trique.gemforged.entity.GemforgedEntities;
-import net.trique.gemforged.entity.GhostArrow;
+import net.trique.gemforged.entity.GhostArrowEntity;
 
 public class NyxiteAsArrowItem extends ArrowItem {
     public NyxiteAsArrowItem(Properties properties) {
@@ -19,12 +19,12 @@ public class NyxiteAsArrowItem extends ArrowItem {
 
     @Override
     public AbstractArrow createArrow(Level level, ItemStack ammo, LivingEntity shooter, @Nullable ItemStack weapon) {
-        return new GhostArrow(GemforgedEntities.GHOST_ARROW.get(), shooter, level, ammo.copyWithCount(1), weapon);
+        return new GhostArrowEntity(GemforgedEntities.GHOST_ARROW.get(), shooter, level, ammo.copyWithCount(1), weapon);
     }
 
     @Override
     public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
-        return new GhostArrow(GemforgedEntities.GHOST_ARROW.get(), pos.x(), pos.y(), pos.z(), level, stack.copyWithCount(1), null);
+        return new GhostArrowEntity(GemforgedEntities.GHOST_ARROW.get(), pos.x(), pos.y(), pos.z(), level, stack.copyWithCount(1), null);
     }
 
     @Override

@@ -14,26 +14,23 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.ClipContext.Block;
-import net.minecraft.world.level.ClipContext.Fluid;
 
-public class GhostArrow extends AbstractArrow {
+public class GhostArrowEntity extends AbstractArrow {
     private static final int MAX_LIFETIME_TICKS = 20 * 3;
     private static final float EXPLOSION_POWER = 1.0F;
     private int lifetime;
 
-    public GhostArrow(EntityType<? extends GhostArrow> type, Level level) {
+    public GhostArrowEntity(EntityType<? extends GhostArrowEntity> type, Level level) {
         super(type, level);
         this.pickup = Pickup.DISALLOWED;
     }
 
-    public GhostArrow(EntityType<? extends GhostArrow> type, LivingEntity owner, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+    public GhostArrowEntity(EntityType<? extends GhostArrowEntity> type, LivingEntity owner, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
         super(type, owner, level, pickupItemStack, firedFromWeapon);
         this.pickup = Pickup.DISALLOWED;
     }
 
-    public GhostArrow(EntityType<? extends GhostArrow> type, double x, double y, double z, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+    public GhostArrowEntity(EntityType<? extends GhostArrowEntity> type, double x, double y, double z, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
         super(type, x, y, z, level, pickupItemStack, firedFromWeapon);
         this.pickup = Pickup.DISALLOWED;
     }
