@@ -19,8 +19,8 @@ import net.minecraft.world.level.ClipContext.Block;
 import net.minecraft.world.level.ClipContext.Fluid;
 
 public class GhostArrow extends AbstractArrow {
-    private static final int MAX_LIFETIME_TICKS = 20 * 5;
-    private static final float EXPLOSION_POWER = 1.5F;
+    private static final int MAX_LIFETIME_TICKS = 20 * 3;
+    private static final float EXPLOSION_POWER = 1.0F;
     private int lifetime;
 
     public GhostArrow(EntityType<? extends GhostArrow> type, Level level) {
