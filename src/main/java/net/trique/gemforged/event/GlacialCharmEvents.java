@@ -30,8 +30,8 @@ public class GlacialCharmEvents {
 
         target.addEffect(new MobEffectInstance(
                 MobEffects.MOVEMENT_SLOWDOWN,
-                GlacialCharmItem.SLOWNESS_DURATION,
-                GlacialCharmItem.SLOWNESS_AMPLIFIER
+                60,
+                2
         ));
     }
 }

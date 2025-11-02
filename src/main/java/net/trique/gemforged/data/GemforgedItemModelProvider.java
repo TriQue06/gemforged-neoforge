@@ -43,7 +43,7 @@ public class GemforgedItemModelProvider extends ItemModelProvider {
         handheldItem(GemforgedItems.PRISM_TEMPLATE);
         handheldItem(GemforgedItems.BLADE_TEMPLATE);
         handheldItem(GemforgedItems.HORN_TEMPLATE);
-        handheldItem(GemforgedItems.TOTEM_TEMPLATE);
+        generatedItem(GemforgedItems.TOTEM_TEMPLATE);
         handheldItem(GemforgedItems.BOW_TEMPLATE);
     }
 

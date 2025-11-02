@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ItemSupplier;
@@ -27,6 +28,7 @@ public class VerdantTotemEntity extends Entity implements ItemSupplier {
 
     private int lifeTicks;
     private Player owner;
+    private ItemStack storedItem = ItemStack.EMPTY;
     private double originX, originZ, targetY, angle;
 
     public VerdantTotemEntity(EntityType<?> type, Level level) {
@@ -59,9 +61,11 @@ public class VerdantTotemEntity extends Entity implements ItemSupplier {
         }
 
         double dy = this.getY() < this.targetY ? 0.05 : 0.0;
-        this.angle += 0.35;
-        double desiredX = this.originX + Math.cos(this.angle) * 0.8;
-        double desiredZ = this.originZ + Math.sin(this.angle) * 0.8;
+        double speed = 0.35;
+        this.angle += speed;
+        double radius = 0.8;
+        double desiredX = this.originX + Math.cos(this.angle) * radius;
+        double desiredZ = this.originZ + Math.sin(this.angle) * radius;
         double dx = (desiredX - this.getX()) * 0.4;
         double dz = (desiredZ - this.getZ()) * 0.4;
 
@@ -102,19 +106,64 @@ public class VerdantTotemEntity extends Entity implements ItemSupplier {
     private void explode() {
         if (!(level() instanceof ServerLevel server)) return;
 
-        server.playSound(null, getX(), getY(), getZ(),
-                SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 4.0F, 1.0F);
+        for (int i = 0; i < 4; i++) {
+            float pitch = 0.7F + (i * 0.1F);
+            server.playSound(null, getX(), getY(), getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 4.0F, pitch);
+            server.playSound(null, getX(), getY(), getZ(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.PLAYERS, 4.0F, pitch);
+            server.playSound(null, getX(), getY(), getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 4.0F, pitch);
+        }
+        server.playSound(null, getX(), getY(), getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 4.0F, 1.0F);
 
         for (int i = 0; i < 120; i++) {
+            double spread = 1.0;
             server.sendParticles(
                     new DustParticleOptions(new Vector3f(0.4F, 1.0F, 0.4F), 1.5F),
                     getX(), getY(), getZ(),
-                    1, random.nextGaussian(), random.nextGaussian(), random.nextGaussian(), 0.04);
+                    1,
+                    random.nextGaussian() * spread,
+                    random.nextGaussian() * spread,
+                    random.nextGaussian() * spread,
+                    0.04);
         }
 
-        AABB area = new AABB(getX() - 6, getY() - 6, getZ() - 6,
-                getX() + 6, getY() + 6, getZ() + 6);
+        int[] colors = {
+                0x2e8109,
+                0x4ab60a,
+                0x73d20a,
+                0x9de50c,
+                0xd7ef05
+        };
 
+        int rings = 5;
+        double maxRadius = 8.0;
+        int pointsPerRing = 64;
+
+        for (int ring = 0; ring < rings; ring++) {
+            double r = (maxRadius / rings) * (ring + 1);
+            Color c = new Color(colors[ring]);
+            Vector3f colorVec = new Vector3f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f);
+
+            for (int p = 0; p < pointsPerRing; p++) {
+                double a = (2 * Math.PI * p) / pointsPerRing;
+
+                double px = getX() + Math.cos(a) * r;
+                double pz = getZ() + Math.sin(a) * r;
+                double py = getY();
+                spawnColoredSet(server, px, py, pz, colorVec);
+
+                double vy = getY() + Math.sin(a) * r;
+                double vz = getZ() + Math.cos(a) * r;
+                double vx = getX();
+                spawnColoredSet(server, vx, vy, vz, colorVec);
+
+                double xx = getX() + Math.cos(a) * r;
+                double yy = getY() + Math.sin(a) * r;
+                double zz = getZ();
+                spawnColoredSet(server, xx, yy, zz, colorVec);
+            }
+        }
+
+        AABB area = new AABB(getX() - 6, getY() - 6, getZ() - 6, getX() + 6, getY() + 6, getZ() + 6);
         List<LivingEntity> list = server.getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity e : list) {
             boolean isFriendly = owner != null && (e.isAlliedTo(owner) || e == owner);
@@ -125,6 +174,12 @@ public class VerdantTotemEntity extends Entity implements ItemSupplier {
         }
 
         this.discard();
+    }
+
+    private void spawnColoredSet(ServerLevel server, double x, double y, double z, Vector3f color) {
+        server.sendParticles(new DustParticleOptions(color, 1.3F),
+                x, y, z, 10, 0, 0, 0, 0.015);
+        server.sendParticles(ParticleTypes.COMPOSTER, x, y, z, 8, 0, 0, 0, 0.015);
     }
 
     private boolean isUndead(LivingEntity e) {
@@ -142,7 +197,11 @@ public class VerdantTotemEntity extends Entity implements ItemSupplier {
 
     @Override
     public ItemStack getItem() {
-        return new ItemStack(GemforgedItems.VERDANT_TOTEM.get());
+        return this.storedItem.isEmpty() ? new ItemStack(GemforgedItems.VERDANT_TOTEM.get()) : this.storedItem;
+    }
+
+    public void setItem(ItemStack stack) {
+        this.storedItem = stack;
     }
 
     public void setOwner(Player player) {

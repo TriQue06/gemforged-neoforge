@@ -21,8 +21,9 @@ public final class GemforgedLootTableModifiers {
     private static final ResourceLocation DESERT_PYRAMID = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/desert_pyramid");
     private static final ResourceLocation JUNGLE_TEMPLE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/jungle_temple");
     private static final ResourceLocation END_CITY_TREASURE = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/end_city_treasure");
-    private static final ResourceLocation OCEAN_RUIN_COLD_ARCH = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
+    private static final ResourceLocation OCEAN_RUIN_COLD_ARCHAEOLOGY = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
     private static final ResourceLocation PILLAGER_OUTPOST = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/pillager_outpost");
+    private static final ResourceLocation WOODLAND_MANSION = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/woodland_mansion");
 
     public static void register() {
         NeoForge.EVENT_BUS.addListener(GemforgedLootTableModifiers::onLootTableLoad);
@@ -59,7 +60,7 @@ public final class GemforgedLootTableModifiers {
             event.getTable().addPool(
                     makePoolWithChance(LootItem.lootTableItem(GemforgedItems.BLADE_TEMPLATE.get()), 0.25f)
             );
-        } else if (id.equals(OCEAN_RUIN_COLD_ARCH)) {
+        } else if (id.equals(OCEAN_RUIN_COLD_ARCHAEOLOGY)) {
             event.getTable().addPool(
                     makePoolWithChance(LootItem.lootTableItem(GemforgedItems.PRISM_TEMPLATE.get()), 0.25f)
             );
@@ -70,6 +71,10 @@ public final class GemforgedLootTableModifiers {
         } else if (id.equals(PILLAGER_OUTPOST)) {
             event.getTable().addPool(
                     makePoolWithChance(LootItem.lootTableItem(GemforgedItems.TOTEM_TEMPLATE.get()), 0.25f)
+            );
+        } else if (id.equals(WOODLAND_MANSION)) {
+            event.getTable().addPool(
+                    makePoolWithChance(LootItem.lootTableItem(GemforgedItems.BOW_TEMPLATE.get()), 0.50f)
             );
         }
     }

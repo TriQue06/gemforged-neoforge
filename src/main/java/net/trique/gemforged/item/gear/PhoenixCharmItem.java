@@ -23,16 +23,19 @@ import net.trique.gemforged.item.GemforgedItems;
 import java.util.List;
 
 public class PhoenixCharmItem extends Item {
+
     private static final int USE_DURATION_TICKS = 20;
     private static final int EFFECT_DURATION = 20 * 30;
     private static final int COOLDOWN_TICKS = 20 * 30 * 5;
 
-    private static final DustParticleOptions ORANGE =
-            new DustParticleOptions(new Vector3f(0.7725f, 0.2353f, 0.0627f), 2.0f);
-    private static final DustParticleOptions YELLOW =
-            new DustParticleOptions(new Vector3f(0.9725f, 0.7294f, 0.3843f), 2.0f);
+    private static final DustParticleOptions COL1 =
+            new DustParticleOptions(new Vector3f(0xfe / 255f, 0xc1 / 255f, 0x5c / 255f), 2.0f); // #fec15c
+    private static final DustParticleOptions COL2 =
+            new DustParticleOptions(new Vector3f(0xf2 / 255f, 0x6a / 255f, 0x1f / 255f), 2.0f); // #f26a1f
+    private static final DustParticleOptions COL3 =
+            new DustParticleOptions(new Vector3f(0xcc / 255f, 0x3e / 255f, 0x08 / 255f), 2.0f); // #cc3e08
 
-    public PhoenixCharmItem(Item.Properties props) {
+    public PhoenixCharmItem(Properties props) {
         super(props.durability(250));
     }
 
@@ -62,14 +65,10 @@ public class PhoenixCharmItem extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
+    public UseAnim getUseAnimation(ItemStack stack) { return UseAnim.BOW; }
 
     @Override
-    public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return USE_DURATION_TICKS;
-    }
+    public int getUseDuration(ItemStack stack, LivingEntity entity) { return USE_DURATION_TICKS; }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
@@ -101,43 +100,45 @@ public class PhoenixCharmItem extends Item {
     private void applyPhoenixEffect(ServerLevel level, Player user) {
         Vec3 c = user.position();
         level.playSound(null, c.x, c.y, c.z,
-                SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.2f, 1.0f);
-        level.playSound(null, c.x, c.y, c.z,
-                SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.PLAYERS, 0.8f, 1.2f);
+                SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.6f, 1.2f);
 
         AABB area = AABB.ofSize(c, 8, 8, 8);
+
         List<LivingEntity> targets = level.getEntitiesOfClass(LivingEntity.class, area,
                 e -> e.isAlive() && (e == user || e.isAlliedTo(user)));
 
         for (LivingEntity e : targets) {
             e.addEffect(new MobEffectInstance(GemforgedEffects.PHOENIX, EFFECT_DURATION, 0, true, true));
+            spawnPhoenixWings(level, e.position());
+        }
+    }
 
-            Vec3 base = e.position();
+    private void spawnPhoenixWings(ServerLevel level, Vec3 base) {
+        for (int wing = -1; wing <= 1; wing += 2) {
+            for (int i = 0; i < 80; i++) {
+                double p = i / 80.0;
+                double curve = Math.sin(p * Math.PI);
+                double lift = Math.pow(p, 0.4) * 3.2;
+                double spread = 2.2 * curve;
 
-            for (int wing = -1; wing <= 1; wing += 2) {
-                for (int i = 0; i < 50; i++) {
-                    double progress = i / 50.0;
-                    double angle = progress * Math.PI / 1.2;
-                    double radius = 1.5 * Math.sin(angle);
-                    double px = base.x + wing * radius;
-                    double py = base.y + 0.5 + progress * 2.5;
-                    double pz = base.z + (progress - 0.5) * 2.0;
+                double px = base.x + wing * spread;
+                double py = base.y + 0.4 + lift;
+                double pz = base.z + (p - 0.5) * 3.0;
 
-                    DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
-                    level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-                }
+                DustParticleOptions col = (i % 3 == 0) ? COL1 : (i % 3 == 1) ? COL2 : COL3;
+                level.sendParticles(col, px, py, pz, 1, 0, 0, 0, 0);
             }
+        }
 
-            for (int i = 0; i < 40; i++) {
-                double angle = (Math.PI * 2 * i) / 40.0;
-                double radius = 0.6;
-                double px = base.x + radius * Math.cos(angle);
-                double pz = base.z + radius * Math.sin(angle);
-                double py = base.y + 0.3 + (i % 10) * 0.1;
+        for (int i = 0; i < 60; i++) {
+            double angle = (Math.PI * 2 * i) / 60.0;
+            double r = 0.9 + (i % 3) * 0.1;
+            double px = base.x + r * Math.cos(angle);
+            double pz = base.z + r * Math.sin(angle);
+            double py = base.y + 0.3 + (i % 6) * 0.07;
 
-                DustParticleOptions dust = (i % 2 == 0) ? ORANGE : YELLOW;
-                level.sendParticles(dust, px, py, pz, 1, 0, 0, 0, 0);
-            }
+            DustParticleOptions col = (i % 3 == 0) ? COL1 : (i % 3 == 1) ? COL2 : COL3;
+            level.sendParticles(col, px, py, pz, 1, 0, 0, 0, 0);
         }
     }
 }
