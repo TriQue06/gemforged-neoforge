@@ -18,7 +18,7 @@ import net.trique.gemforged.item.GemforgedItems;
 
 public class GhostBowItem extends BowItem {
 
-    public static final float BASE_DAMAGE = 4.0F;
+    public static final float BASE_DAMAGE = 3.0F;
     public static final float BONUS_MAGIC_DAMAGE = 1.0F;
     public static final int COOLDOWN_TICKS = 100;
 

@@ -16,6 +16,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 
 public class GhostArrowEntity extends AbstractArrow {
+
     private static final int MAX_LIFETIME_TICKS = 20 * 3;
     private static final float EXPLOSION_POWER = 1.0F;
     private int lifetime;
