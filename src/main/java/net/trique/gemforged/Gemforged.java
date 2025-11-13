@@ -12,7 +12,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.trique.gemforged.particle.GemforgedParticles;
 import net.trique.gemforged.util.GemforgedLootTableModifiers;
 import org.slf4j.Logger;
