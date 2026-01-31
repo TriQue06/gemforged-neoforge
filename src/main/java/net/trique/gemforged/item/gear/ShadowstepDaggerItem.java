@@ -26,21 +26,32 @@ import org.joml.Vector3f;
 import net.trique.gemforged.item.GemforgedItems;
 
 public class ShadowstepDaggerItem extends SwordItem {
-    private static final String TAG_COMBO = "onyx_combo";
-    private static final String TAG_LASTHIT = "onyx_last_hit";
-    private static final int MAX_COMBO = 6;
-    private static final int COMBO_TIMEOUT_TICKS = 60;
-    private static final int COOLDOWN_TICKS = 20 * 30;
-    private static final double TP_MIN = 2.0, TP_MAX = 3.0;
 
-    private static final ResourceLocation MOD_DAMAGE_ID = ResourceLocation.parse("gemforged:onyx_combo_damage");
-    private static final ResourceLocation MOD_SPEED_ID = ResourceLocation.parse("gemforged:onyx_combo_speed");
+    public static final String TAG_COMBO = "onyx_combo";
+    public static final String TAG_ACTIVE_UNTIL = "onyx_active_until";
 
-    private static final Vector3f SHADOW_PURPLE = new Vector3f(0.2627f, 0.1569f, 0.3843f);
-    private static final Vector3f SHADOW_LIGHT  = new Vector3f(0.4745f, 0.3294f, 0.6118f);
+    public static final int MAX_COMBO = 6;
+    public static final int COMBO_ACTIVE_TICKS = 20 * 5;
+    public static final int COOLDOWN_TICKS = 20 * 30;
+
+    public static final ResourceLocation MOD_DAMAGE_ID =
+            ResourceLocation.parse("gemforged:onyx_combo_damage");
+    public static final ResourceLocation MOD_SPEED_ID =
+            ResourceLocation.parse("gemforged:onyx_combo_speed");
+
+    private static final double TP_MIN = 2.0;
+    private static final double TP_MAX = 3.0;
+
+    private static final Vector3f SHADOW_PURPLE =
+            new Vector3f(0.2627f, 0.1569f, 0.3843f);
+    private static final Vector3f SHADOW_LIGHT =
+            new Vector3f(0.4745f, 0.3294f, 0.6118f);
 
     public ShadowstepDaggerItem(Item.Properties props) {
-        super(Tiers.DIAMOND, props.attributes(SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)));
+        super(Tiers.DIAMOND,
+                props.attributes(
+                        SwordItem.createAttributes(Tiers.DIAMOND, 2, -2.0f)
+                ));
     }
 
     @Override
@@ -52,58 +63,45 @@ public class ShadowstepDaggerItem extends SwordItem {
         CustomData cd = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
         CompoundTag tag = cd.copyTag();
 
-        long now = level.getGameTime();
         int combo = tag.getInt(TAG_COMBO);
-        long last = tag.getLong(TAG_LASTHIT);
-
-        if (combo > 0 && (now - last) > COMBO_TIMEOUT_TICKS) {
-            combo = 0;
-            removeComboModifiers(player);
-        }
-        if (player.getCooldowns().isOnCooldown(this)) {
-            removeComboModifiers(player);
-            return true;
-        }
+        long now = level.getGameTime();
 
         if (combo == 0) {
-            ItemStack nyxite = findChargeResource(player);
-            boolean creative = player.getAbilities().instabuild;
-            if (!creative && nyxite.isEmpty()) {
+            if (!player.getAbilities().instabuild && findChargeResource(player).isEmpty()) {
                 return true;
             }
+            addComboModifiers(player);
         }
 
         if (player instanceof ServerPlayer sp && target.isAlive()) {
             tryTeleportAround((ServerLevel) level, sp, target);
-            sp.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());
+            sp.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
         }
 
         combo++;
         tag.putInt(TAG_COMBO, combo);
-        tag.putLong(TAG_LASTHIT, now);
+        tag.putLong(TAG_ACTIVE_UNTIL, now + COMBO_ACTIVE_TICKS);
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
 
-        if (combo == 1) {
-            addComboModifiers(player);
-        }
-
         if (combo >= MAX_COMBO) {
-            boolean creative = player.getAbilities().instabuild;
-            ItemStack nyxite = findChargeResource(player);
-
-            if (creative || !nyxite.isEmpty()) {
-                if (!creative) {
-                    nyxite.shrink(1);
-                }
+            if (player.getAbilities().instabuild || !findChargeResource(player).isEmpty()) {
+                if (!player.getAbilities().instabuild)
+                    findChargeResource(player).shrink(1);
                 player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
             }
-
-            tag.putInt(TAG_COMBO, 0);
-            stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
-            removeComboModifiers(player);
+            clearCombo(player, stack);
         }
 
         return true;
+    }
+
+    public void clearCombo(Player player, ItemStack stack) {
+        CustomData cd = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
+        CompoundTag tag = cd.copyTag();
+        tag.putInt(TAG_COMBO, 0);
+        tag.remove(TAG_ACTIVE_UNTIL);
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+        removeComboModifiers(player);
     }
 
     private ItemStack findChargeResource(Player player) {
@@ -117,11 +115,16 @@ public class ShadowstepDaggerItem extends SwordItem {
     private void addComboModifiers(Player player) {
         AttributeInstance dmg = player.getAttribute(Attributes.ATTACK_DAMAGE);
         AttributeInstance spd = player.getAttribute(Attributes.ATTACK_SPEED);
+
         if (dmg != null && dmg.getModifier(MOD_DAMAGE_ID) == null) {
-            dmg.addTransientModifier(new AttributeModifier(MOD_DAMAGE_ID, 2.0, AttributeModifier.Operation.ADD_VALUE));
+            dmg.addTransientModifier(
+                    new AttributeModifier(MOD_DAMAGE_ID, 2.0,
+                            AttributeModifier.Operation.ADD_VALUE));
         }
         if (spd != null && spd.getModifier(MOD_SPEED_ID) == null) {
-            spd.addTransientModifier(new AttributeModifier(MOD_SPEED_ID, 10.0, AttributeModifier.Operation.ADD_VALUE));
+            spd.addTransientModifier(
+                    new AttributeModifier(MOD_SPEED_ID, 10.0,
+                            AttributeModifier.Operation.ADD_VALUE));
         }
     }
 
@@ -142,44 +145,56 @@ public class ShadowstepDaggerItem extends SwordItem {
             BlockPos guess = BlockPos.containing(
                     c.x + d * Math.cos(a),
                     c.y,
-                    c.z + d * Math.sin(a)
-            );
+                    c.z + d * Math.sin(a));
+
             BlockPos safe = findStandable(level, guess, 6);
             if (safe != null) {
                 Vec3 from = player.position();
-                spawnShadowSmoke(level, from.x, from.y + 1.0, from.z);
-                playShadowTeleportSound(level, from.x, from.y, from.z);
+                spawnShadowSmoke(level, from);
+                playShadowTeleportSound(level, from);
 
-                player.teleportTo(level, safe.getX() + 0.5, safe.getY(), safe.getZ() + 0.5,
-                        player.getYRot(), player.getXRot());
+                player.teleportTo(level,
+                        safe.getX() + 0.5,
+                        safe.getY(),
+                        safe.getZ() + 0.5,
+                        player.getYRot(),
+                        player.getXRot());
 
                 Vec3 to = player.position();
-                spawnShadowSmoke(level, to.x, to.y + 1.0, to.z);
-                playShadowTeleportSound(level, to.x, to.y, to.z);
+                spawnShadowSmoke(level, to);
+                playShadowTeleportSound(level, to);
                 return;
             }
         }
     }
 
-    private void spawnShadowSmoke(ServerLevel level, double x, double y, double z) {
+    private void spawnShadowSmoke(ServerLevel level, Vec3 pos) {
         level.sendParticles(new DustParticleOptions(SHADOW_PURPLE, 1.5f),
-                x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
+                pos.x, pos.y + 1, pos.z, 20, 0.6, 0.25, 0.6, 0.02);
         level.sendParticles(new DustParticleOptions(SHADOW_LIGHT, 1.5f),
-                x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
-        level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z, 20, 0.6, 0.25, 0.6, 0.02);
-        level.sendParticles(ParticleTypes.ASH, x, y, z, 10, 0.5, 0.2, 0.5, 0.01);
+                pos.x, pos.y + 1, pos.z, 20, 0.6, 0.25, 0.6, 0.02);
+        level.sendParticles(ParticleTypes.LARGE_SMOKE,
+                pos.x, pos.y + 1, pos.z, 20, 0.6, 0.25, 0.6, 0.02);
+        level.sendParticles(ParticleTypes.ASH,
+                pos.x, pos.y + 1, pos.z, 10, 0.5, 0.2, 0.5, 0.01);
     }
 
-    private void playShadowTeleportSound(ServerLevel level, double x, double y, double z) {
-        level.playSound(null, x, y, z, SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0f, 0.6f + level.random.nextFloat() * 0.2f);
-        level.playSound(null, x, y, z, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.8f, 0.9f + level.random.nextFloat() * 0.1f);
+    private void playShadowTeleportSound(ServerLevel level, Vec3 pos) {
+        level.playSound(null, pos.x, pos.y, pos.z,
+                SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS,
+                1.0f, 0.6f + level.random.nextFloat() * 0.2f);
+        level.playSound(null, pos.x, pos.y, pos.z,
+                SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS,
+                0.8f, 0.9f + level.random.nextFloat() * 0.1f);
     }
 
     private BlockPos findStandable(ServerLevel lvl, BlockPos pos, int vRange) {
         BlockPos.MutableBlockPos m = pos.mutable();
         for (int dy = 0; dy <= vRange; dy++) {
-            if (isStandable(lvl, m.set(pos.getX(), pos.getY() + dy, pos.getZ()))) return m.immutable();
-            if (isStandable(lvl, m.set(pos.getX(), pos.getY() - dy, pos.getZ()))) return m.immutable();
+            if (isStandable(lvl, m.set(pos.getX(), pos.getY() + dy, pos.getZ())))
+                return m.immutable();
+            if (isStandable(lvl, m.set(pos.getX(), pos.getY() - dy, pos.getZ())))
+                return m.immutable();
         }
         return null;
     }
@@ -187,9 +202,8 @@ public class ShadowstepDaggerItem extends SwordItem {
     private boolean isStandable(ServerLevel lvl, BlockPos pos) {
         BlockPos below = pos.below();
         BlockState sBelow = lvl.getBlockState(below);
-        boolean solidBelow = !sBelow.getCollisionShape(lvl, below).isEmpty();
-        boolean airFeet = lvl.isEmptyBlock(pos);
-        boolean airHead = lvl.isEmptyBlock(pos.above());
-        return solidBelow && airFeet && airHead;
+        return !sBelow.getCollisionShape(lvl, below).isEmpty()
+                && lvl.isEmptyBlock(pos)
+                && lvl.isEmptyBlock(pos.above());
     }
 }

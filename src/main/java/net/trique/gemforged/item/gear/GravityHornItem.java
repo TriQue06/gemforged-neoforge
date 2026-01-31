@@ -26,7 +26,7 @@ public class GravityHornItem extends Item {
     private static final float RADIUS = 16f;
     private static final int COOLDOWN_TICKS = 20 * 30;
     private static final int USE_DURATION_TICKS = 20;
-    private static final int LEVITATION_DURATION = 20 * 2;
+    private static final int LEVITATION_DURATION = 20 * 5 / 2;
     private static final int LEVITATION_AMPLIFIER = 4;
 
     private static final DustParticleOptions PURPLE =
